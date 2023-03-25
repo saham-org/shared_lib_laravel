@@ -1,0 +1,32 @@
+{
+    "name": "ahmedashraf093/saham-laravel-libs",
+    "type": "library",
+    "description": "Saham shared model logic",
+    "homepage": "https://sahmapp.com",
+    "authors": [
+        {
+            "name": "AhmedAshraf039",
+            "email": "info@sahmapp.com",
+            "role": "admin"
+        }
+    ],
+    "require": {
+        "php": "^7.3|^8.0",
+        "illuminate/auth": "^7.0|^8.0|^9.0|^10.0",
+        "illuminate/container": "^7.0|^8.0|^9.0|^10.0",
+        "illuminate/contracts": "^10.4",
+        "illuminate/database": "^7.0|^8.0|^9.0|^10.0",
+        "illuminate/pagination": "^7.0|^8.0|^9.0|^10.0",
+        "mongodb/mongodb": "^1.12",
+        "spatie/geocoder": "^3.14",
+        "illuminate/notifications": "^10.4",
+        "laravel/passport": "^11.8",
+        "spatie/laravel-permission": "^5.10",
+        "nesbot/carbon": "^2.66"
+    },
+    "autoload": {
+        "psr-4": {
+            "SahamLibs\\SharedModels\\": "src"
+        }
+    }
+}
