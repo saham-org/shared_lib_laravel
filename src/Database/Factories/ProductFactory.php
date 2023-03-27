@@ -6,9 +6,12 @@ use Saham\SharedLibs\Models\Menu;
 use Saham\SharedLibs\Models\Size;
 use Saham\SharedLibs\Models\Store;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Saham\SharedLibs\Models\Product;
 
 class ProductFactory extends Factory
 {
+    protected $model = Product::class;
+
     public function definition()
     {
         return [
@@ -37,7 +40,7 @@ class ProductFactory extends Factory
 
     public function withPrice(float $price)
     {
-        return $this->state( function (array $attributes) use ($price) {
+        return $this->state(function (array $attributes) use ($price) {
             return [
                 'price' => $price,
             ];
@@ -46,7 +49,7 @@ class ProductFactory extends Factory
 
     public function withSizes(float $no)
     {
-        return $this->state( function (array $attributes) use ($no) {
+        return $this->state(function (array $attributes) use ($no) {
             $sizes = Size::factory()->count($no)->create()->toArray();
             return [
                 'sizes' => $sizes,
