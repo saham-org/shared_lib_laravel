@@ -1,5 +1,5 @@
 {
-    "name": "ahmedashraf093/saham-laravel-libs",
+    "name": "ahmedashraf093/saham-php-libs",
     "type": "library",
     "description": "Saham shared model logic",
     "homepage": "https://sahmapp.com",
@@ -24,9 +24,17 @@
         "spatie/laravel-permission": "^5.10",
         "nesbot/carbon": "^2.66"
     },
+    "config": {
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
     "autoload": {
         "psr-4": {
-            "Saham\\SharedLibs\\": "src"
-        }
+            "Saham\\SharedLibs\\": "src/"
+        },
+        "files" : [
+            "src/Helpers/All.php"
+        ]
     }
 }
