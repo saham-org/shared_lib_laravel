@@ -2,8 +2,8 @@
 
 namespace Saham\SharedLibs\Providers;
 
+use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\ServiceProvider;
-use Illuminate\Database\Eloquent\Factory;
 
 class FactoriesServiceProvider extends ServiceProvider
 {
