@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
+use Saham\SharedLibs\Database\Factories\PartnerFactory;
 
 class Partner extends Eloquent implements Authenticatable
 {
@@ -38,6 +39,13 @@ class Partner extends Eloquent implements Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    protected static function newFactory()
+    {
+        return PartnerFactory::new();
+    }
+
 
     public function setPasswordAttribute($value): void
     {

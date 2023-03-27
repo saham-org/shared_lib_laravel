@@ -2,6 +2,7 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Saham\SharedLibs\Database\Factories\DriverFactory;
 use Saham\SharedLibs\Models\Enums\OrderStatus;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
@@ -33,6 +34,13 @@ class Driver extends Eloquent implements Authenticatable
     ];
 
     protected $hidden = ['remember_token', 'password'];
+
+
+    protected static function newFactory()
+    {
+        return DriverFactory::new();
+    }
+
 
     public function setPasswordAttribute($value): void
     {

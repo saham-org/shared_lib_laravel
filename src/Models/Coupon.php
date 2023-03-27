@@ -7,11 +7,17 @@ use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\BSON\UTCDateTime;
+use Saham\SharedLibs\Database\Factories\CouponFactory;
 
 class Coupon extends BaseModel
 {
     use HasFactory;
     use SoftDeletes ;
+
+    protected static function newFactory()
+    {
+        return CouponFactory::new();
+    }
 
     protected $casts = [
         'amount'         => 'double',

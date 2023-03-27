@@ -5,6 +5,7 @@ namespace Saham\SharedLibs\Models;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Database\Factories\ProductFactory;
 
 class Product extends BaseModel
 {
@@ -14,6 +15,13 @@ class Product extends BaseModel
     protected $translatable = ['title', 'desc'];
 
     protected $guarded = [];
+
+
+    protected static function newFactory()
+    {
+        return ProductFactory::new();
+    }
+
 
     public function variations(): mixed
     {

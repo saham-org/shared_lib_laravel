@@ -7,11 +7,18 @@ use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\EmbedsMany;
 use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Database\Factories\ProductVariationFactory;
 
 class ProductVariation extends BaseModel
 {
     use HasFactory;
     use Translatable;
+
+
+    protected static function newFactory()
+    {
+        return ProductVariationFactory::new();
+    }
 
     public $timestamps      = false;
     protected $translatable = ['title'];

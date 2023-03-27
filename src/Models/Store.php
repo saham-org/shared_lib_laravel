@@ -15,6 +15,7 @@ use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
 use MongoDB\BSON\UTCDateTime;
+use Saham\SharedLibs\Database\Factories\StoreFactory;
 
 class Store extends BaseModel
 {
@@ -36,6 +37,12 @@ class Store extends BaseModel
         'max_delivery_time' => 'integer',
         'min_order_charge'  => 'integer',
     ];
+
+
+    protected static function newFactory()
+    {
+        return StoreFactory::new();
+    }
 
     public function getFullNameAttribute(): string
     {

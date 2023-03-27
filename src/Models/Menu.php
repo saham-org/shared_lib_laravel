@@ -8,6 +8,7 @@ use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Mongodb\Relations\HasOne;
 use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Database\Factories\MenuFactory;
 
 class Menu extends BaseModel
 {
@@ -15,6 +16,13 @@ class Menu extends BaseModel
     use Translatable;
 
     protected $translatable = ['title'];
+
+
+    protected static function newFactory()
+    {
+        return MenuFactory::new();
+    }
+
 
     public function partner(): BelongsTo
     {

@@ -6,12 +6,19 @@ use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Database\Factories\AddressFactory;
 use Spatie\Geocoder\Facades\Geocoder;
 
 class Address extends BaseModel
 {
     use HasFactory;
     use Translatable;
+
+    protected static function newFactory()
+    {
+        return AddressFactory::new();
+    }
+
 
     protected $translatable = ['formatted_address'];
 

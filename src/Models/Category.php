@@ -7,12 +7,18 @@ use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Database\Factories\CategoryFactory;
 
 class Category extends BaseModel
 {
     use HasFactory;
     use Translatable;
     use SoftDeletes ;
+
+    protected static function newFactory()
+    {
+        return CategoryFactory::new();
+    }
 
     protected $translatable = ['title'];
 

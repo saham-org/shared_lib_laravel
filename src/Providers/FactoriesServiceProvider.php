@@ -9,8 +9,8 @@ class FactoriesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        Factory::guessFactoryNamesUsing(function (string $modelName) {
-            return 'Saham\\SharedLibs\\Database\\Factories\\'.class_basename($modelName).'Factory';
-        });
+        // Factory::guessFactoryNamesUsing(function (string $modelName) {
+        //     return 'Saham\\SharedLibs\\Database\\Factories\\'.class_basename($modelName).'Factory';
+        // });
     }
 }

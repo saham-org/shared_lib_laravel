@@ -15,6 +15,7 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
+use Saham\SharedLibs\Database\Factories\UserFactory;
 
 class User extends Eloquent implements Authenticatable
 {
@@ -38,6 +39,12 @@ class User extends Eloquent implements Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+
+    protected static function newFactory()
+    {
+        return UserFactory::new();
+    }
 
     public function findForPassport($username): ?self
     {

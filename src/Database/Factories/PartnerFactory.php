@@ -3,9 +3,14 @@
 namespace Saham\SharedLibs\Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Saham\SharedLibs\Models\Partner;
 
 class PartnerFactory extends Factory
 {
+
+    protected $model = Partner::class;
+
+
     public function definition()
     {   //dd($this->faker->password()) ;
         return [

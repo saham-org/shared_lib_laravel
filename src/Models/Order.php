@@ -7,6 +7,7 @@ use Saham\SharedLibs\Mongodb\Eloquent\Builder;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Database\Factories\OrderFactory;
 
 class Order extends BaseModel
 {
@@ -21,6 +22,13 @@ class Order extends BaseModel
     protected $casts = [
         'ref_id' => 'string',
     ];
+
+
+    protected static function newFactory()
+    {
+        return OrderFactory::new();
+    }
+
 
     public function scopeCurrentStatus($query, $status): Builder
     {
