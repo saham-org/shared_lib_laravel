@@ -9,7 +9,7 @@ class FactoriesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->registerEloquentFactoriesFrom(__DIR__ . '/../database/factories');
+        $this->registerEloquentFactoriesFrom(__DIR__ . '/../Database/Factories');
     }
 
 

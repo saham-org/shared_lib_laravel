@@ -8,7 +8,6 @@ class BannerFactory extends Factory
 {
     public function definition()
     {
-        $faker_ar = \Faker\Factory::create('ar_AR');
         return [
 
             'thumb'      => 'https://via.placeholder.com/400',

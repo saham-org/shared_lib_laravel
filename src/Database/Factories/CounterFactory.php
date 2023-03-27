@@ -9,7 +9,7 @@ class CounterFactory extends Factory
     public function definition()
     {
         return [
-            
+
         ];
     }
 }
