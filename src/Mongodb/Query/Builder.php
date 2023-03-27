@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Query;
+namespace Saham\SharedLibs\Mongodb\Query;
 
 use Closure;
 use DateTimeInterface;
@@ -10,7 +10,7 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
-use SahamLibs\Mongodb\Connection;
+use Saham\SharedLibs\Mongodb\Connection;
 use MongoDB\BSON\Binary;
 use MongoDB\BSON\ObjectID;
 use MongoDB\BSON\Regex;

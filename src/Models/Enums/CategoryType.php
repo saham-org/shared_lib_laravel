@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Models\Enums;
+namespace Saham\SharedLibs\Models\Enums;
 
 enum CategoryType: string
 {

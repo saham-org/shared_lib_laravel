@@ -1,8 +1,8 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
 class Activity extends Model
 {

@@ -1,9 +1,9 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Models\Abstracts\BaseModel;
-use SahamLibs\Mongodb\Relations\BelongsTo;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DriverAssignment extends BaseModel

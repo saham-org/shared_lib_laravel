@@ -1,9 +1,9 @@
 <?php
 
-namespace SahamLibs\Mongodb\Eloquent;
+namespace Saham\SharedLibs\Mongodb\Eloquent;
 
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use SahamLibs\Mongodb\Helpers\QueriesRelationships;
+use Saham\SharedLibs\Mongodb\Helpers\QueriesRelationships;
 use MongoDB\Driver\Cursor;
 use MongoDB\Model\BSONDocument;
 

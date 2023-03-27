@@ -1,8 +1,8 @@
 <?php
 
-namespace SahamLibs\Traits;
+namespace Saham\SharedLibs\Traits;
 
-use SahamLibs\Models\Permission;
+use Saham\SharedLibs\Models\Permission;
 
 use function app;
 

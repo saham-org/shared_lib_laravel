@@ -1,14 +1,14 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Mongodb\Eloquent\Model as Eloquent;
-use SahamLibs\Mongodb\Relations\BelongsTo;
-use SahamLibs\Mongodb\Relations\BelongsToArray;
-use SahamLibs\Mongodb\Relations\HasMany;
-use SahamLibs\Traits\HasTransaction;
-use SahamLibs\Traits\HasWallet;
-use SahamLibs\Traits\Translatable;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
+use Saham\SharedLibs\Mongodb\Relations\BelongsToArray;
+use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\Traits\HasTransaction;
+use Saham\SharedLibs\Traits\HasWallet;
+use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;

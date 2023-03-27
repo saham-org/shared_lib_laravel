@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Schema;
+namespace Saham\SharedLibs\Mongodb\Schema;
 
 use Closure;
 

@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Query;
+namespace Saham\SharedLibs\Mongodb\Query;
 
 use Illuminate\Database\Query\Grammars\Grammar as BaseGrammar;
 

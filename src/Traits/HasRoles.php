@@ -1,12 +1,12 @@
 <?php
 
-namespace SahamLibs\Traits;
+namespace Saham\SharedLibs\Traits;
 
-use SahamLibs\Helpers\PermissionHelpers;
-use SahamLibs\Models\Role;
-use SahamLibs\Mongodb\Eloquent\Builder;
-use SahamLibs\Mongodb\Eloquent\Model;
-use SahamLibs\Registerer\PermissionRegistrar;
+use Saham\SharedLibs\Helpers\PermissionHelpers;
+use Saham\SharedLibs\Models\Role;
+use Saham\SharedLibs\Mongodb\Eloquent\Builder;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Registerer\PermissionRegistrar;
 use Illuminate\Support\Collection;
 use ReflectionException;
 
@@ -48,7 +48,7 @@ trait HasRoles
      */
     public function roles(): mixed
     {
-        return $this->belongsToMany('SahamLibs\Models\Role');
+        return $this->belongsToMany('Saham\SharedLibs\Models\Role');
     }
 
     /**

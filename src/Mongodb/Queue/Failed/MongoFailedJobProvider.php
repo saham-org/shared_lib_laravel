@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Queue\Failed;
+namespace Saham\SharedLibs\Mongodb\Queue\Failed;
 
 use Carbon\Carbon;
 use Illuminate\Queue\Failed\DatabaseFailedJobProvider;

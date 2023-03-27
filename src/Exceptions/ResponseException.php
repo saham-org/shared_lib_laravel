@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Exceptions;
+namespace Saham\SharedLibs\Exceptions;
 
 use Exception;
 use Illuminate\Http\Response;

@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Traits\Tests;
+namespace Saham\SharedLibs\Traits\Tests;
 
 use Artisan;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

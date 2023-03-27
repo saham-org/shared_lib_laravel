@@ -1,11 +1,11 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Helpers\PermissionHelpers;
-use SahamLibs\Mongodb\Eloquent\Model as Eloquent;
-use SahamLibs\Mongodb\Query\Builder;
-use SahamLibs\Traits\HasPermissions;
+use Saham\SharedLibs\Helpers\PermissionHelpers;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Saham\SharedLibs\Mongodb\Query\Builder;
+use Saham\SharedLibs\Traits\HasPermissions;
 use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Contracts\Role as RoleContract;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;

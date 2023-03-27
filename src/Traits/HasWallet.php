@@ -1,8 +1,8 @@
 <?php
 
-namespace SahamLibs\Traits;
+namespace Saham\SharedLibs\Traits;
 
-use SahamLibs\Exceptions\ResponseException;
+use Saham\SharedLibs\Exceptions\ResponseException;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HasWallet

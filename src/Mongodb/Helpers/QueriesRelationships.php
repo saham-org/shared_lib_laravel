@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Helpers;
+namespace Saham\SharedLibs\Mongodb\Helpers;
 
 use Closure;
 use Exception;
@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 use Illuminate\Database\Eloquent\Relations\HasOneOrMany;
 use Illuminate\Database\Eloquent\Relations\Relation;
-use SahamLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
 trait QueriesRelationships
 {

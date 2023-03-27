@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Traits;
+namespace Saham\SharedLibs\Traits;
 
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Str;

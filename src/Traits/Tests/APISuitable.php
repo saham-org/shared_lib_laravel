@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Traits\Tests;
+namespace Saham\SharedLibs\Traits\Tests;
 
 use Database\Seeders\DatabaseSeeder;
 use Database\Seeders\OauthClientsSeeder;

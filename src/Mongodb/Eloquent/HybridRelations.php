@@ -1,17 +1,17 @@
 <?php
 
-namespace SahamLibs\Mongodb\Eloquent;
+namespace Saham\SharedLibs\Mongodb\Eloquent;
 
 use Illuminate\Database\Eloquent\Relations\MorphOne;
 use Illuminate\Support\Str;
-use SahamLibs\Mongodb\Helpers\EloquentBuilder;
-use SahamLibs\Mongodb\Relations\BelongsTo;
-use SahamLibs\Mongodb\Relations\BelongsToArray;
-use SahamLibs\Mongodb\Relations\BelongsToMany;
-use SahamLibs\Mongodb\Relations\HasMany;
-use SahamLibs\Mongodb\Relations\HasOne;
-use SahamLibs\Mongodb\Relations\MorphMany;
-use SahamLibs\Mongodb\Relations\MorphTo;
+use Saham\SharedLibs\Mongodb\Helpers\EloquentBuilder;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
+use Saham\SharedLibs\Mongodb\Relations\BelongsToArray;
+use Saham\SharedLibs\Mongodb\Relations\BelongsToMany;
+use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\Mongodb\Relations\HasOne;
+use Saham\SharedLibs\Mongodb\Relations\MorphMany;
+use Saham\SharedLibs\Mongodb\Relations\MorphTo;
 
 trait HybridRelations
 {
@@ -27,7 +27,7 @@ trait HybridRelations
     public function hasOne($related, $foreignKey = null, $localKey = null)
     {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \SahamLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
             return parent::hasOne($related, $foreignKey, $localKey);
         }
 
@@ -54,7 +54,7 @@ trait HybridRelations
     public function morphOne($related, $name, $type = null, $id = null, $localKey = null)
     {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \SahamLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
             return parent::morphOne($related, $name, $type, $id, $localKey);
         }
 
@@ -79,7 +79,7 @@ trait HybridRelations
     public function hasMany($related, $foreignKey = null, $localKey = null)
     {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \SahamLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
             return parent::hasMany($related, $foreignKey, $localKey);
         }
 
@@ -106,7 +106,7 @@ trait HybridRelations
     public function morphMany($related, $name, $type = null, $id = null, $localKey = null)
     {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \SahamLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
             return parent::morphMany($related, $name, $type, $id, $localKey);
         }
 
@@ -146,7 +146,7 @@ trait HybridRelations
         }
 
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \SahamLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
             return parent::belongsTo($related, $foreignKey, $otherKey, $relation);
         }
 
@@ -255,7 +255,7 @@ trait HybridRelations
         }
 
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \SahamLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
             return parent::belongsToMany(
                 $related,
                 $collection,
@@ -330,7 +330,7 @@ trait HybridRelations
         }
 
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \SahamLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
             return parent::belongsToArray(
                 $related,
                 $collection,
@@ -394,7 +394,7 @@ trait HybridRelations
      */
     public function newEloquentBuilder($query)
     {
-        if (is_subclass_of($this, \SahamLibs\Mongodb\Eloquent\Model::class)) {
+        if (is_subclass_of($this, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
             return new Builder($query);
         }
 

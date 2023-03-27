@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Eloquent;
+namespace Saham\SharedLibs\Mongodb\Eloquent;
 
 trait SoftDeletes
 {

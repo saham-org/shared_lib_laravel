@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Relations;
+namespace Saham\SharedLibs\Mongodb\Relations;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Collection;

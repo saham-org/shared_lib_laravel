@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Queue;
+namespace Saham\SharedLibs\Mongodb\Queue;
 
 use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Queue\Connectors\ConnectorInterface;

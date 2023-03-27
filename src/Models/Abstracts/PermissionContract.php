@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Models\Abstracts;
+namespace Saham\SharedLibs\Models\Abstracts;
 
 use Spatie\Permission\Exceptions\PermissionDoesNotExist;
 

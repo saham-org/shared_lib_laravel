@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Traits;
+namespace Saham\SharedLibs\Traits;
 
 trait Enumerable
 {

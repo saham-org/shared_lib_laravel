@@ -1,9 +1,9 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Models\Abstracts\BaseModel;
-use SahamLibs\Traits\Translatable;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Cuisine extends BaseModel

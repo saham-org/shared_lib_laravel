@@ -1,12 +1,12 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Helpers\PermissionHelpers;
-use SahamLibs\Models\Abstracts\PermissionContract;
-use SahamLibs\Mongodb\Eloquent\Model as Eloquent;
-use SahamLibs\Registerer\PermissionRegistrar;
-use SahamLibs\Traits\HasRoles;
+use Saham\SharedLibs\Helpers\PermissionHelpers;
+use Saham\SharedLibs\Models\Abstracts\PermissionContract;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Saham\SharedLibs\Registerer\PermissionRegistrar;
+use Saham\SharedLibs\Traits\HasRoles;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Collection;
 use ReflectionException;

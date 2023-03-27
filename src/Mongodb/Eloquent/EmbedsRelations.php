@@ -1,10 +1,10 @@
 <?php
 
-namespace SahamLibs\Mongodb\Eloquent;
+namespace Saham\SharedLibs\Mongodb\Eloquent;
 
 use Illuminate\Support\Str;
-use SahamLibs\Mongodb\Relations\EmbedsMany;
-use SahamLibs\Mongodb\Relations\EmbedsOne;
+use Saham\SharedLibs\Mongodb\Relations\EmbedsMany;
+use Saham\SharedLibs\Mongodb\Relations\EmbedsOne;
 
 trait EmbedsRelations
 {
@@ -16,7 +16,7 @@ trait EmbedsRelations
      * @param string $foreignKey
      * @param string $relation
      *
-     * @return \SahamLibs\Mongodb\Relations\EmbedsMany
+     * @return \Saham\SharedLibs\Mongodb\Relations\EmbedsMany
      */
     protected function embedsMany($related, $localKey = null, $foreignKey = null, $relation = null)
     {
@@ -52,7 +52,7 @@ trait EmbedsRelations
      * @param string $foreignKey
      * @param string $relation
      *
-     * @return \SahamLibs\Mongodb\Relations\EmbedsOne
+     * @return \Saham\SharedLibs\Mongodb\Relations\EmbedsOne
      */
     protected function embedsOne($related, $localKey = null, $foreignKey = null, $relation = null)
     {

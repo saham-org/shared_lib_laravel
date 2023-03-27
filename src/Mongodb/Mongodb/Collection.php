@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb;
+namespace Saham\SharedLibs\Mongodb;
 
 use Exception;
 use MongoDB\BSON\ObjectID;

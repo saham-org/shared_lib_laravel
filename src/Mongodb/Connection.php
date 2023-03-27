@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb;
+namespace Saham\SharedLibs\Mongodb;
 
 use Illuminate\Database\Connection as BaseConnection;
 use Illuminate\Support\Arr;

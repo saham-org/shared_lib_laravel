@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Validation;
+namespace Saham\SharedLibs\Mongodb\Validation;
 
 class DatabasePresenceVerifier extends \Illuminate\Validation\DatabasePresenceVerifier
 {

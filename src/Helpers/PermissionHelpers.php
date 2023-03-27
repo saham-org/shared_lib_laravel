@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Helpers;
+namespace Saham\SharedLibs\Helpers;
 
 use Illuminate\Support\Collection;
 

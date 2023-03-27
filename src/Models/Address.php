@@ -1,10 +1,10 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Models\Abstracts\BaseModel;
-use SahamLibs\Mongodb\Relations\BelongsTo;
-use SahamLibs\Traits\Translatable;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
+use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Geocoder\Facades\Geocoder;
 

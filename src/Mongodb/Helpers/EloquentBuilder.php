@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Helpers;
+namespace Saham\SharedLibs\Mongodb\Helpers;
 
 use Illuminate\Database\Eloquent\Builder;
 

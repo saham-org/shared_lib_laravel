@@ -1,10 +1,10 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Mongodb\Eloquent\Model as Eloquent;
-// use SahamLibs\Traits\HasRoles;
-use SahamLibs\Traits\HasRoles;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+// use Saham\SharedLibs\Traits\HasRoles;
+use Saham\SharedLibs\Traits\HasRoles;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable;

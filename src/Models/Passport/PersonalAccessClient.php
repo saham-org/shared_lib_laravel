@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Models\Passport;
+namespace Saham\SharedLibs\Models\Passport;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

@@ -1,16 +1,16 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Models\Abstracts\BaseModel;
-use SahamLibs\Models\Enums\DeliveryFee;
-use SahamLibs\Mongodb\Eloquent\SoftDeletes;
-use SahamLibs\Mongodb\Relations\BelongsTo;
-use SahamLibs\Mongodb\Relations\BelongsToArray;
-use SahamLibs\Mongodb\Relations\HasMany;
-use SahamLibs\Mongodb\Relations\HasOne;
-use SahamLibs\Traits\HasWallet;
-use SahamLibs\Traits\Translatable;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Models\Enums\DeliveryFee;
+use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
+use Saham\SharedLibs\Mongodb\Relations\BelongsToArray;
+use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\Mongodb\Relations\HasOne;
+use Saham\SharedLibs\Traits\HasWallet;
+use Saham\SharedLibs\Traits\Translatable;
 use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;

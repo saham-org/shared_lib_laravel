@@ -1,8 +1,8 @@
 <?php
 
-namespace SahamLibs\Traits\Tests;
+namespace Saham\SharedLibs\Traits\Tests;
 
-use SahamLibs\Models\User;
+use Saham\SharedLibs\Models\User;
 use Tymon\JWTAuth\Facades\JWTAuth;
 
 trait AttachJwtToken

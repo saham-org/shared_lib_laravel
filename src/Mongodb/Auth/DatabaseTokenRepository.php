@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Auth;
+namespace Saham\SharedLibs\Mongodb\Auth;
 
 use DateTime;
 use DateTimeZone;

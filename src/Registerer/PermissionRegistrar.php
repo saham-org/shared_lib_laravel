@@ -1,9 +1,9 @@
 <?php
 
-namespace SahamLibs\Registerer;
+namespace Saham\SharedLibs\Registerer;
 
-use SahamLibs\Models\Permission;
-use SahamLibs\Models\Role;
+use Saham\SharedLibs\Models\Permission;
+use Saham\SharedLibs\Models\Role;
 use Illuminate\Contracts\Auth\Access\Authorizable;
 use Illuminate\Contracts\Auth\Access\Gate;
 use Illuminate\Contracts\Cache\Repository;

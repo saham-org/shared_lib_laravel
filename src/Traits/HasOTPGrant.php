@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Traits;
+namespace Saham\SharedLibs\Traits;
 
 use League\OAuth2\Server\Exception\OAuthServerException;
 

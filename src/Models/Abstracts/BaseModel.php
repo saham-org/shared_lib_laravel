@@ -1,12 +1,12 @@
 <?php
 
-namespace SahamLibs\Models\Abstracts;
+namespace Saham\SharedLibs\Models\Abstracts;
 
-use SahamLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use DateTimeInterface;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Support\Collection;
-use SahamLibs\Traits\Trackable;
+use Saham\SharedLibs\Traits\Trackable;
 use Illuminate\Support\Facades\DB;
 
 class BaseModel extends Model

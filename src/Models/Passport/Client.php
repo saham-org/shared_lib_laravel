@@ -1,8 +1,8 @@
 <?php
 
-namespace SahamLibs\Models\Passport;
+namespace Saham\SharedLibs\Models\Passport;
 
-use SahamLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;

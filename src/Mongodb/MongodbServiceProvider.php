@@ -1,10 +1,10 @@
 <?php
 
-namespace SahamLibs\Mongodb;
+namespace Saham\SharedLibs\Mongodb;
 
 use Illuminate\Support\ServiceProvider;
-use SahamLibs\Mongodb\Eloquent\Model;
-use SahamLibs\Mongodb\Queue\MongoConnector;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Mongodb\Queue\MongoConnector;
 
 class MongodbServiceProvider extends ServiceProvider
 {

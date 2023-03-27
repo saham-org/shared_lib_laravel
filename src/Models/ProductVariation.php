@@ -1,11 +1,11 @@
 <?php
 
-namespace SahamLibs\Models;
+namespace Saham\SharedLibs\Models;
 
-use SahamLibs\Models\Abstracts\BaseModel;
-use SahamLibs\Mongodb\Relations\BelongsTo;
-use SahamLibs\Mongodb\Relations\EmbedsMany;
-use SahamLibs\Traits\Translatable;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
+use Saham\SharedLibs\Mongodb\Relations\EmbedsMany;
+use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class ProductVariation extends BaseModel

@@ -1,6 +1,6 @@
 <?php
 
-namespace SahamLibs\Mongodb\Schema;
+namespace Saham\SharedLibs\Mongodb\Schema;
 
 use Illuminate\Database\Connection;
 
@@ -9,14 +9,14 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
     /**
      * The MongoConnection object for this blueprint.
      *
-     * @var \SahamLibs\Mongodb\Connection
+     * @var \Saham\SharedLibs\Mongodb\Connection
      */
     protected $connection;
 
     /**
      * The MongoCollection object for this blueprint.
      *
-     * @var \SahamLibs\Mongodb\Collection|\MongoDB\Collection
+     * @var \Saham\SharedLibs\Mongodb\Collection|\MongoDB\Collection
      */
     protected $collection;
 

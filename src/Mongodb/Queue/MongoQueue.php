@@ -1,10 +1,10 @@
 <?php
 
-namespace SahamLibs\Mongodb\Queue;
+namespace Saham\SharedLibs\Mongodb\Queue;
 
 use Carbon\Carbon;
 use Illuminate\Queue\DatabaseQueue;
-use SahamLibs\Mongodb\Connection;
+use Saham\SharedLibs\Mongodb\Connection;
 use MongoDB\Operation\FindOneAndUpdate;
 
 class MongoQueue extends DatabaseQueue

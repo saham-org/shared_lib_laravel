@@ -1,9 +1,9 @@
 <?php
 
-namespace SahamLibs\Mongodb;
+namespace Saham\SharedLibs\Mongodb;
 
 use Illuminate\Queue\QueueServiceProvider;
-use SahamLibs\Mongodb\Queue\Failed\MongoFailedJobProvider;
+use Saham\SharedLibs\Mongodb\Queue\Failed\MongoFailedJobProvider;
 
 class MongodbQueueServiceProvider extends QueueServiceProvider
 {

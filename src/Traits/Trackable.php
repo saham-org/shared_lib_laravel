@@ -1,21 +1,21 @@
 <?php
 
-namespace SahamLibs\Traits;
+namespace Saham\SharedLibs\Traits;
 
-use SahamLibs\Models\Activity;
-use SahamLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Models\Activity;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use Auth;
 
 trait Trackable
 {
     protected static $blackListedModels = [
-        'SahamLibs\Models\Activity',
-        'SahamLibs\Models\PasswordReset',
-        'SahamLibs\Models\Messages',
-        'SahamLibs\Models\ProductVariation',
-        'SahamLibs\Models\Product',
-        'SahamLibs\Models\Menu',
-        'SahamLibs\Models\Cuisine',
+        'Saham\SharedLibs\Models\Activity',
+        'Saham\SharedLibs\Models\PasswordReset',
+        'Saham\SharedLibs\Models\Messages',
+        'Saham\SharedLibs\Models\ProductVariation',
+        'Saham\SharedLibs\Models\Product',
+        'Saham\SharedLibs\Models\Menu',
+        'Saham\SharedLibs\Models\Cuisine',
     ];
 
     public static function bootTrackable(): void
