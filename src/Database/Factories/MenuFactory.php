@@ -6,9 +6,12 @@ use Saham\SharedLibs\Models\Manager;
 use Saham\SharedLibs\Models\Store;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
+use Saham\SharedLibs\Models\Menu;
 
 class MenuFactory extends Factory
 {
+    protected $model = Menu::class;
+
     public function definition()
     {
         return [

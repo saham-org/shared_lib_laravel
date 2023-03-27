@@ -7,9 +7,14 @@ use Saham\SharedLibs\Models\Enums\OrderStatus;
 use Saham\SharedLibs\Models\Partner;
 use Saham\SharedLibs\Models\Store;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Saham\SharedLibs\Models\Order;
 
 class OrderFactory extends Factory
 {
+
+    protected $model = Order::class;
+
+
     public function definition()
     {
         $deliver_fee = $this->faker->numberBetween(12, 40);

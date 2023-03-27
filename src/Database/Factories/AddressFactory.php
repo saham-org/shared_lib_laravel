@@ -4,12 +4,16 @@ namespace Saham\SharedLibs\Database\Factories;
 
 use Saham\SharedLibs\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Saham\SharedLibs\Models\Address;
 
 class AddressFactory extends Factory
 {
+    protected $model = Address::class;
+
+
+
     public function definition()
     {
-        $faker_ar = \Faker\Factory::create('ar_AR');
         return [
             'latitude'  => $this->faker->latitude(),
             'longitude' => $this->faker->longitude(),

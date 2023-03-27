@@ -5,12 +5,17 @@ namespace Saham\SharedLibs\Database\Factories;
 use Saham\SharedLibs\Models\Product;
 use Saham\SharedLibs\Models\Enums\VariationType;
 use Illuminate\Database\Eloquent\Factories\Factory;
+use Saham\SharedLibs\Models\ProductVariation;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Saham\SharedLibs\Models\ProductVariation>
  */
 class ProductVariationFactory extends Factory
 {
+
+    protected $model = ProductVariation::class;
+
+
     /**
      * Define the model's default state.
      *
