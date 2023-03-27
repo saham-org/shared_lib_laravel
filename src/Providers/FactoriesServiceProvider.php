@@ -9,7 +9,7 @@ class FactoriesServiceProvider extends ServiceProvider
 {
     public function boot()
     {
-        $this->registerEloquentFactoriesFrom(__DIR__ . '/../Database/Factories');
+        // $this->registerEloquentFactoriesFrom(__DIR__ . '/../Database/Factories');
 
         Factory::guessFactoryNamesUsing(function (string $modelName) {
             return 'Saham\\SharedLibs\\Database\\Factories\\'.class_basename($modelName).'Factory';
@@ -19,6 +19,6 @@ class FactoriesServiceProvider extends ServiceProvider
 
     protected function registerEloquentFactoriesFrom($path)
     {
-        $this->app->make(Factory::class)->load($path);
+        // $this->app->make(Factory::class)->load($path);
     }
 }
