@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Middleware;
+namespace Saham\SharedLibs\Middleware;
 
 use Closure;
 use Saham\SharedLibs\Helpers\PermissionHelpers;
