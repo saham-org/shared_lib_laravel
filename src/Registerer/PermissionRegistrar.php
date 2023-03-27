@@ -67,9 +67,7 @@ class PermissionRegistrar
      */
     public function getPermissions(): Collection
     {
-        return $this->cache->remember($this->cacheKey, config('permission.cache_expiration_time'), function () {
-            return $this->getPermissionClass()->get();
-        });
+        return $this->getPermissionClass()->get();
     }
 
     /**
