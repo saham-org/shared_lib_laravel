@@ -33,8 +33,18 @@
         "psr-4": {
             "Saham\\SharedLibs\\": "src/"
         },
-        "files" : [
+        "files": [
             "src/Helpers/All.php"
         ]
+    },
+    "extra": {
+        "laravel": {
+            "providers": [
+                "Saham\\SharedLibs\\Mongodb\\MongodbQueueServiceProvider",
+                "Saham\\SharedLibs\\Mongodb\\MongodbServiceProvider",
+                "Saham\\SharedLibs\\Mongodb\\Auth\\PasswordResetServiceProvider",
+                "Saham\\SharedLibs\\Mongodb\\Validation\\ValidationServiceProvider"
+            ]
+        }
     }
 }
