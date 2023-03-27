@@ -40,10 +40,11 @@
     "extra": {
         "laravel": {
             "providers": [
-                "Saham\\SharedLibs\\Mongodb\\MongodbQueueServiceProvider",
-                "Saham\\SharedLibs\\Mongodb\\MongodbServiceProvider",
-                "Saham\\SharedLibs\\Mongodb\\Auth\\PasswordResetServiceProvider",
-                "Saham\\SharedLibs\\Mongodb\\Validation\\ValidationServiceProvider"
+                "Saham\\SharedLibs\\Providers\\MongodbQueueServiceProvider",
+                "Saham\\SharedLibs\\Providers\\MongodbServiceProvider",
+                "Saham\\SharedLibs\\Providers\\PasswordResetServiceProvider",
+                "Saham\\SharedLibs\\Providers\\ValidationServiceProvider",
+                "Saham\\SharedLibs\\Providers\\FactoriesServiceProvider"
             ]
         }
     }

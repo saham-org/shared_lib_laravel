@@ -1,6 +1,6 @@
 <?php
 
-namespace Saham\SharedLibs\Mongodb\Validation;
+namespace Saham\SharedLibs\Providers;
 
 use Illuminate\Validation\ValidationServiceProvider as BaseProvider;
 

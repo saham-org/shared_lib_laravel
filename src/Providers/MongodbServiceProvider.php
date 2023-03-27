@@ -1,6 +1,6 @@
 <?php
 
-namespace Saham\SharedLibs\Mongodb;
+namespace Saham\SharedLibs\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;

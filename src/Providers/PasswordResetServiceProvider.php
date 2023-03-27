@@ -1,6 +1,6 @@
 <?php
 
-namespace Saham\SharedLibs\Mongodb\Auth;
+namespace Saham\SharedLibs\Providers;
 
 use Illuminate\Auth\Passwords\PasswordResetServiceProvider as BasePasswordResetServiceProvider;
 
