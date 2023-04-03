@@ -14,6 +14,11 @@ use Saham\SharedLibs\Models\Coupon;
 class CouponFactory extends Factory
 {
     protected $model = Coupon::class;
+    protected static function appNamespace()
+    {
+        return 'Saham\\SharedLibs\\';
+    }
+
 
 
     /**
