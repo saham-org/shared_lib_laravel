@@ -21,5 +21,8 @@ class FactoriesServiceProvider extends ServiceProvider
             // Laravel will find our model factory
             return $namespace.$modelName.'Factory';
         });
+
+
+        Factory::useNamespace('Saham\\SharedLibs\\Models\\');
     }
 }
