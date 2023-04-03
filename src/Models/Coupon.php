@@ -14,10 +14,7 @@ class Coupon extends BaseModel
     use HasFactory;
     use SoftDeletes ;
 
-    protected static function newFactory()
-    {
-        return CouponFactory::new();
-    }
+
 
     protected $casts = [
         'amount'         => 'double',
