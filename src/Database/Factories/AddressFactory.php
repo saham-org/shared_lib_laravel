@@ -6,7 +6,7 @@ use Saham\SharedLibs\Models\User;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Saham\SharedLibs\Models\Address;
 
-class AddressFactory extends Factory
+class AddressFactory extends BaseFactory
 {
     protected $model = Address::class;
 

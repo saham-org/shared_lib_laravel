@@ -9,8 +9,11 @@ use Illuminate\Support\Str;
 /**
  * @extends Factory<Driver>
  */
-class DriverFactory extends Factory
+class DriverFactory extends BaseFactory
 {
+    protected $model = Driver::class;
+
+
     public function definition()
     {
         $latitude = '30.0294578' ;//$this->faker->latitude();
@@ -43,7 +46,7 @@ class DriverFactory extends Factory
 
     public function withWallet(float $balance)
     {
-        return $this->state( function (array $attributes) use ($balance) {
+        return $this->state(function (array $attributes) use ($balance) {
             return [
                 'wallet' => $balance,
             ];

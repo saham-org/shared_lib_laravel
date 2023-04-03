@@ -5,7 +5,7 @@ namespace Saham\SharedLibs\Database\Factories;
 use Saham\SharedLibs\Models\Enums\CategoryType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class CityFactory extends Factory
+class CityFactory extends BaseFactory
 {
     public function definition()
     {

@@ -10,7 +10,7 @@ use Illuminate\Support\Str;
 /**
  * @extends Factory<Manager>
  */
-class ManagerFactory extends Factory
+class ManagerFactory extends BaseFactory
 {
     public function definition()
     {

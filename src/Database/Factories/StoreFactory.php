@@ -7,7 +7,7 @@ use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Saham\SharedLibs\Models\Store;
 
-class StoreFactory extends Factory
+class StoreFactory extends BaseFactory
 {
     protected $model = Store::class;
 

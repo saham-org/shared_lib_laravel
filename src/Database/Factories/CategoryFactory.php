@@ -6,7 +6,7 @@ use Saham\SharedLibs\Models\Enums\CategoryType;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Saham\SharedLibs\Models\Category;
 
-class CategoryFactory extends Factory
+class CategoryFactory extends BaseFactory
 {
     protected $model = Category::class;
 

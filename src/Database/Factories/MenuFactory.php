@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 use Saham\SharedLibs\Models\Menu;
 
-class MenuFactory extends Factory
+class MenuFactory extends BaseFactory
 {
     protected $model = Menu::class;
 

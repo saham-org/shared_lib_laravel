@@ -8,7 +8,7 @@ use Saham\SharedLibs\Models\Store;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Saham\SharedLibs\Models\Product;
 
-class ProductFactory extends Factory
+class ProductFactory extends BaseFactory
 {
     protected $model = Product::class;
 

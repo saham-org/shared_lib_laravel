@@ -5,7 +5,7 @@ namespace Saham\SharedLibs\Database\Factories;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Saham\SharedLibs\Models\Partner;
 
-class PartnerFactory extends Factory
+class PartnerFactory extends BaseFactory
 {
 
     protected $model = Partner::class;

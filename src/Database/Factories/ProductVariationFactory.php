@@ -10,7 +10,7 @@ use Saham\SharedLibs\Models\ProductVariation;
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\Saham\SharedLibs\Models\ProductVariation>
  */
-class ProductVariationFactory extends Factory
+class ProductVariationFactory extends BaseFactory
 {
 
     protected $model = ProductVariation::class;

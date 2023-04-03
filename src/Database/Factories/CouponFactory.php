@@ -6,12 +6,17 @@ use Saham\SharedLibs\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use MongoDB\BSON\UTCDateTime;
+use Saham\SharedLibs\Models\Coupon;
 
 /**
  * @extends Factory<User>
  */
-class CouponFactory extends Factory
+class CouponFactory extends BaseFactory
 {
+    protected $model = Coupon::class;
+
+
+
     /**
      * Define the model's default state.
      *

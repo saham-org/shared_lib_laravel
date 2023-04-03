@@ -9,7 +9,7 @@ use Saham\SharedLibs\Models\Store;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Saham\SharedLibs\Models\Order;
 
-class OrderFactory extends Factory
+class OrderFactory extends BaseFactory
 {
 
     protected $model = Order::class;

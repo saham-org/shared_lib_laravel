@@ -6,7 +6,7 @@ use Saham\SharedLibs\Models\Partner;
 use Saham\SharedLibs\Models\Product;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
-class SizeFactory extends Factory
+class SizeFactory extends BaseFactory
 {
     public function definition()
     {
