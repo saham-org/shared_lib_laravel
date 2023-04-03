@@ -11,7 +11,7 @@ class BaseFactory extends Factory
 {
     protected static function appNamespace()
     {
-        return 'Saham\\SharedLibs\\';
+        return 'Saham\\SharedLibs\\Models\\';
     }
 
     public function definition()
