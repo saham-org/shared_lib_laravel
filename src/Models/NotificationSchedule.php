@@ -24,4 +24,6 @@ class NotificationSchedule extends BaseModel
         'schedule_at' => 'string',
         'sent_at' => 'string',
     ];
+
+    protected $dates = ['created_at', 'updated_at' , 'schedule_at', 'sent_at'];
 }
