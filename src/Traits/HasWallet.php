@@ -39,7 +39,7 @@ trait HasWallet
 
         $balance = $this->wallet ?? 0;
 
-        return $balance >= $amount;
+        return round($balance, 2) >= round($amount, 2);
     }
 
     public function balance(): Attribute
