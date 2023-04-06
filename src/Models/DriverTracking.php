@@ -22,21 +22,21 @@ class DriverTracking extends BaseModel
 
         /** only log 10m+ distances so we don't over populate the location log */
         if (getDistanceInMeter(
-            $location['coordinates']['latitude'],
-            $location['coordinates']['longitude'],
-            $driver->location['coordinates']['latitude'],
-            $driver->location['coordinates']['longitude']
+            $location['coordinates'][0],
+            $location['coordinates'][1],
+            $driver->location['coordinates'][0],
+            $driver->location['coordinates'][1]
         ) > 10) {
-            self::logTracking($driverId, $location);
+            self::logTracking($driver, $location);
         }
-        
+
         $driver->updateQuietly(['location' => $location]);
     }
 
 
-    public static function logTracking(string $driverId, array $location)
+    public static function logTracking(Driver $driver, array $location)
     {
-        $hasTracking = self::where('driver_id', $driverId)->first();
+        $hasTracking = self::where('driver_id', $driver->id)->first();
         $time_now = new UTCDateTime(new DateTime('now'));
 
         if ($hasTracking) {
@@ -46,17 +46,18 @@ class DriverTracking extends BaseModel
             ], false);
         } else {
             self::create([
-                'driver_id' => $driverId,
+                'driver_id' => $driver->id,
                 'logs' => [
                     [
                         'location' => $location,
+                        'order_id' => $driver->activeOrder()->first()->id ?? null,
                         'created_at' => $time_now
                     ]
                 ]
             ]);
         }
 
-        self::deleteOldLogs($driverId);
+        self::deleteOldLogs($driver->id);
     }
 
     public static function deleteOldLogs(string $driverId)
