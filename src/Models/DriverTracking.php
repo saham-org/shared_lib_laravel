@@ -19,10 +19,18 @@ class DriverTracking extends BaseModel
     public static function onNewLocation(string $driverId, array $location)
     {
         $driver = Driver::find($driverId);
-        $driver->location = $location;
-        $driver->save();
 
-        self::logTracking($driverId, $location);
+        /** only log 10m+ distances so we don't over populate the location log */
+        if (getDistanceInMeter(
+            $location['coordinates']['latitude'],
+            $location['coordinates']['longitude'],
+            $driver->location['coordinates']['latitude'],
+            $driver->location['coordinates']['longitude']
+        ) > 10) {
+            self::logTracking($driverId, $location);
+        }
+        
+        $driver->updateQuietly(['location' => $location]);
     }
 
 
