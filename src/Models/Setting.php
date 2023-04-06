@@ -15,7 +15,7 @@ class Setting extends BaseModel
         parent::boot();
     }
 
-    public static function findByKey($key): ?self
+    public static function findByKey($key): mixed
     {
         $record = self::where('key', $key)->first();
 
