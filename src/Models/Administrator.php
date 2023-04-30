@@ -27,7 +27,7 @@ class Administrator extends Eloquent implements Authenticatable, AuthorizableCon
     use InteractsWithMedia;
 
     protected $fillable = [
-       'full_name', 'email', 'phone', 'avatar'  ,  'password',
+        'full_name', 'email', 'phone', 'avatar'  ,  'password', 'freeze' ,'role' ,'device_id' ,'device_type' , 'notification_id' , 'os_version' ,'role_ids'
     ];
     protected $primaryKey = '_id';
     protected $connection = 'mongodb';
@@ -42,10 +42,10 @@ class Administrator extends Eloquent implements Authenticatable, AuthorizableCon
     }
 
     /**
-    * Validation rules.
-    *
-    * @var array
-    */
+     * Validation rules.
+     *
+     * @var array
+     */
     public static $rules = [
 
     ];
