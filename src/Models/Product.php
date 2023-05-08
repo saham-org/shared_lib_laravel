@@ -3,7 +3,6 @@
 namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Saham\SharedLibs\Database\Factories\ProductFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Traits\Translatable;
 
@@ -16,10 +15,6 @@ class Product extends BaseModel
 
     protected $guarded = [];
 
-    // protected static function newFactory(): mixed
-    // {
-    //     return ProductFactory::new();
-    // }
     public function variations(): mixed
     {
         return $this->hasMany(ProductVariation::class, 'product_id', '_id');
