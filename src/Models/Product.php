@@ -16,7 +16,7 @@ class Product extends BaseModel
 
     protected $guarded = [];
 
-    protected static function newFactory(): ProductFactory
+    protected static function newFactory(): mixed
     {
         return ProductFactory::new();
     }
