@@ -16,11 +16,10 @@ class Product extends BaseModel
 
     protected $guarded = [];
 
-    protected static function newFactory(): mixed
-    {
-        return ProductFactory::new();
-    }
-
+    // protected static function newFactory(): mixed
+    // {
+    //     return ProductFactory::new();
+    // }
     public function variations(): mixed
     {
         return $this->hasMany(ProductVariation::class, 'product_id', '_id');
