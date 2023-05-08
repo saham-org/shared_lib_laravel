@@ -2,10 +2,10 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Database\Factories\ProductFactory;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Traits\Translatable;
 
 class Product extends BaseModel
 {
@@ -16,12 +16,10 @@ class Product extends BaseModel
 
     protected $guarded = [];
 
-
-    protected static function newFactory()
+    protected static function newFactory(): ProductFactory
     {
         return ProductFactory::new();
     }
-
 
     public function variations(): mixed
     {
@@ -45,16 +43,10 @@ class Product extends BaseModel
 
     public function logProductPriceUpdate($thing_name, $thing_price_from, $thing_price_to): void
     {
-        staging_info('[logProductPriceUpdate] ', [
-            'thing_name'       => $thing_name,
-            'thing_price_from' => $thing_price_from,
-            'thing_price_to'   => $thing_price_to,
-        ]);
-
-
         $this->update([
             'status'  => 'pending',
         ]);
+
         $this->push('changes', [
             'price_from' => $thing_price_from,
             'price_to'   => $thing_price_to,

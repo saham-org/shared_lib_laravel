@@ -2,13 +2,16 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Database\Factories\OrderFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\Builder;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Saham\SharedLibs\Database\Factories\OrderFactory;
 
+/**
+ * Summary of Order
+ */
 class Order extends BaseModel
 {
     use HasFactory;
@@ -23,12 +26,13 @@ class Order extends BaseModel
         'ref_id' => 'string',
     ];
 
-
-    protected static function newFactory()
+    /**
+     * Summary of newFactory
+     */
+    protected static function newFactory(): OrderFactory
     {
         return OrderFactory::new();
     }
-
 
     public function scopeCurrentStatus($query, $status): Builder
     {
