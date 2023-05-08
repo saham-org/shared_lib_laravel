@@ -76,6 +76,12 @@ class User extends Eloquent implements Authenticatable
         return $this->hasMany(Order::class);
     }
 
+
+    public function feasts(): HasMany
+    {
+        return $this->hasMany(Feast::class);
+    }
+
     public function messages(): HasMany
     {
         return $this->hasMany(Message::class);
