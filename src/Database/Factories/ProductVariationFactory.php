@@ -12,7 +12,6 @@ use Saham\SharedLibs\Models\ProductVariation;
  */
 class ProductVariationFactory extends BaseFactory
 {
-
     protected $model = ProductVariation::class;
 
 

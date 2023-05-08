@@ -2,10 +2,10 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\EmbedsMany;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class OrderDetail extends BaseModel
 {
@@ -23,4 +23,9 @@ class OrderDetail extends BaseModel
     {
         return $this->belongsTo(Product::class);
     }
+
+    // public function feastProduct(): BelongsTo
+    // {
+    //     return $this->belongsTo(FeastProduct::class);
+    // }
 }
