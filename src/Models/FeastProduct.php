@@ -8,7 +8,7 @@ class FeastProduct extends Product
 {
     use HasFactory;
 
-    protected $extra_fields = ['max_allowed_size', 'minimum_allowed_size'];
+    protected $extra_fields = ['max_allowed_size', 'min_allowed_size'];
 
     public function variations(): mixed
     {
