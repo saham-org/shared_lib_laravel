@@ -17,10 +17,6 @@ class Menu extends BaseModel
 
     protected $translatable = ['title'];
 
-    protected static function newFactory(): MenuFactory
-    {
-        return MenuFactory::new();
-    }
 
     public function partner(): BelongsTo
     {
