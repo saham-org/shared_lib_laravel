@@ -13,9 +13,10 @@ if (!function_exists('getStoreServicesFromStore')) {
     function getStoreServicesFromStore($store): mixed
     {
         return [
-            'delivery' => $store->services['delivery'],
-            'pickup' => $store->services['pickup'],
-            'reservation' => $store->services['reservation'],
+            'delivery' => $store->services['delivery'] ?? false ,
+            'pickup' => $store->services['pickup'] ?? false ,
+            'reservation' => $store->services['reservation'] ?? false ,
+            'feasts' => $store->services['feasts'] ?? false ,
         ];
     }
 }
@@ -27,6 +28,7 @@ if (!function_exists('getStoreServicesFromNull')) {
             'delivery' => $default,
             'pickup' => $default,
             'reservation' => $default,
+            'feasts' => $default ,
         ];
     }
 }
