@@ -99,9 +99,7 @@ class Store extends BaseModel
 
     public function runningStories(): mixed
     {
-        return $this->stories()
-            ->whereNull('image')
-            ->whereDate('banner_date_range.end', '>=', new UTCDateTime(new DateTime('now')));
+        return $this->stories()->where('image', null)->whereDate('banner_date_range.end', '>=', new UTCDateTime(new DateTime('now')));
     }
 
     public function scopeWithCommon($query, Request $request): void
