@@ -31,7 +31,7 @@ class CouponFactory extends BaseFactory
             ],
             'type_discount'       => 'percentage',
             'amount'              => $this->faker->numberBetween(1, 99),
-            'code'                => $this->faker->word(),
+            'code'                => $this->faker->word() . $this->faker->numberBetween(1, 99),
             'users_id'            => [
                 'all',
             ],

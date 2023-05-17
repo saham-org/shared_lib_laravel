@@ -14,7 +14,7 @@ class SizeFactory extends BaseFactory
 
             'title_ar'          => $this->faker->name(),
             'title_en'          => $this->faker->name(),
-            'price'             => $this->faker->randomFloat(2, $min = 15.0, $max = 50.9),
+            'price'             => 15,
             '_id'               => $this->faker->uuid(),
         ];
     }
