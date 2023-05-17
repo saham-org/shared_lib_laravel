@@ -94,7 +94,7 @@ class OrderFactory extends BaseFactory
         return $this->state(function (array $attributes) use ($type) {
             if ($type === 'receipt') {
                 return [
-                    'sub_total' => $attributes['sub_total'] - $attributes['delivery_fee'],
+                    'total' => $attributes['total'] - $attributes['delivery_fee'],
                     'deliver_type'  => 'receipt',
                     'driver_id'     => null,
                     'delivery_fee'  => 0,
