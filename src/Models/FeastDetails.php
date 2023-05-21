@@ -21,6 +21,6 @@ class FeastDetails extends BaseModel
 
     public function product(): BelongsTo
     {
-        return $this->belongsTo(FeastProduct::class , 'feast_product_id');
+        return $this->belongsTo(FeastProduct::class  , 'feast_product_id');
     }
 }
