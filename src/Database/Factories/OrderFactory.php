@@ -11,7 +11,6 @@ use Saham\SharedLibs\Models\Order;
 
 class OrderFactory extends BaseFactory
 {
-
     protected $model = Order::class;
 
 
@@ -95,6 +94,7 @@ class OrderFactory extends BaseFactory
         return $this->state(function (array $attributes) use ($type) {
             if ($type === 'receipt') {
                 return [
+                    'total' => $attributes['total'] - $attributes['delivery_fee'],
                     'deliver_type'  => 'receipt',
                     'driver_id'     => null,
                     'delivery_fee'  => 0,

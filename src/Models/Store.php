@@ -82,8 +82,8 @@ class Store extends BaseModel
     public function getCoupons(): ?Coupon
     {
         return Coupon::where('partner_ids', 'all', [$this->partner_id])
-        ->whereDate('promo_date_range.start', '<=', new UTCDateTime(new DateTime('now')))
-        ->whereDate('promo_date_range.end', '>=', new UTCDateTime(new DateTime('now')))
+            ->whereDate('promo_date_range.start', '<=', new UTCDateTime(new DateTime('now')))
+            ->whereDate('promo_date_range.end', '>=', new UTCDateTime(new DateTime('now')))
             ->orderByDesc('created_at')->first();
     }
 
@@ -99,7 +99,7 @@ class Store extends BaseModel
 
     public function runningStories(): mixed
     {
-        return $this->stories()->where('image' , null )->whereDate('banner_date_range.end', '>=', new UTCDateTime(new DateTime('now')));
+        return $this->stories()->where('image', null)->whereDate('banner_date_range.end', '>=', new UTCDateTime(new DateTime('now')));
     }
 
     public function scopeWithCommon($query, Request $request): void
