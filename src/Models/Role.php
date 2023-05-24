@@ -23,6 +23,8 @@ class Role extends Eloquent
     public $guarded = ['id'];
     protected PermissionHelpers $helpers;
 
+    protected $fillable = ['name'];
+
     /**
      * Role constructor.
      *
@@ -32,7 +34,7 @@ class Role extends Eloquent
     {
         $attributes['guard_name'] ??= (new Guard())->getDefaultName(static::class);
 
-        parent::__construct($attributes);
+        parent  ::__construct($attributes);
 
         $this->helpers = new PermissionHelpers();
 

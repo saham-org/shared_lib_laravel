@@ -33,6 +33,36 @@ class Driver extends Eloquent implements Authenticatable
         'status' => 'under_revision',
     ];
 
+    protected $fillable = [
+        'status',
+        'phone',
+        'full_name',
+        'city_id',
+        'email',
+        'password',
+        'ID',
+        'car_front',
+        'car_back',
+        'ID_photo',
+        'license',
+        'car_register',
+        'device_id',
+        'notification_id',
+        'device_type',
+        'os_version',
+        'location',
+        'latitude',
+        'longitude',
+        'bank_IBAN',
+        'bank_name',
+        'wallet',
+        'operation_manger_id',
+        'hiring_type',
+        'ID_number',
+        'gender',
+        'account_status',
+    ];
+
     protected $hidden = ['remember_token', 'password'];
 
 
