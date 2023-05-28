@@ -50,7 +50,7 @@ trait HasWallet
     public function throwExceptionIfAmountIsInvalid(int|float $amount): void
     {
         if ($amount <= 0) {
-            //throw new InvalidAmountException();
+             //throw new InvalidAmountException();
         }
     }
 
