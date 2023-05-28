@@ -36,7 +36,6 @@ class UserFactory extends BaseFactory
             'full_name'         => $this->faker->name(),
             'gender'            => 'male',
             'wallet'            => $this->faker->numberBetween(100, 1000),
-            'allowed_payment_methods'              => getSystemPaymentMethods([], true),
         ];
     }
 
