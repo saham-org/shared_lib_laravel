@@ -9,6 +9,7 @@ use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\BelongsToArray;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Mongodb\Relations\HasOne;
+use Saham\SharedLibs\Traits\HasPaymentTypes;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
 use DateTime;
@@ -23,6 +24,7 @@ class Store extends BaseModel
     use Translatable;
     use HasWallet;
     use SoftDeletes;
+    use HasPaymentTypes;
 
     protected $translatable = ['name', 'desc'];
     protected $attributes   = [
@@ -150,8 +152,5 @@ class Store extends BaseModel
         return getStoreServices($this, true)[$deliver_type] ?? true;
     }
 
-    public function acceptsPayment(string $payment_type): bool
-    {
-        return getSystemPaymentMethods($this, 'accepts', true)[$payment_type] ?? true;
-    }
+
 }

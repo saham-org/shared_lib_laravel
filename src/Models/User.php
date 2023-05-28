@@ -6,6 +6,7 @@ use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Query\Builder;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Traits\HasOTPGrant;
+use Saham\SharedLibs\Traits\HasPaymentTypes;
 use Saham\SharedLibs\Traits\HasTransaction;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
@@ -27,6 +28,7 @@ class User extends Eloquent implements Authenticatable
     use Translatable;
     use HasWallet;
     use HasTransaction;
+    use HasPaymentTypes;
 
     protected $guarded = [];
     protected $with    = ['addresses'];

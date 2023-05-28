@@ -35,7 +35,7 @@ class StoreFactory extends BaseFactory
             'location'            => ['type' => 'Point', 'coordinates' => [-73.97, 40.77]],
             'wallet'              => 0,
             'services'            => getStoreServices($this, true),
-            'accepts'              => getSystemPaymentMethods($this, 'accepts', true),
+            'accepts'              => getSystemPaymentMethods($this, 'accepts'),
         ];
     }
 
@@ -57,19 +57,13 @@ class StoreFactory extends BaseFactory
         });
     }
 
-    public function updatePaymentMethods(bool $allow_payment)
+    public function updatePaymentMethods(string $which, bool $flag)
     {
-        return $this->state(function (array $attributes) use ($allow_payment) {
-
-            $fields = getSystemPaymentMethods($this, 'accepts', $allow_payment);
-            dd($fields);
-            foreach ($fields as $key => $value) {
-                $fields[$key] = $allow_payment;
-            }
-
-            return [
-                'accepts' => $fields,
-            ];
+        return $this->state(function (array $attributes) use ($which, $flag) {
+            $defaults = $attributes['accepts'];
+            $defaults[$which] = $flag;
+            $attributes['accepts'] = $defaults;
+            return $attributes;
         });
     }
 }
