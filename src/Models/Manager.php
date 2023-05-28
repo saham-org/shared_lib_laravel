@@ -28,7 +28,11 @@ class Manager extends Eloquent implements Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $fillable = [
+        'full_name', 'email', 'phone', 'password'
+    ];
 
+    
     protected static function newFactory()
     {
         return ManagerFactory::new();

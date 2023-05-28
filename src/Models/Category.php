@@ -15,6 +15,11 @@ class Category extends BaseModel
     use Translatable;
     use SoftDeletes ;
 
+    protected $fillable = [
+        'title_ar', 'title_en', 'icon', 'avatar', 'color_code', 'sorting', 'visibility',
+
+    ];
+
     protected static function newFactory()
     {
         return CategoryFactory::new();

@@ -12,6 +12,10 @@ class Cuisine extends BaseModel
     use HasFactory;
     use Translatable;
 
+    protected $fillable = [
+        'name_ar', 'name_en', 'sorting', 'visibility',
+    ];
+
     protected static function newFactory()
     {
         return CuisineFactory::new();
