@@ -60,9 +60,9 @@ class StoreFactory extends BaseFactory
     public function updatePaymentMethods(bool $allow_payment)
     {
         return $this->state(function (array $attributes) use ($allow_payment) {
-            
-            $fields = getSystemPaymentMethods($this, 'accepts', $allow_payment);
 
+            $fields = getSystemPaymentMethods($this, 'accepts', $allow_payment);
+            dd($fields);
             foreach ($fields as $key => $value) {
                 $fields[$key] = $allow_payment;
             }
