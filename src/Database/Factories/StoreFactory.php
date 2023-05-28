@@ -55,4 +55,13 @@ class StoreFactory extends BaseFactory
             ];
         });
     }
+
+    public function updatePaymentMethods(bool $allow_payment)
+    {
+        return $this->state(function (array $attributes) use ($allow_payment) {
+            return [
+                'services' => getStoreAcceptArray($this, $allow_payment),
+            ];
+        });
+    }
 }
