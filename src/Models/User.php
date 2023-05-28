@@ -106,9 +106,4 @@ class User extends Eloquent implements Authenticatable
     {
         return $this->createToken('saham Password Grant Client')->accessToken;
     }
-
-    public function userCanUsePaymentMethod(string $payment_type): bool
-    {
-        return getSystemPaymentMethods($this, 'allowed_payment_methods', true)[$payment_type] ?? true;
-    }
 }

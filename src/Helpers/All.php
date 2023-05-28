@@ -84,21 +84,13 @@ function getDistanceInMeter(
  */
 function getSystemPaymentMethods(object $object, $default = true): mixed
 {
-    return isset($object->allowed_payment_types) ? getSystemPaymentMethodsFromObject($object, $default) : getSystemPaymentMethodsFromNull($default);
-}
-/**
- * @param object $object
- * @param boolean $default
- * @return array<string, boolean>
- */
-function getSystemPaymentMethodsFromObject(object $object, bool $default = true): mixed
-{
     return [
-        'online'    => $object->allowed_payment_types['online'] ?? $default,
-        'wallet'    => $object->allowed_payment_types['wallet'] ?? $default,
-        'cash'      => $object->allowed_payment_types['cash'] ?? $default,
+        'online'    => $object->getPaymentTypesAttribute()['online'] ?? $default,
+        'wallet'    => $object->getPaymentTypesAttribute()['wallet'] ?? $default,
+        'cash'      => $object->getPaymentTypesAttribute()['cash'] ?? $default,
     ];
 }
+
 
 /**
  * @param boolean $default
