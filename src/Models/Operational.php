@@ -25,6 +25,10 @@ class Operational extends Eloquent implements Authenticatable
 
     protected $hidden = ['remember_token', 'password'];
 
+    protected $fillable = [
+        'full_name', 'email', 'phone', 'avatar', 'password', 'phone_code'
+    ];
+
     public function setPasswordAttribute($value): void
     {
         $this->attributes['password'] = Hash::make($value);
