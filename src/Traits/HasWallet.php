@@ -24,7 +24,7 @@ trait HasWallet
     {
         $this->throwExceptionIfAmountIsInvalid($amount);
 
-        $this->throwExceptionIfFundIsInsufficient($amount);
+       // $this->throwExceptionIfFundIsInsufficient($amount);
 
         $balance = $this->wallet - $amount;
 
