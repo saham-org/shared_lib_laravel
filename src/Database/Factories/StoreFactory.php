@@ -61,7 +61,7 @@ class StoreFactory extends BaseFactory
     {
         return $this->state(function (array $attributes) use ($allow_payment) {
             return [
-                'services' => getStoreAcceptArray($this, $allow_payment),
+                'accepts' => getStoreAcceptArray($this, $allow_payment),
             ];
         });
     }
