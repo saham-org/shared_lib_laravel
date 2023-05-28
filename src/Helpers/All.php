@@ -78,25 +78,25 @@ function getDistanceInMeter(
 
 
 /**
- * @param Store $store
+ * @param object $object
  * @param bool $default
  * @return array<string, boolean>
  */
-function getStoreAcceptArray(object $store, $default = true): mixed
+function getSystemPaymentMethods(object $object, $default = true): mixed
 {
-    return isset($store->accepts) ? getStoreAcceptFromStore($store, $default) : getStoreAcceptFromNull($default);
+    return isset($object->accepts) ? getSystemPaymentMethodsFromObject($object, $default) : getSystemPaymentMethodsFromNull($default);
 }
 /**
- * @param Store $store
+ * @param object $object
  * @param boolean $default
  * @return array<string, boolean>
  */
-function getStoreAcceptFromStore(object $store, bool $default = true): mixed
+function getSystemPaymentMethodsFromObject(object $object, bool $default = true): mixed
 {
     return [
-        'online'    => $store->accepts['online'] ?? $default,
-        'wallet'    => $store->accepts['wallet'] ?? $default,
-        'cash'      => $store->accepts['cash'] ?? $default,
+        'online'    => $object->accepts['online'] ?? $default,
+        'wallet'    => $object->accepts['wallet'] ?? $default,
+        'cash'      => $object->accepts['cash'] ?? $default,
     ];
 }
 
@@ -104,7 +104,7 @@ function getStoreAcceptFromStore(object $store, bool $default = true): mixed
  * @param boolean $default
  * @return array<string, boolean>
  */
-function getStoreAcceptFromNull($default = true): mixed
+function getSystemPaymentMethodsFromNull($default = true): mixed
 {
     return [
         'online'    => $default,
