@@ -40,6 +40,26 @@ class Partner extends Eloquent implements Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    protected $fillable = [
+        'full_name',
+        'email',
+        'phone',
+        'password',
+        'category_id',
+        'city_id',
+        'bank_name',
+        'bank_IBAN',
+        'company_name_ar',
+        'company_name_en',
+        'commercial_ID',
+        'logo',
+        'cover',
+        'language',
+        'logo_thumb',
+        'commercial_file',
+        'account_status',
+    ];
+
 
     protected static function newFactory()
     {

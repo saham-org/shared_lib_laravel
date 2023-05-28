@@ -14,10 +14,14 @@ class City extends BaseModel
     use Translatable;
     use SoftDeletes ;
 
+    protected $fillable = [
+        'name_ar', 'name_en', 'sorting', 'latitude', 'longitude', 'phone_code'
+    ];
+    protected $translatable = ['name'];
+
     protected static function newFactory()
     {
         return CityFactory::new();
     }
 
-    protected $translatable = ['name'];
 }
