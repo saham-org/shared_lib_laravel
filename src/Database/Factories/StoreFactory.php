@@ -35,7 +35,7 @@ class StoreFactory extends BaseFactory
             'location'            => ['type' => 'Point', 'coordinates' => [-73.97, 40.77]],
             'wallet'              => 0,
             'services'            => getStoreServices($this, true),
-            'accepts'              => getSystemPaymentMethods($this, 'accepts'),
+            'accepts'              => getSystemPaymentMethods($this, true),
         ];
     }
 
