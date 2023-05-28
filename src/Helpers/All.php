@@ -85,25 +85,11 @@ function getDistanceInMeter(
  *
  * @return array<string, boolean>
  */
-function getSystemPaymentMethods(object $object, $default = true): mixed
+function getSystemPaymentMethods(array $object, $default = true): mixed
 {
     return [
         'online'    => $object['online'] ?? $default,
         'wallet'    => $object['wallet'] ?? $default,
         'cash'      => $object['cash'] ?? $default,
-    ];
-}
-
-/**
- * @param bool $default
- *
- * @return array<string, boolean>
- */
-function getSystemPaymentMethodsFromNull($default = true): mixed
-{
-    return [
-        'online'    => $default,
-        'wallet'    => $default,
-        'cash'      => $default,
     ];
 }
