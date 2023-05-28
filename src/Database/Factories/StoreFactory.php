@@ -61,7 +61,7 @@ class StoreFactory extends BaseFactory
     {
         return $this->state(function (array $attributes) use ($allow_payment) {
             return [
-                'accepts' => getSystemPaymentMethods($this, $allow_payment),
+                'accepts' => getSystemPaymentMethods($this, 'accepts', $allow_payment),
             ];
         });
     }

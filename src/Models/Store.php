@@ -152,6 +152,6 @@ class Store extends BaseModel
 
     public function acceptsPayment(string $payment_type): bool
     {
-        return getSystemPaymentMethods($this, true)[$payment_type] ?? true;
+        return getSystemPaymentMethods($this, 'accepts', true)[$payment_type] ?? true;
     }
 }

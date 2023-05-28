@@ -43,7 +43,7 @@ class User extends Eloquent implements Authenticatable
     protected $fillable = [
         'cuisine_ids', 'phone', 'otp', 'device_id', 'device_type', 'os_version', 'notification_id', 'email',
         'full_name', 'wallet', 'referral_code', 'password', 'gender'];
-    
+
     protected static function newFactory()
     {
         return UserFactory::new();
@@ -103,5 +103,10 @@ class User extends Eloquent implements Authenticatable
     public function generateToken(): string
     {
         return $this->createToken('saham Password Grant Client')->accessToken;
+    }
+
+    public function userCanUsePaymentMethod(string $payment_type): bool
+    {
+        return getSystemPaymentMethods($this, true)[$payment_type] ?? true;
     }
 }
