@@ -38,8 +38,7 @@ class Store extends BaseModel
         'min_order_charge'  => 'integer',
     ];
 
-
-    protected static function newFactory()
+    protected static function newFactory(): mixed
     {
         return StoreFactory::new();
     }
@@ -135,20 +134,24 @@ class Store extends BaseModel
             ->orderByDesc('created_at');
     }
 
-    public function accepts($deliver_type): bool
+    public function acceptsService(string $deliver_type): bool
     {
-        if ($deliver_type === 'delivery') {
-            return $this->services['delivery'];
-        }
+        // if ($deliver_type === 'delivery') {
+        //     return $this->services['delivery'];
+        // }
 
-        if ($deliver_type === 'receipt') {
-            return $this->services['pickup'];
-        }
+        // if ($deliver_type === 'receipt') {
+        //     return $this->services['pickup'];
+        // }
 
-        if ($deliver_type === 'reservation') {
-            return $this->services['reservation'];
-        }
+        // if ($deliver_type === 'reservation') {
+        //     return $this->services['reservation'];
+        // }
+        return getStoreServices($this->services, false)[$deliver_type] ?? false;
+    }
 
-        return false;
+    public function acceptsPayment(string $payment_type): bool
+    {
+        return getStoreAcceptArray($this->accepts, false)[$payment_type] ?? true;
     }
 }
