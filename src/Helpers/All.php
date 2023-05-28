@@ -84,7 +84,6 @@ function getDistanceInMeter(
  */
 function getSystemPaymentMethods(object $object, string $key = 'accepts', $default = true): mixed
 {
-    dd($default);
     return isset($object->{$key}) ? getSystemPaymentMethodsFromObject($object, $key, $default) : getSystemPaymentMethodsFromNull($default);
 }
 /**
