@@ -107,6 +107,6 @@ class User extends Eloquent implements Authenticatable
 
     public function userCanUsePaymentMethod(string $payment_type): bool
     {
-        return getSystemPaymentMethods($this, true)[$payment_type] ?? true;
+        return getSystemPaymentMethods($this, 'allowed_payment_methods', true)[$payment_type] ?? true;
     }
 }
