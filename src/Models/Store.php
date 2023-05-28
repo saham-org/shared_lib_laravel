@@ -147,11 +147,11 @@ class Store extends BaseModel
         // if ($deliver_type === 'reservation') {
         //     return $this->services['reservation'];
         // }
-        return getStoreServices($this->services, false)[$deliver_type] ?? false;
+        return getStoreServices($this, true)[$deliver_type] ?? true;
     }
 
     public function acceptsPayment(string $payment_type): bool
     {
-        return getStoreAcceptArray($this->accepts, false)[$payment_type] ?? true;
+        return getStoreAcceptArray($this, true)[$payment_type] ?? true;
     }
 }

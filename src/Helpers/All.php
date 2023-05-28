@@ -1,6 +1,8 @@
 <?php
 
+use Saham\SharedLibs\Database\Factories\StoreFactory;
 use Saham\SharedLibs\Models\Store;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
 if (!function_exists('getStoreServices')) {
     /**
@@ -8,14 +10,14 @@ if (!function_exists('getStoreServices')) {
      * @param bool $default
      * @return array<string, boolean>
      */
-    function getStoreServices(Store $store, $default = false): mixed
+    function getStoreServices(object $store, $default = false): mixed
     {
         return isset($store->services) ? getStoreServicesFromStore($store) : getStoreServicesFromNull($default);
     }
 }
 
 if (!function_exists('getStoreServicesFromStore')) {
-    function getStoreServicesFromStore(Store $store): mixed
+    function getStoreServicesFromStore(object $store): mixed
     {
         return [
             'delivery' => $store->services['delivery'] ?? false,
@@ -80,7 +82,7 @@ function getDistanceInMeter(
  * @param bool $default
  * @return array<string, boolean>
  */
-function getStoreAcceptArray(Store $store, $default = true): mixed
+function getStoreAcceptArray(object $store, $default = true): mixed
 {
     return isset($store->accepts) ? getStoreAcceptFromStore($store, $default) : getStoreAcceptFromNull($default);
 }
@@ -89,7 +91,7 @@ function getStoreAcceptArray(Store $store, $default = true): mixed
  * @param boolean $default
  * @return array<string, boolean>
  */
-function getStoreAcceptFromStore(Store $store, bool $default = true): mixed
+function getStoreAcceptFromStore(object $store, bool $default = true): mixed
 {
     return [
         'online'    => $store->accepts['online'] ?? $default,
