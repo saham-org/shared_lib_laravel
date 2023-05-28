@@ -66,6 +66,6 @@ class Manager extends Eloquent implements Authenticatable
     }
     public function feasts(): HasMany
     {
-        return $this->hasMany(Feast::class, 'store_id', 'store_id');
+        return $this->hasMany(Feast::class, 'store_id', 'store_id' );
     }
 }
