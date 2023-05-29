@@ -14,7 +14,7 @@ trait HasPaymentTypes
 
     public function getPaymentTypesAttribute(): mixed
     {
-        return getSystemPaymentMethods(collect(this->{$this->allowedPaymentMethodAtName()} )->toArray() ?? []);
+        return getSystemPaymentMethods(collect($this->{$this->allowedPaymentMethodAtName()} )->toArray() ?? []);
     }
 
     public function paymentTypes(): mixed
