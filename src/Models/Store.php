@@ -38,6 +38,7 @@ class Store extends BaseModel
         'longitude'         => 'double',
         'max_delivery_time' => 'integer',
         'min_order_charge'  => 'integer',
+        
     ];
 
     protected static function newFactory(): mixed
