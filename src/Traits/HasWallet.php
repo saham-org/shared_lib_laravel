@@ -24,7 +24,7 @@ trait HasWallet
     {
         $this->throwExceptionIfAmountIsInvalid($amount);
 
-        $this->throwExceptionIfFundIsInsufficient($amount);
+       // $this->throwExceptionIfFundIsInsufficient($amount);
 
         $balance = $this->wallet - $amount;
 
@@ -50,14 +50,14 @@ trait HasWallet
     public function throwExceptionIfAmountIsInvalid(int|float $amount): void
     {
         if ($amount <= 0) {
-            //throw new InvalidAmountException();
+             //throw new InvalidAmountException();
         }
     }
 
     public function throwExceptionIfFundIsInsufficient(int|float $amount): void
     {
         if (!$this->canWithdraw($amount)) {
-            throw new ResponseException('insufficient_funds', 400);
+          //  throw new ResponseException('insufficient_funds', 400);
         }
     }
 }

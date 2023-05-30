@@ -55,4 +55,14 @@ class StoreFactory extends BaseFactory
             ];
         });
     }
+
+    public function updatePaymentMethods(string $which, bool $flag)
+    {
+        return $this->state(function (array $attributes) use ($which, $flag) {
+            $defaults = $attributes['accepts'];
+            $defaults[$which] = $flag;
+            $attributes['accepts'] = $defaults;
+            return $attributes;
+        });
+    }
 }

@@ -11,7 +11,6 @@ use Illuminate\Support\Str;
  */
 class UserFactory extends BaseFactory
 {
-
     protected $model = User::class;
 
 

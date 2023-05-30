@@ -9,6 +9,7 @@ use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\BelongsToArray;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Mongodb\Relations\HasOne;
+use Saham\SharedLibs\Traits\HasPaymentTypes;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
 use DateTime;
@@ -23,6 +24,7 @@ class Store extends BaseModel
     use Translatable;
     use HasWallet;
     use SoftDeletes;
+    use HasPaymentTypes;
 
     protected $translatable = ['name', 'desc'];
     protected $attributes   = [
@@ -36,10 +38,10 @@ class Store extends BaseModel
         'longitude'         => 'double',
         'max_delivery_time' => 'integer',
         'min_order_charge'  => 'integer',
+        
     ];
 
-
-    protected static function newFactory()
+    protected static function newFactory(): mixed
     {
         return StoreFactory::new();
     }
@@ -135,20 +137,21 @@ class Store extends BaseModel
             ->orderByDesc('created_at');
     }
 
-    public function accepts($deliver_type): bool
+    public function acceptsService(string $deliver_type): bool
     {
-        if ($deliver_type === 'delivery') {
-            return $this->services['delivery'];
-        }
+        // if ($deliver_type === 'delivery') {
+        //     return $this->services['delivery'];
+        // }
 
-        if ($deliver_type === 'receipt') {
-            return $this->services['pickup'];
-        }
+        // if ($deliver_type === 'receipt') {
+        //     return $this->services['pickup'];
+        // }
 
-        if ($deliver_type === 'reservation') {
-            return $this->services['reservation'];
-        }
-
-        return false;
+        // if ($deliver_type === 'reservation') {
+        //     return $this->services['reservation'];
+        // }
+        return getStoreServices($this, true)[$deliver_type] ?? true;
     }
+
+
 }
