@@ -58,6 +58,8 @@ class Partner extends Eloquent implements Authenticatable
         'logo_thumb',
         'commercial_file',
         'account_status',
+        'block',
+        'status',
     ];
 
 

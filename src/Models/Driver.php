@@ -60,6 +60,8 @@ class Driver extends Eloquent implements Authenticatable
         'hiring_type',
         'ID_number',
         'gender',
+        'notes_history' ,
+        'block',
         'account_status',
     ];
 
