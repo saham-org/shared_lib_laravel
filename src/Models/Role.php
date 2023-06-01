@@ -23,7 +23,7 @@ class Role extends Eloquent
     public $guarded = ['id'];
     protected PermissionHelpers $helpers;
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name' , 'guard_name' , 'permission_ids' , 'administrator_ids'];
 
     /**
      * Role constructor.
