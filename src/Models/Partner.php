@@ -6,6 +6,7 @@ use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\BelongsToArray;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasTransaction;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
@@ -26,6 +27,7 @@ class Partner extends Eloquent implements Authenticatable
     use Translatable;
     use HasWallet;
     use HasTransaction;
+    use HasNotes ;
 
     protected $translatable = ['company_name'];
 
