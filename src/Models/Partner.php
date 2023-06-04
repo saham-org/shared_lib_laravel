@@ -27,13 +27,13 @@ class Partner extends Eloquent implements Authenticatable
     use Translatable;
     use HasWallet;
     use HasTransaction;
-    use HasNotes ;
+    use HasNotes;
 
     protected $translatable = ['company_name'];
 
-    protected $guarded    = [];
+    protected $guarded = [];
     protected $attributes = [
-        'status'      => 'under_revision',
+        'status' => 'under_revision',
         'cuisine_ids' => [],
     ];
     protected $hidden = ['remember_token', 'password'];
