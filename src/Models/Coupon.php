@@ -14,6 +14,13 @@ class Coupon extends BaseModel
     use HasFactory;
     use SoftDeletes ;
 
+    protected static function booted()
+    {
+        static::addGlobalScope('delete', function (Builder $builder) {
+            $builder->where('deleted_at', null);
+        });
+    }
+
     protected static function newFactory()
     {
         return CouponFactory::new();
