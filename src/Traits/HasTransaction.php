@@ -12,7 +12,8 @@ trait HasTransaction
         $payment_id = null,
         $order_id = null,
         $store_id = null,
-        $reason = null
+        $reason = null,
+        $tag_id = null
     ): ?Model {
         if ($amount < 0) {
             $type = 'withdraw';
@@ -28,6 +29,7 @@ trait HasTransaction
                 'order_id'     => $order_id,
                 'store_id'     => $store_id,
                 'reason'       => $reason ?? '',
+                'tag_id'       => $tag_id ?? '',
             ]);
     }
 }
