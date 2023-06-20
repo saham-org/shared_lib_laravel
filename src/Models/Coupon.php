@@ -14,6 +14,10 @@ class Coupon extends BaseModel
     use HasFactory;
     use SoftDeletes ;
 
+    protected $fillable = [
+        'name','partner_ids','type_discount','amount','code','minimum_amount','users_id','users_date_range','promo_date_range','limit_per_user','global_limit','radius','latitude','longitude','send_code','display_public',
+    ];
+
     protected static function booted()
     {
         static::addGlobalScope('delete', function (Builder $builder) {
