@@ -29,7 +29,7 @@ class Manager extends Eloquent implements Authenticatable
     ];
 
     protected $fillable = [
-        'full_name', 'email', 'phone', 'password'
+        'full_name', 'email', 'phone', 'block', 'password'
     ];
 
     

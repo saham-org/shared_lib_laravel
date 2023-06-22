@@ -7,6 +7,7 @@ use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\Builder;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\Traits\HasNotes;
 
 /**
  * Summary of Order
@@ -14,6 +15,7 @@ use Saham\SharedLibs\Mongodb\Relations\HasMany;
 class Order extends BaseModel
 {
     use HasFactory;
+    use HasNotes ;
 
     protected $guarded    = [];
     protected $attributes = [

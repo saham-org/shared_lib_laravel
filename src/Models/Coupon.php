@@ -8,16 +8,15 @@ use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\BSON\UTCDateTime;
 use Saham\SharedLibs\Database\Factories\CouponFactory;
+use Illuminate\Database\Eloquent\Builder;
 
 class Coupon extends BaseModel
 {
     use HasFactory;
     use SoftDeletes ;
 
-    protected static function newFactory()
-    {
-        return CouponFactory::new();
-    }
+
+
 
     protected $casts = [
         'amount'         => 'double',
@@ -26,7 +25,23 @@ class Coupon extends BaseModel
         'radius'         => 'double',
     ];
 
+
+    protected $fillable = [
+        'name','partner_ids','type_discount','amount','code','minimum_amount','users_id','users_date_range','promo_date_range','limit_per_user','global_limit','radius','latitude','longitude','send_code','display_public',
+    ];
     protected $dates = ['deleted_at'];
+
+    protected static function booted()
+    {
+        static::addGlobalScope('delete', function (Builder $builder) {
+            $builder->where('deleted_at', null);
+        });
+    }
+
+    protected static function newFactory()
+    {
+        return CouponFactory::new();
+    }
 
     public static function findByCode($code): ?self
     {

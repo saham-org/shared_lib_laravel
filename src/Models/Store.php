@@ -9,6 +9,7 @@ use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\BelongsToArray;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Mongodb\Relations\HasOne;
+use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasPaymentTypes;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
@@ -25,6 +26,7 @@ class Store extends BaseModel
     use HasWallet;
     use SoftDeletes;
     use HasPaymentTypes;
+    use HasNotes ;
 
     protected $translatable = ['name', 'desc'];
     protected $attributes   = [
