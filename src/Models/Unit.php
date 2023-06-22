@@ -17,5 +17,8 @@ class Unit extends BaseModel
         'number', 'adult_min', 'adult_max', 'child_min', 'child_max', 'adult_price', 'child_price', 'imgs'
     ];
 
-
+    public function slots(): HasMany
+    {
+        return $this->hasMany(Slot::class);
+    }
 }
