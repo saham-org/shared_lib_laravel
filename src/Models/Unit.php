@@ -8,7 +8,6 @@ use Saham\SharedLibs\Traits\Translatable;
 
 class Unit extends BaseModel
 {
-    use HasFactory;
     use Translatable;
     use SoftDeletes ;
 
