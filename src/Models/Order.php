@@ -66,4 +66,14 @@ class Order extends BaseModel
     {
         return $this->hasMany(OrderDetail::class);
     }
+
+    public function unit(): BelongsTo
+    {
+        return $this->belongsTo(Unit::class);
+    }
+
+    public function slot(): BelongsTo
+    {
+        return $this->belongsTo(Slot::class);
+    }
 }
