@@ -5,6 +5,7 @@ namespace Saham\SharedLibs\Models;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Traits\Translatable;
+use Saham\SharedLibs\Mongodb\Relations\HasMany;
 
 class Unit extends BaseModel
 {
