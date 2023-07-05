@@ -13,7 +13,7 @@ class Unit extends BaseModel
     use SoftDeletes ;
 
     protected $fillable = [
-        'number', 'adult_min', 'adult_max', 'child_min', 'child_max', 'adult_price', 'child_price', 'imgs'
+        'number', 'adult_min', 'adult_max', 'child_min', 'child_max', 'adult_price', 'child_price', 'imgs', 'store_id'
     ];
 
     public function slots(): HasMany
