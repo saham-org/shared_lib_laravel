@@ -10,7 +10,7 @@ class Slot extends BaseModel
 {
 
     use SoftDeletes ;
-    
+
     protected $fillable = [
         'unit_id', 'from', 'to', 'status'
     ];
