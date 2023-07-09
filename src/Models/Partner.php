@@ -62,6 +62,10 @@ class Partner extends Eloquent implements Authenticatable
         'account_status',
         'block',
         'status',
+        'notification_id',
+        'device_id',
+        'device_type',
+        'os_version',
     ];
 
 
