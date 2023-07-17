@@ -21,7 +21,7 @@
         "illuminate/pagination": "^7.0|^8.0|^9.0|^10.0",
         "illuminate/support": "^7.4|^8.4|^9.4|^10.4",
         "laravel/passport": "^8.0|^9.0|^10.4|^11.8",
-        "mongodb/mongodb": "^1.12",
+        "mongodb/mongodb": "1.12",
         "nesbot/carbon": "^2.66",
         "spatie/geocoder": "^3.14",
         "spatie/laravel-permission": "^5.10"
