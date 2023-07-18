@@ -33,6 +33,8 @@ class UserFactory extends BaseFactory
             'device_type'       => 'iphone',
             'notification_id'   => '',
             'os_version'        => '12.0',
+            'bank_name'       => 'RJHI',
+            'bank_IBAN'       => '0cb969c956c307a',
             'full_name'         => $this->faker->name(),
             'gender'            => 'male',
             'wallet'            => $this->faker->numberBetween(100, 1000),
