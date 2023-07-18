@@ -24,6 +24,8 @@ class PartnerFactory extends BaseFactory
             'language'          => 'ar',
             'device_id'         => '067E7A0F-B064-4134-B562-4CF85FCFCC4D',
             'device_type'       => 'iphone',
+            'bank_name'       => 'RJHI',
+            'bank_IBAN'       => '0cb969c956c307a',
             'os_version'        => '15.5',
             'notification_id'   => '0cb969c956c307aaf8f585a0cc248a4f1506cb90edeea7922ca70fb1a334c0bd',
 

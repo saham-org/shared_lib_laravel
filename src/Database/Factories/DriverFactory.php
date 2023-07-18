@@ -32,6 +32,8 @@ class DriverFactory extends BaseFactory
             'device_id'         => $this->faker->uuid(),
             'notification_id'   => $this->faker->uuid(),
             'wallet'            => 0,
+            'bank_name'       => 'RJHI',
+            'bank_IBAN'       => '0cb969c956c307a',
             'location'          => [
                 'type'        => 'Point',
                 'coordinates' => [
