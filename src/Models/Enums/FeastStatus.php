@@ -35,7 +35,7 @@ enum FeastStatus: string
     case Opened = 'opened';
 
     case Closed = 'closed';
-    case Payed = 'payed';
+    case Payed = 'paid';
 
     /**
      *  Get all active statuses.
