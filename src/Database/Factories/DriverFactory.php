@@ -34,13 +34,14 @@ class DriverFactory extends BaseFactory
             'wallet'            => 0,
             'bank_name'       => 'RJHI',
             'bank_IBAN'       => '0cb969c956c307a',
-            'location'          => [
+            'location'            => ['type' => 'Point', 'coordinates' => [-73.97, 40.77]],
+            /*'location'          => [
                 'type'        => 'Point',
                 'coordinates' => [
                     "{$latitude}",
                     "{$longitude}",
                 ],
-            ],
+            ],*/
 
 
         ];
