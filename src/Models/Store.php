@@ -155,5 +155,33 @@ class Store extends BaseModel
         return getStoreServices($this, true)[$deliver_type] ?? true;
     }
 
+    function updateStoreService($pickup = null, $delivery = null, $feasts = null, $reservation = null)
+    {
+        $services = $this->services;
+
+        if ($pickup != null)
+        {
+
+            $services['pickup'] = $pickup == true || $pickup == 1 ? true: false;
+        }
+
+        if ($delivery != null){
+            $services['delivery'] = $delivery == true || $delivery == 1 ? true: false;
+
+        }
+
+        if ($feasts != null){
+            $services['feasts'] = $feasts == true || $feasts == 1 ? true: false;
+
+        }
+
+        if ($reservation != null){
+            $services['reservation'] = $reservation == true || $reservation == 1 ? true: false;
+        }
+
+
+        $this->update(['services' => $services]);
+    }
+
 
 }
