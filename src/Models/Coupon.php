@@ -125,10 +125,9 @@ class Coupon extends BaseModel
         return $this;
     }
 
-    public function calculateDiscount(float $sub_total): float
+    public function calculateDiscount(float $sub_total,float $delivery_fee = null): float
     {
         return $this->type_discount === 'percentage' && $this->amount <= 100 ?
-            $this->amount * $sub_total / 100 :
-            $this->amount;
+            $this->amount * $sub_total / 100 : ($this->type_discount === 'percentage_delivery' ? $this->amount * $delivery_fee / 100 : $this->amount);
     }
 }
