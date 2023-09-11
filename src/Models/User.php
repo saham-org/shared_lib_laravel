@@ -45,7 +45,7 @@ class User extends Eloquent implements Authenticatable
     ];
 
     protected $fillable = [
-        'cuisine_ids', 'phone', 'otp', 'device_id', 'device_type', 'os_version', 'notification_id', 'email',
+        'cuisine_ids', 'phone', 'otp', 'device_id', 'device_type', 'os_version', 'notification_id', 'email', 'allowed_payment_methods',
         'full_name', 'wallet', 'bank_iban' , 'bank_name' ,  'referral_code', 'notes_history' , 'block', 'password', 'gender'];
 
     protected static function newFactory()
