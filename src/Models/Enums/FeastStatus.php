@@ -23,7 +23,7 @@ enum FeastStatus: string
     case Refunded = 'refunded';
 
     case Preparing = 'preparing';
-
+    case Prepared = 'prepared';
     case InLocation = 'in_location';
 
     case Approved = 'approved';
@@ -52,6 +52,7 @@ enum FeastStatus: string
             self::InLocation,
             self::Refresh,
             self::Preparing,
+            self::Prepared,
             self::Accepted,
         ]), 'value');
     }
@@ -133,6 +134,7 @@ enum FeastStatus: string
         return array_column(([
             self::Pending,
             self::Preparing,
+            self::Prepared,
             self::InDelivery,
             self::Rejected,
             self::Completed,
