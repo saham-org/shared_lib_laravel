@@ -111,6 +111,17 @@ class Coupon extends BaseModel
         return true;
     }
 
+    public function isForStore(string $store_id): bool
+    {
+        $store = Store::find($store_id);
+
+        if ($this->partner_ids && is_array($this->partner_ids)) {
+            return in_array('all', $this->partner_ids, true) || in_array($store->partner_id, $this->partner_ids, true);
+        }
+
+        return true;
+    }
+
     public function isForTotal(float $total): bool
     {
         return $total >= $this->minimum_amount;
