@@ -154,6 +154,7 @@ enum OrderStatus: string
             self::Rejected,
             self::Completed,
             self::Accepted,
+            self::InDelivery,
         ]), 'value');
     }
 }

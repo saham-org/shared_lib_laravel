@@ -154,6 +154,7 @@ enum FeastStatus: string
             self::Rejected,
             self::Completed,
             self::Accepted,
+            self::InDelivery,
         ]), 'value');
     }
 }
