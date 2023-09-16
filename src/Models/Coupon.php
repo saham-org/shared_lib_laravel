@@ -111,6 +111,17 @@ class Coupon extends BaseModel
         return true;
     }
 
+    public function isForStore(string $store_id): bool
+    {
+        $store = Store::find($store_id);
+
+        if ($this->partner_ids && is_array($this->partner_ids)) {
+            return in_array('all', $this->partner_ids, true) || in_array($store->partner_id, $this->partner_ids, true);
+        }
+
+        return true;
+    }
+
     public function isForTotal(float $total): bool
     {
         return $total >= $this->minimum_amount;
@@ -125,10 +136,9 @@ class Coupon extends BaseModel
         return $this;
     }
 
-    public function calculateDiscount(float $sub_total): float
+    public function calculateDiscount(float $sub_total,float $delivery_fee = null): float
     {
         return $this->type_discount === 'percentage' && $this->amount <= 100 ?
-            $this->amount * $sub_total / 100 :
-            $this->amount;
+            $this->amount * $sub_total / 100 : ($this->type_discount === 'percentage_delivery' ? $this->amount * $delivery_fee / 100 : $this->amount);
     }
 }
