@@ -86,6 +86,7 @@ class Store extends BaseModel
     public function getCoupons(): ?Coupon
     {
         return Coupon::where('partner_ids', 'all', [$this->partner_id])
+            ->where('display_public' , "1"  )
             ->whereDate('promo_date_range.start', '<=', new UTCDateTime(new DateTime('now')))
             ->whereDate('promo_date_range.end', '>=', new UTCDateTime(new DateTime('now')))
             ->orderByDesc('created_at')->first();
