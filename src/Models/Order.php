@@ -76,4 +76,9 @@ class Order extends BaseModel
     {
         return $this->belongsTo(Slot::class);
     }
+
+    public function couponDetails() : mixed
+    {
+        return    Coupon::where('code' ,  $this->coupon)->first();
+    }
 }
