@@ -73,10 +73,10 @@ class Order extends BaseModel
         return $this->belongsTo(Unit::class);
     }
 
-    public function coupon(): HasOne
+  /*  public function coupon(): HasOne
     {
         return $this->hasOne(Coupon::class, 'coupon', 'code');
-    }
+    }*/
 
     public function slot(): BelongsTo
     {
