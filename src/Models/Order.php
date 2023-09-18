@@ -83,8 +83,9 @@ class Order extends BaseModel
         return $this->belongsTo(Slot::class);
     }
 
-    public function couponDetails() : mixed
+
+    public function couponDetails(): BelongsTo
     {
-        return    Coupon::where('code' ,  $this->coupon)->first();
+        return $this->belongsTo(Coupon::class, 'coupon', 'code');
     }
 }
