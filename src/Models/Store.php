@@ -30,9 +30,9 @@ class Store extends BaseModel
 
     protected $translatable = ['name', 'desc'];
     protected $attributes   = [
-        'avg_rating' => 4.9,
-        'status'     => 'unavailable',
-        'wallet'     => 0,
+        'avg_rating'  => 4.9,
+        'status'      => 'unavailable',
+        'wallet'      => 0,
         'cuisine_ids' => [],
     ];
     protected $casts = [
@@ -40,7 +40,7 @@ class Store extends BaseModel
         'longitude'         => 'double',
         'max_delivery_time' => 'integer',
         'min_order_charge'  => 'integer',
-        
+
     ];
 
     protected static function newFactory(): mixed
@@ -86,10 +86,19 @@ class Store extends BaseModel
     public function getCoupons(): ?Coupon
     {
         return Coupon::where('partner_ids', 'all', [$this->partner_id])
-            ->where('display_public' , "1"  )
+            ->where('display_public', '1')
             ->whereDate('promo_date_range.start', '<=', new UTCDateTime(new DateTime('now')))
             ->whereDate('promo_date_range.end', '>=', new UTCDateTime(new DateTime('now')))
             ->orderByDesc('created_at')->first();
+    }
+
+    public function getActiveCoupons(): mixed
+    {
+        return Coupon::where('partner_ids', 'all', [$this->partner_id])
+            ->where('display_public', '1')
+            ->whereDate('promo_date_range.start', '<=', new UTCDateTime(new DateTime('now')))
+            ->whereDate('promo_date_range.end', '>=', new UTCDateTime(new DateTime('now')))
+            ->orderByDesc('created_at')->get();
     }
 
     public function getFavorites(): ?int
@@ -156,33 +165,27 @@ class Store extends BaseModel
         return getStoreServices($this, true)[$deliver_type] ?? true;
     }
 
+
     function updateStoreService($pickup = null, $delivery = null, $feasts = null, $reservation = null): mixed
-    {
+     {
         $services = $this->services;
 
-        if ($pickup != null)
-        {
-
-            $services['pickup'] = $pickup == true || $pickup == 1 ? true: false;
+        if ($pickup !== null) {
+            $services['pickup'] = $pickup === true || $pickup === 1;
         }
 
-        if ($delivery != null){
-            $services['delivery'] = $delivery == true || $delivery == 1 ? true: false;
-
+        if ($delivery !== null) {
+            $services['delivery'] = $delivery === true || $delivery === 1;
         }
 
-        if ($feasts != null){
-            $services['feasts'] = $feasts == true || $feasts == 1 ? true: false;
-
+        if ($feasts !== null) {
+            $services['feasts'] = $feasts === true || $feasts === 1;
         }
 
-        if ($reservation != null){
-            $services['reservation'] = $reservation == true || $reservation == 1 ? true: false;
+        if ($reservation !== null) {
+            $services['reservation'] = $reservation === true || $reservation === 1;
         }
-
 
         $this->update(['services' => $services]);
     }
-
-
 }
