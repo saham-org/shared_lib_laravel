@@ -156,7 +156,7 @@ class Store extends BaseModel
         return getStoreServices($this, true)[$deliver_type] ?? true;
     }
 
-    function updateStoreService($pickup = null, $delivery = null, $feasts = null, $reservation = null)
+    function updateStoreService($pickup = null, $delivery = null, $feasts = null, $reservation = null): mixed
     {
         $services = $this->services;
 
