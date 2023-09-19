@@ -186,6 +186,6 @@ class Store extends BaseModel
             $services['reservation'] = $reservation === true || $reservation === 1;
         }
 
-        $this->update(['services' => $services]);
+         return   $this->update(['services' => $services]);
     }
 }
