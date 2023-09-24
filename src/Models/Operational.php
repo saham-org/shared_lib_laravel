@@ -3,6 +3,7 @@
 namespace Saham\SharedLibs\Models;
 
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
@@ -20,6 +21,7 @@ class Operational extends Eloquent implements Authenticatable
     use Notifiable;
     use Translatable;
     use HasWallet;
+    use HasNotes ;
 
     protected $guarded = [];
 
