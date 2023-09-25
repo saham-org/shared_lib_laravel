@@ -20,10 +20,10 @@ class Operational extends Eloquent implements Authenticatable
     use HasApiTokens;
     use HasFactory;
     use Notifiable;
+    use HasTransaction;
     use Translatable;
     use HasWallet;
     use HasNotes ;
-    use HasTransaction;
 
 
     protected $attributes = [
@@ -40,6 +40,7 @@ class Operational extends Eloquent implements Authenticatable
         , 'bank_name' , 'bank_IBAN' , 'system_driver_commission_percentage'
         , 'system_driver_commission_amount'
         ,  'block'
+        ,  'wallet'
         , 'status'
         , 'notification_id'
         , 'device_id'
