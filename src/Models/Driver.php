@@ -159,8 +159,8 @@ class Driver extends Eloquent implements Authenticatable
         return $this->belongsTo(City::class);
     }
 
-    public function operational(): HasOne
+    public function operational(): BelongsTo
     {
-        return $this->hasOne(Operational::class, '_id', 'operation_manger_id');
+        return $this->belongsTo(Operational::class , 'operation_manger_id');
     }
 }
