@@ -7,7 +7,6 @@ use Saham\SharedLibs\Models\Enums\OrderStatus;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
-use Saham\SharedLibs\Mongodb\Relations\HasOne;
 use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasTransaction;
 use Saham\SharedLibs\Traits\HasWallet;
