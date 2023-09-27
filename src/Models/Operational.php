@@ -3,6 +3,7 @@
 namespace Saham\SharedLibs\Models;
 
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasTransaction;
 use Saham\SharedLibs\Traits\HasWallet;
@@ -65,6 +66,18 @@ class Operational extends Eloquent implements Authenticatable
     public function routeNotificationForFcm($notifiable): string
     {
         return $this->notification_id;
+    }
+
+
+    public function payouts(): HasMany
+    {
+        return $this->hasMany(OperationalPayout::class);
+    }
+
+    public function transactions(): HasMany
+    {
+        return $this->hasMany(OperationalTransaction::class)
+            ->orderByDesc('created_at');
     }
 
 }
