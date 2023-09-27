@@ -68,6 +68,11 @@ class Order extends BaseModel
         return $this->hasMany(OrderDetail::class);
     }
 
+    public function complaints(): HasMany
+    {
+        return $this->hasMany(Complaint::class , 'order_id');
+    }
+
     public function unit(): BelongsTo
     {
         return $this->belongsTo(Unit::class);
