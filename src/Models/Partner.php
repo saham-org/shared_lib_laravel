@@ -46,6 +46,7 @@ class Partner extends Eloquent implements Authenticatable
         'full_name',
         'email',
         'phone',
+        'custom_commission',
         'password',
         'category_id',
         'city_id',
