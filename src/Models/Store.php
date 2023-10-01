@@ -72,6 +72,10 @@ class Store extends BaseModel
     {
         return $this->hasMany(Menu::class, 'store_id');
     }
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class, 'store_id');
+    }
 
     public function cuisines(): BelongsToArray
     {

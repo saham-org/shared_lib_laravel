@@ -16,11 +16,11 @@ use Saham\SharedLibs\Traits\HasNotes;
 class Order extends BaseModel
 {
     use HasFactory;
-    use HasNotes ;
+    use HasNotes;
 
-    protected $guarded    = [];
+    protected $guarded = [];
     protected $attributes = [
-        'status'    => 'pending',
+        'status' => 'pending',
         'cash_paid' => false,
     ];
 
@@ -70,7 +70,7 @@ class Order extends BaseModel
 
     public function complaints(): HasMany
     {
-        return $this->hasMany(Complaint::class , 'order_id');
+        return $this->hasMany(Complaint::class, 'order_id');
     }
 
     public function unit(): BelongsTo
@@ -78,10 +78,10 @@ class Order extends BaseModel
         return $this->belongsTo(Unit::class);
     }
 
-  /*  public function coupon(): HasOne
-    {
-        return $this->hasOne(Coupon::class, 'coupon', 'code');
-    }*/
+    /*  public function coupon(): HasOne
+      {
+          return $this->hasOne(Coupon::class, 'coupon', 'code');
+      }*/
 
     public function slot(): BelongsTo
     {
@@ -92,6 +92,12 @@ class Order extends BaseModel
     public function couponDetails(): BelongsTo
     {
         return $this->belongsTo(Coupon::class, 'coupon', 'code');
+    }
+
+
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class, 'order_id');
     }
 
     public function complains(): HasMany
