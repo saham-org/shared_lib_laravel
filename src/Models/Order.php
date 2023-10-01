@@ -93,4 +93,9 @@ class Order extends BaseModel
     {
         return $this->belongsTo(Coupon::class, 'coupon', 'code');
     }
+
+    public function complains(): HasMany
+    {
+        return $this->hasMany(Complaint::class);
+    }
 }

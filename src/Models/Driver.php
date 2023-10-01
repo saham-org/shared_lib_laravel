@@ -162,4 +162,9 @@ class Driver extends Eloquent implements Authenticatable
     {
         return $this->belongsTo(Operational::class , 'operation_manger_id');
     }
+    
+    public function complains(): HasMany
+    {
+        return $this->hasMany(Complaint::class, 'related_id', '_id')->where('related_type', Driver::class);
+    }
 }
