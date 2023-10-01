@@ -47,4 +47,9 @@ class Product extends BaseModel
             'item'       => $thing_name,
         ], false);
     }
+
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Driver::class , 'related_id')->where('related_type' ,  Product::class);
+    }
 }

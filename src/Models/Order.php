@@ -93,4 +93,9 @@ class Order extends BaseModel
     {
         return $this->belongsTo(Coupon::class, 'coupon', 'code');
     }
+
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class, 'order_id');
+    }
 }

@@ -108,4 +108,9 @@ class User extends Eloquent implements Authenticatable
     {
         return $this->createToken('saham Password Grant Client')->accessToken;
     }
+
+    public function ratings(): HasMany
+    {
+        return $this->hasMany(Rating::class, 'user_id');
+    }
 }
