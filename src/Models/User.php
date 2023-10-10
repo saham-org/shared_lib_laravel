@@ -113,4 +113,9 @@ class User extends Eloquent implements Authenticatable
     {
         return $this->hasMany(Rating::class, 'user_id');
     }
+
+    public function complains(): HasMany
+    {
+        return $this->hasMany(Complaint::class, 'related_id', '_id')->where('related_type', User::class);
+    }
 }
