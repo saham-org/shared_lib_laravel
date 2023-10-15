@@ -80,4 +80,9 @@ class Operational extends Eloquent implements Authenticatable
             ->orderByDesc('created_at');
     }
 
+    public function drivers(): HasMany
+    {
+        return $this->hasMany(Driver::class , 'operation_manger_id');
+    }
+
 }
