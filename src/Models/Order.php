@@ -107,6 +107,11 @@ class Order extends BaseModel
 
     public function transaction(): BelongsTo
     {
-        return $this->belongsTo(UserTransaction::class , 'order_id');
+        return $this->belongsTo(UserTransaction::class, 'order_id');
+    }
+
+    public function userOrderTransaction()
+    {
+        return $this->hasMany(UserTransaction::class, 'order_id');
     }
 }
