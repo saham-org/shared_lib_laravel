@@ -104,4 +104,9 @@ class Order extends BaseModel
     {
         return $this->hasMany(Complaint::class);
     }
+
+    public function transaction(): BelongsTo
+    {
+        return $this->belongsTo(UserTransaction::class , 'order_id');
+    }
 }
