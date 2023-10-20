@@ -141,4 +141,9 @@ class Partner extends Eloquent implements Authenticatable
         return $this->hasMany(PartnerTransaction::class)
             ->orderByDesc('created_at');
     }
+
+    public function cashoutMethods(): HasMany
+    {
+        return $this->hasMany(CashoutMethods::class);
+    }
 }
