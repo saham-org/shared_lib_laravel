@@ -118,4 +118,9 @@ class User extends Eloquent implements Authenticatable
     {
         return $this->hasMany(Complaint::class, 'related_id', '_id')->where('related_type', User::class);
     }
+
+    public function cashoutMethods(): HasMany
+    {
+        return $this->hasMany(CashoutMethods::class);
+    }
 }
