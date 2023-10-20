@@ -25,7 +25,10 @@ class CashoutMethods extends BaseModel
         'bank_account',
         'iban',
         'images',
-        'set_default'
+        'set_default',
+        'related_id',
+        'related_type',
+        'imgs',
 
     ];
 
