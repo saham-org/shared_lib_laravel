@@ -102,7 +102,9 @@ class Store extends BaseModel
             ->where('display_public', '1')
             ->whereDate('promo_date_range.start', '<=', new UTCDateTime(new DateTime('now')))
             ->whereDate('promo_date_range.end', '>=', new UTCDateTime(new DateTime('now')))
-            ->orderByDesc('show_first')->get();
+            ->orderByDesc('created_at')
+            ->orderByDesc('show_first')
+            ->get();
     }
 
     public function getFavorites(): ?int
