@@ -27,7 +27,7 @@ class Coupon extends BaseModel
 
 
     protected $fillable = [
-        'name','partner_ids','type_discount','amount','code','minimum_amount','users_id','users_date_range','promo_date_range','limit_per_user','global_limit','radius','latitude','longitude','send_code','display_public',
+        'name','partner_ids' , 'show_first' ,'type_discount','amount','code','minimum_amount','users_id','users_date_range','promo_date_range','limit_per_user','global_limit','radius','latitude','longitude','send_code','display_public',
     ];
     protected $dates = ['deleted_at'];
 

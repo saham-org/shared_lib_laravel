@@ -38,7 +38,6 @@ class Product extends BaseModel
     public function logProductPriceUpdate($thing_name, $thing_price_from, $thing_price_to , $status_from = null ): void
     {
 
-
         $this->push('changes', [
             'price_from' => $thing_price_from,
             'price_to'   => $thing_price_to,
