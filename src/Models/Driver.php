@@ -174,6 +174,6 @@ class Driver extends Eloquent implements Authenticatable
     }
     public function cashoutMethods(): HasMany
     {
-        return $this->hasMany(CashoutMethods::class);
+        return $this->hasMany(CashoutMethods::class)->where('related_type', Driver::class);
     }
 }
