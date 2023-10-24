@@ -121,6 +121,6 @@ class User extends Eloquent implements Authenticatable
 
     public function cashoutMethods(): HasMany
     {
-        return $this->hasMany(CashoutMethods::class)->where('related_type', User::class);
+        return $this->hasMany(CashoutMethods::class, 'related_id', '_id')->where('related_type', User::class);
     }
 }
