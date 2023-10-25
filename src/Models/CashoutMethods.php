@@ -14,7 +14,6 @@ class CashoutMethods extends BaseModel
     use HasFactory;
 
     protected $fillable = [
-        'id',
         'supplier_name',
         'email',
         'mobile',
