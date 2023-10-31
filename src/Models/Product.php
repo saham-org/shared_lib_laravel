@@ -38,18 +38,19 @@ class Product extends BaseModel
     public function logProductPriceUpdate($thing_name, $thing_price_from, $thing_price_to , $status_from = null ): void
     {
 
+        self::withoutEvents(function () use ($thing_name, $thing_price_from, $thing_price_to, $status_from) {
+            $this->push('changes', [
+                'price_from'  => $thing_price_from,
+                'price_to'    => $thing_price_to,
+                'status_from' => $status_from,
+                'status_to'   => 'pending',
+                'item'        => $thing_name,
+            ], false);
 
-        $this->push('changes', [
-            'price_from' => $thing_price_from,
-            'price_to'   => $thing_price_to,
-            'status_from' => $status_from,
-            'status_to'   => 'pending',
-            'item'       => $thing_name,
-        ], false);
-
-        $this->update([
-            'status'  => 'pending',
-        ]);
+            $this->update([
+                'status'  => 'pending',
+            ]);
+        });
     }
 
     public function ratings(): HasMany
