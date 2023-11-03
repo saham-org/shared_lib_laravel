@@ -422,7 +422,7 @@ abstract class Model extends BaseModel
      * Get the parent relation.
      *
      */
-    public function getParentRelation(): Relation
+    public function getParentRelation(): ?Relation
     {
         return $this->parentRelation;
     }
