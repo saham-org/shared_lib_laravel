@@ -14,4 +14,9 @@ class UserTransaction extends BaseModel
     protected $casts = [
         'ref' => 'string',
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }
