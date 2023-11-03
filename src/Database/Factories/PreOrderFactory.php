@@ -8,7 +8,7 @@ use Saham\SharedLibs\Models\PreOrder;
 use Saham\SharedLibs\Models\Partner;
 use Saham\SharedLibs\Models\Store;
 
-class PreOrderFactory  extends BaseFactory
+class PreOrderFactory extends BaseFactory
 {
     protected $model = PreOrder::class;
 

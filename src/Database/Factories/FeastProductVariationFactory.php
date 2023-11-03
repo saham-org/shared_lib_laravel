@@ -5,7 +5,7 @@ namespace Saham\SharedLibs\Database\Factories;
 use Saham\SharedLibs\Models\FeastProduct;
 use Saham\SharedLibs\Models\ProductVariation;
 
-class FeastProductVariationFactory  extends BaseFactory
+class FeastProductVariationFactory extends BaseFactory
 {
     protected $model = ProductVariation::class;
 

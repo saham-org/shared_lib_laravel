@@ -2,7 +2,7 @@
 
 namespace Saham\SharedLibs\Database\Factories;
 
- use Saham\SharedLibs\Models\Enums\FeastStatus;
+use Saham\SharedLibs\Models\Enums\FeastStatus;
 use Saham\SharedLibs\Models\Feast;
 use Saham\SharedLibs\Models\Partner;
 use Saham\SharedLibs\Models\Store;

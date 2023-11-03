@@ -34,7 +34,7 @@ class Role extends Eloquent
     {
         $attributes['guard_name'] ??= (new Guard())->getDefaultName(static::class);
 
-        parent  ::__construct($attributes);
+        parent::__construct($attributes);
 
         $this->helpers = new PermissionHelpers();
 
@@ -84,9 +84,7 @@ class Role extends Eloquent
         return $role;
     }
 
-    public static function findById(): void
-    {
-    }
+    public static function findById(): void {}
 
     /**
      * Find a role by its name and guard name.

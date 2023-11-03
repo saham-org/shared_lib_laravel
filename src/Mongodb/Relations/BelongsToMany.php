@@ -320,7 +320,7 @@ class BelongsToMany extends EloquentBelongsToMany
         $results = [];
 
         foreach ($records as $id => $attributes) {
-            if (! is_array($attributes)) {
+            if (!is_array($attributes)) {
                 [$id, $attributes] = [$attributes, []];
             }
 

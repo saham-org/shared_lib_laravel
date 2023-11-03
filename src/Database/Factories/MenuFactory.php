@@ -17,7 +17,7 @@ class MenuFactory extends BaseFactory
         return [
             'title_ar'         => $this->faker->name(),
             'title_en'         => $this->faker->name(),
-            'display_order'    => rand(111,222),
+            'display_order'    => rand(111, 222),
         ];
     }
 

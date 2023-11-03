@@ -18,7 +18,7 @@ class DriverFactory extends BaseFactory
     {
         $latitude = '30.0294578' ;//$this->faker->latitude();
         $longitude = '31.5255809,15' ;//$this->faker->longitude();
-        $phone =  '+96650'.rand(00000000, 99999999);
+        $phone =  '+96650' . rand(00000000, 99999999);
         return [
             'name'              => $this->faker->name(),
             'email'             => $this->faker->unique()->safeEmail(),

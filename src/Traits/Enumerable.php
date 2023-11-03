@@ -2,9 +2,7 @@
 
 namespace Saham\SharedLibs\Traits;
 
-trait Enumerable
-{
-}
+trait Enumerable {}
 // {
 //     public static function values(): array
 //     {

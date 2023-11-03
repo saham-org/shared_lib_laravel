@@ -91,9 +91,9 @@ class Permission extends Eloquent implements PermissionContract
     public static function findOrCreate(string $name, ?string $guardName = null): object
     {
         $guardName ??= 'admin';
-         $permission = static::getPermissions()->filter(static function ($permission) use ($name, $guardName) {
+        $permission = static::getPermissions()->filter(static function ($permission) use ($name, $guardName) {
             return $permission->name === $name && $permission->guard_name === $guardName;
-         })->first();
+        })->first();
 
         if (!$permission) {
             $permission = static::create(['name' => $name, 'guard_name' => $guardName]);

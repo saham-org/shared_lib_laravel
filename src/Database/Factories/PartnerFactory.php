@@ -7,7 +7,6 @@ use Saham\SharedLibs\Models\Partner;
 
 class PartnerFactory extends BaseFactory
 {
-
     protected $model = Partner::class;
 
 
@@ -16,7 +15,7 @@ class PartnerFactory extends BaseFactory
         return [
             'full_name'         => $this->faker->name(),
             'email'             => $this->faker->safeEmail(),
-            'phone'             =>   '+96650'.rand(00000000, 99999999),//$this->faker->phoneNumber(),
+            'phone'             =>   '+96650' . rand(00000000, 99999999),//$this->faker->phoneNumber(),
             'category_id'       => 'null',
             'password'          => 123456789,
             'company_name_ar'   => $this->faker->text(),
@@ -43,11 +42,11 @@ class PartnerFactory extends BaseFactory
 
     public function forStatusAcount(string $status)
     {
-    /*    return $this->state(function (array $attributes) use ($status) {
-            return [
-                'account_status' => $status,
-            ];
-        });*/
+        /*    return $this->state(function (array $attributes) use ($status) {
+                return [
+                    'account_status' => $status,
+                ];
+            });*/
     }
 
     public function withWallet(float $balance)
