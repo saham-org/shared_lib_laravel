@@ -63,7 +63,6 @@ class DriverTracking extends BaseModel
 
     public static function deleteOldLogs(string $driverId): void
     {
-        $time_now = new UTCDateTime(new DateTime('now'));
         $time_30_days_ago = new UTCDateTime(new DateTime('-30 days'));
 
         $driverTrackings = self::where('logs.created_at', '<', $time_30_days_ago)->where('driver_id', $driverId)->get();

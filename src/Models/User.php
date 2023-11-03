@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Passport\HasApiTokens;
-use Saham\SharedLibs\Database\Factories\UserFactory;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Query\Builder;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
@@ -47,11 +46,6 @@ class User extends Eloquent implements Authenticatable
     protected $fillable = [
         'cuisine_ids', 'phone', 'otp', 'device_id', 'device_type', 'os_version', 'notification_id', 'email', 'allowed_payment_methods',
         'full_name', 'wallet', 'bank_iban' , 'bank_name' ,  'referral_code', 'notes_history' , 'block', 'password', 'gender'];
-
-    protected static function newFactory()
-    {
-        return UserFactory::new();
-    }
 
     public function findForPassport($username): ?self
     {

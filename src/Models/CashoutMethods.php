@@ -4,6 +4,7 @@ namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 
 class CashoutMethods extends BaseModel
 {
@@ -27,17 +28,17 @@ class CashoutMethods extends BaseModel
 
     ];
 
-    public function driver()
+    public function driver(): BelongsTo
     {
         return $this->belongsTo(Driver::class);
     }
 
-    public function partner()
+    public function partner(): BelongsTo
     {
         return $this->belongsTo(Partner::class);
     }
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

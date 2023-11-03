@@ -6,7 +6,6 @@ use DateTime;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\BSON\UTCDateTime;
-use Saham\SharedLibs\Database\Factories\CouponFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 
@@ -32,11 +31,6 @@ class Coupon extends BaseModel
         static::addGlobalScope('delete', static function (Builder $builder): void {
             $builder->where('deleted_at', null);
         });
-    }
-
-    protected static function newFactory()
-    {
-        return CouponFactory::new();
     }
 
     public static function findByCode($code): ?self

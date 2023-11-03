@@ -107,7 +107,7 @@ class Order extends BaseModel
         return $this->belongsTo(UserTransaction::class, 'order_id');
     }
 
-    public function userOrderTransaction()
+    public function userOrderTransaction(): HasMany
     {
         return $this->hasMany(UserTransaction::class, 'order_id');
     }

@@ -6,7 +6,6 @@ use DateTime;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Http\Request;
 use MongoDB\BSON\UTCDateTime;
-use Saham\SharedLibs\Database\Factories\StoreFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Models\Enums\DeliveryFee;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
@@ -42,11 +41,6 @@ class Store extends BaseModel
         'min_order_charge'  => 'integer',
 
     ];
-
-    protected static function newFactory(): mixed
-    {
-        return StoreFactory::new();
-    }
 
     public function getFullNameAttribute(): string
     {
@@ -172,7 +166,7 @@ class Store extends BaseModel
         return getStoreServices($this, true)[$deliver_type] ?? true;
     }
 
-    function updateStoreService($pickup = null, $delivery = null, $feasts = null, $reservation = null): mixed
+    public function updateStoreService($pickup = null, $delivery = null, $feasts = null, $reservation = null): mixed
     {
         $services = $this->services;
 
@@ -192,6 +186,6 @@ class Store extends BaseModel
             $services['reservation'] = $reservation === true || $reservation === 1;
         }
 
-         return   $this->update(['services' => $services]);
+        return   $this->update(['services' => $services]);
     }
 }

@@ -3,7 +3,6 @@
 namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Saham\SharedLibs\Database\Factories\SizeFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Traits\Translatable;
 
@@ -14,9 +13,4 @@ class Size extends BaseModel
 
     public $timestamps      = false;
     protected $translatable = ['title'];
-
-    protected static function newFactory()
-    {
-        return SizeFactory::new();
-    }
 }

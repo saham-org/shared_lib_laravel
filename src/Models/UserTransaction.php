@@ -5,6 +5,7 @@ namespace Saham\SharedLibs\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 
 class UserTransaction extends BaseModel
 {
@@ -15,7 +16,7 @@ class UserTransaction extends BaseModel
         'ref' => 'string',
     ];
 
-    public function user()
+    public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }

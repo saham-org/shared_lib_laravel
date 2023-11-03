@@ -3,7 +3,6 @@
 namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Saham\SharedLibs\Database\Factories\CategoryFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
@@ -19,11 +18,6 @@ class Category extends BaseModel
         'title_ar', 'title_en', 'icon', 'avatar', 'color_code', 'sorting', 'visibility',
 
     ];
-
-    protected static function newFactory()
-    {
-        return CategoryFactory::new();
-    }
 
     protected $translatable = ['title'];
 

@@ -8,7 +8,6 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
-use Saham\SharedLibs\Database\Factories\DriverFactory;
 use Saham\SharedLibs\Models\Enums\OrderStatus;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
@@ -68,11 +67,6 @@ class Driver extends Eloquent implements Authenticatable
     ];
 
     protected $hidden = ['remember_token', 'password'];
-
-    protected static function newFactory()
-    {
-        return DriverFactory::new();
-    }
 
     public function setPasswordAttribute($value): void
     {
@@ -165,7 +159,7 @@ class Driver extends Eloquent implements Authenticatable
     {
         return $this->belongsTo(Operational::class, 'operation_manger_id');
     }
-    
+
     public function complains(): HasMany
     {
         return $this->hasMany(Complaint::class, 'related_id', '_id')->where('related_type', Driver::class);
