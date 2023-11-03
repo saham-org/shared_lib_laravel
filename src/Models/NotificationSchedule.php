@@ -3,7 +3,6 @@
 namespace Saham\SharedLibs\Models;
 
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class NotificationSchedule extends BaseModel
 {
@@ -25,5 +24,5 @@ class NotificationSchedule extends BaseModel
         'sent_at' => 'string',
     ];
 
-    protected $dates = ['created_at', 'updated_at' , 'schedule_at', 'sent_at'];
+    protected $dates = ['created_at', 'updated_at', 'schedule_at', 'sent_at'];
 }

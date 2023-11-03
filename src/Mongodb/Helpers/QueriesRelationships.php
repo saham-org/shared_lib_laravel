@@ -26,8 +26,13 @@ trait QueriesRelationships
      *
      * @throws Exception
      */
-    public function has($relation, $operator = '>=', $count = 1, $boolean = 'and', Closure $callback = null)
-    {
+    public function has(
+        $relation,
+        $operator = '>=',
+        $count = 1,
+        $boolean = 'and',
+        ?Closure $callback = null
+    ): Builder|static {
         if (is_string($relation)) {
             if (strpos($relation, '.') !== false) {
                 return $this->hasNested($relation, $operator, $count, $boolean, $callback);
@@ -70,12 +75,7 @@ trait QueriesRelationships
         );
     }
 
-    /**
-     * @param Relation $relation
-     *
-     * @return bool
-     */
-    protected function isAcrossConnections(Relation $relation)
+    protected function isAcrossConnections(Relation $relation): bool
     {
         return $relation->getParent()->getConnectionName() !== $relation->getRelated()->getConnectionName();
     }
@@ -89,21 +89,27 @@ trait QueriesRelationships
      * @param string       $boolean
      * @param Closure|null $callback
      *
-     * @return mixed
      *
      * @throws Exception
      */
-    public function addHybridHas(Relation $relation, $operator = '>=', $count = 1, $boolean = 'and', Closure $callback = null)
-    {
+    public function addHybridHas(
+        Relation $relation,
+        $operator = '>=',
+        $count = 1,
+        $boolean = 'and',
+        ?Closure $callback = null
+    ): mixed {
         $hasQuery = $relation->getQuery();
+
         if ($callback) {
             $hasQuery->callScope($callback);
         }
 
         // If the operator is <, <= or !=, we will use whereNotIn.
         $not = in_array($operator, ['<', '<=', '!=']);
+
         // If we are comparing to 0, we need an additional $not flip.
-        if ($count == 0) {
+        if ($count === 0) {
             $not = !$not;
         }
 
@@ -114,12 +120,7 @@ trait QueriesRelationships
         return $this->whereIn($this->getRelatedConstraintKey($relation), $relatedIds, $boolean, $not);
     }
 
-    /**
-     * @param Relation $relation
-     *
-     * @return string
-     */
-    protected function getHasCompareKey(Relation $relation)
+    protected function getHasCompareKey(Relation $relation): string
     {
         if (method_exists($relation, 'getHasCompareKey')) {
             return $relation->getHasCompareKey();
@@ -135,27 +136,30 @@ trait QueriesRelationships
      *
      * @return array
      */
-    protected function getConstrainedRelatedIds($relations, $operator, $count)
+    protected function getConstrainedRelatedIds($relations, $operator, $count): array
     {
-        $relationCount = array_count_values(array_map(function ($id) {
+        $relationCount = array_count_values(array_map(static function ($id) {
             return (string) $id; // Convert Back ObjectIds to Strings
         }, is_array($relations) ? $relations : $relations->flatten()->toArray()));
         // Remove unwanted related objects based on the operator and count.
-        $relationCount = array_filter($relationCount, function ($counted) use ($count, $operator) {
+        $relationCount = array_filter($relationCount, static function ($counted) use ($count, $operator) {
             // If we are comparing to 0, we always need all results.
-            if ($count == 0) {
+            if ($count === 0) {
                 return true;
             }
+
             switch ($operator) {
                 case '>=':
                 case '<':
                     return $counted >= $count;
+
                 case '>':
                 case '<=':
                     return $counted > $count;
+
                 case '=':
                 case '!=':
-                    return $counted == $count;
+                    return $counted === $count;
             }
         });
 
@@ -168,11 +172,10 @@ trait QueriesRelationships
      *
      * @param Relation $relation
      *
-     * @return string
      *
      * @throws Exception
      */
-    protected function getRelatedConstraintKey(Relation $relation)
+    protected function getRelatedConstraintKey(Relation $relation): string
     {
         if ($relation instanceof HasOneOrMany) {
             return $relation->getLocalKeyName();

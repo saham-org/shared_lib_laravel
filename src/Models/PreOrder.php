@@ -3,12 +3,11 @@
 namespace Saham\SharedLibs\Models;
 
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Eloquent\Builder;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Traits\HasNotes;
 
-class PreOrder  extends BaseModel
+class PreOrder extends BaseModel
 {
     use HasFactory;
     use HasNotes ;
@@ -22,7 +21,6 @@ class PreOrder  extends BaseModel
     protected $casts = [
         'ref_id' => 'string',
     ];
-
 
     public function user(): BelongsTo
     {

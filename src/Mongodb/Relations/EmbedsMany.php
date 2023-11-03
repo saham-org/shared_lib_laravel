@@ -36,12 +36,11 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model|bool
      */
-    public function performInsert(Model $model)
+    public function performInsert(Model $model): Model|bool
     {
         // Generate a new key if needed.
-        if ($model->getKeyName() == '_id' && !$model->getKey()) {
+        if ($model->getKeyName() === '_id' && !$model->getKey()) {
             $model->setAttribute('_id', new ObjectID());
         }
 
@@ -68,9 +67,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model|bool
      */
-    public function performUpdate(Model $model)
+    public function performUpdate(Model $model): Model|bool
     {
         // For deeply nested documents, let the parent handle the changes.
         if ($this->isNested()) {
@@ -101,9 +99,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return int
      */
-    public function performDelete(Model $model)
+    public function performDelete(Model $model): int
     {
         // For deeply nested documents, let the parent handle the changes.
         if ($this->isNested()) {
@@ -129,9 +126,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model
      */
-    public function associate(Model $model)
+    public function associate(Model $model): Model
     {
         if (!$this->contains($model)) {
             return $this->associateNew($model);
@@ -145,9 +141,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param mixed $ids
      *
-     * @return int
      */
-    public function dissociate($ids = [])
+    public function dissociate($ids = []): int
     {
         $ids = $this->getIdsArrayFrom($ids);
 
@@ -175,9 +170,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param mixed $ids
      *
-     * @return int
      */
-    public function destroy($ids = [])
+    public function destroy($ids = []): int
     {
         $count = 0;
 
@@ -199,9 +193,8 @@ class EmbedsMany extends EmbedsOneOrMany
     /**
      * Delete all embedded models.
      *
-     * @return int
      */
-    public function delete()
+    public function delete(): int
     {
         // Overwrite the local key with an empty array.
         $result = $this->query->update([$this->localKey => []]);
@@ -218,9 +211,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param mixed $ids
      *
-     * @return int
      */
-    public function detach($ids = [])
+    public function detach($ids = []): int
     {
         return $this->destroy($ids);
     }
@@ -230,9 +222,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model
      */
-    public function attach(Model $model)
+    public function attach(Model $model): Model
     {
         return $this->save($model);
     }
@@ -242,9 +233,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model
      */
-    protected function associateNew($model)
+    protected function associateNew($model): Model
     {
         // Create a new key if needed.
         if ($model->getKeyName() === '_id' && !$model->getAttribute('_id')) {
@@ -264,9 +254,8 @@ class EmbedsMany extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model
      */
-    protected function associateExisting($model)
+    protected function associateExisting($model): Model
     {
         // Get existing embedded documents.
         $records = $this->getEmbedded();
@@ -277,7 +266,7 @@ class EmbedsMany extends EmbedsOneOrMany
 
         // Replace the document in the parent model.
         foreach ($records as &$record) {
-            if ($record[$primaryKey] == $key) {
+            if ($record[$primaryKey] === $key) {
                 $record = $model->getAttributes();
 
                 break;
@@ -293,10 +282,13 @@ class EmbedsMany extends EmbedsOneOrMany
      * @param string $pageName
      * @param null   $page
      *
-     * @return \Illuminate\Contracts\Pagination\LengthAwarePaginator
      */
-    public function paginate($perPage = null, $columns = ['*'], $pageName = 'page', $page = null)
-    {
+    public function paginate(
+        $perPage = null,
+        $columns = ['*'],
+        $pageName = 'page',
+        $page = null
+    ): \Illuminate\Contracts\Pagination\LengthAwarePaginator {
         $page    = $page ?: Paginator::resolveCurrentPage($pageName);
         $perPage = $perPage ?: $this->related->getPerPage();
 
@@ -356,12 +348,11 @@ class EmbedsMany extends EmbedsOneOrMany
     /**
      * Get the name of the "where in" method for eager loading.
      *
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param Model $model
      * @param string                              $key
      *
-     * @return string
      */
-    protected function whereInMethod(EloquentModel $model, $key)
+    protected function whereInMethod(EloquentModel $model, $key): string
     {
         return 'whereIn';
     }

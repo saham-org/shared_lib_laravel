@@ -35,10 +35,10 @@ class Product extends BaseModel
         $query->where('status', 'available');
     }
 
-    public function logProductPriceUpdate($thing_name, $thing_price_from, $thing_price_to , $status_from = null ): void
+    public function logProductPriceUpdate($thing_name, $thing_price_from, $thing_price_to, $status_from = null): void
     {
 
-        self::withoutEvents(function () use ($thing_name, $thing_price_from, $thing_price_to, $status_from) {
+        self::withoutEvents(function () use ($thing_name, $thing_price_from, $thing_price_to, $status_from): void {
             $this->push('changes', [
                 'price_from'  => $thing_price_from,
                 'price_to'    => $thing_price_to,
@@ -55,6 +55,6 @@ class Product extends BaseModel
 
     public function ratings(): HasMany
     {
-        return $this->hasMany(Driver::class , 'related_id')->where('related_type' ,  Product::class);
+        return $this->hasMany(Driver::class, 'related_id')->where('related_type', Product::class);
     }
 }

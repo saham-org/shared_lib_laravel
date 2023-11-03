@@ -2,6 +2,13 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\HasApiTokens;
+use Saham\SharedLibs\Database\Factories\PartnerFactory;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\BelongsToArray;
@@ -10,13 +17,6 @@ use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasTransaction;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
-use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Passport\HasApiTokens;
-use Saham\SharedLibs\Database\Factories\PartnerFactory;
 
 class Partner extends Eloquent implements Authenticatable
 {
@@ -69,12 +69,10 @@ class Partner extends Eloquent implements Authenticatable
         'os_version',
     ];
 
-
     protected static function newFactory()
     {
         return PartnerFactory::new();
     }
-
 
     public function setPasswordAttribute($value): void
     {

@@ -2,6 +2,7 @@
 
 namespace Saham\SharedLibs\Mongodb\Queue;
 
+use Illuminate\Contracts\Queue\Queue;
 use Illuminate\Database\ConnectionResolverInterface;
 use Illuminate\Queue\Connectors\ConnectorInterface;
 use Illuminate\Support\Arr;
@@ -11,14 +12,14 @@ class MongoConnector implements ConnectorInterface
     /**
      * Database connections.
      *
-     * @var \Illuminate\Database\ConnectionResolverInterface
+     * @var ConnectionResolverInterface
      */
     protected $connections;
 
     /**
      * Create a new connector instance.
      *
-     * @param \Illuminate\Database\ConnectionResolverInterface $connections
+     * @param ConnectionResolverInterface $connections
      */
     public function __construct(ConnectionResolverInterface $connections)
     {
@@ -30,9 +31,8 @@ class MongoConnector implements ConnectorInterface
      *
      * @param array $config
      *
-     * @return \Illuminate\Contracts\Queue\Queue
      */
-    public function connect(array $config)
+    public function connect(array $config): Queue
     {
         return new MongoQueue(
             $this->connections->connection(Arr::get($config, 'connection')),

@@ -2,10 +2,11 @@
 
 namespace Saham\SharedLibs\Mongodb\Eloquent;
 
+use Illuminate\Database\ConnectionInterface;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Saham\SharedLibs\Mongodb\Helpers\QueriesRelationships;
 use MongoDB\Driver\Cursor;
 use MongoDB\Model\BSONDocument;
+use Saham\SharedLibs\Mongodb\Helpers\QueriesRelationships;
 
 class Builder extends EloquentBuilder
 {
@@ -122,9 +123,7 @@ class Builder extends EloquentBuilder
 
             $this->model->syncOriginalAttribute($column);
 
-            $result = $this->model->update([$column => $value]);
-
-            return $result;
+            return $this->model->update([$column => $value]);
         }
 
         return parent::increment($column, $amount, $extra);
@@ -197,7 +196,7 @@ class Builder extends EloquentBuilder
      *
      * @return array
      */
-    protected function addUpdatedAtColumn(array $values)
+    protected function addUpdatedAtColumn(array $values): array
     {
         if (!$this->model->usesTimestamps() || $this->model->getUpdatedAtColumn() === null) {
             return $values;
@@ -212,10 +211,7 @@ class Builder extends EloquentBuilder
         return $values;
     }
 
-    /**
-     * @return \Illuminate\Database\ConnectionInterface
-     */
-    public function getConnection()
+    public function getConnection(): ConnectionInterface
     {
         return $this->query->getConnection();
     }

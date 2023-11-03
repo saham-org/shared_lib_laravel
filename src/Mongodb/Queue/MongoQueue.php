@@ -4,8 +4,9 @@ namespace Saham\SharedLibs\Mongodb\Queue;
 
 use Carbon\Carbon;
 use Illuminate\Queue\DatabaseQueue;
-use Saham\SharedLibs\Mongodb\Connection;
 use MongoDB\Operation\FindOneAndUpdate;
+use Saham\SharedLibs\Mongodb\Connection;
+use StdClass;
 
 class MongoQueue extends DatabaseQueue
 {
@@ -29,6 +30,7 @@ class MongoQueue extends DatabaseQueue
     public function __construct(Connection $database, $table, $default = 'default', $retryAfter = 60)
     {
         parent::__construct($database, $table, $default, $retryAfter);
+
         $this->retryAfter = $retryAfter;
     }
 
@@ -65,9 +67,8 @@ class MongoQueue extends DatabaseQueue
      *
      * @param string|null $queue
      *
-     * @return \StdClass|null
      */
-    protected function getNextAvailableJobAndReserve($queue)
+    protected function getNextAvailableJobAndReserve($queue): ?StdClass
     {
         $job = $this->database->getCollection($this->table)->findOneAndUpdate(
             [
@@ -102,7 +103,7 @@ class MongoQueue extends DatabaseQueue
      *
      * @param string $queue
      */
-    protected function releaseJobsThatHaveBeenReservedTooLong($queue)
+    protected function releaseJobsThatHaveBeenReservedTooLong($queue): void
     {
         $expiration = Carbon::now()->subSeconds($this->retryAfter)->getTimestamp();
 
@@ -123,7 +124,7 @@ class MongoQueue extends DatabaseQueue
      * @param string $id
      * @param int    $attempts
      */
-    protected function releaseJob($id, $attempts)
+    protected function releaseJob($id, $attempts): void
     {
         $this->database->table($this->table)->where('_id', $id)->update([
             'reserved'    => 0,

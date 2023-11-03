@@ -2,9 +2,6 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
-// use Saham\SharedLibs\Traits\HasRoles;
-use Saham\SharedLibs\Traits\HasRoles;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
 use Illuminate\Contracts\Auth\Authenticatable;
@@ -13,6 +10,9 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+// use Saham\SharedLibs\Traits\HasRoles;
+use Saham\SharedLibs\Traits\HasRoles;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\InteractsWithMedia;
 
@@ -27,7 +27,7 @@ class Administrator extends Eloquent implements Authenticatable, AuthorizableCon
     use InteractsWithMedia;
 
     protected $fillable = [
-        'full_name', 'email', 'phone', 'avatar'  ,  'password', 'freeze' ,'role' ,'device_id' ,'device_type' , 'notification_id' , 'os_version' ,'role_ids'
+        'full_name', 'email', 'phone', 'avatar',  'password', 'freeze', 'role', 'device_id', 'device_type', 'notification_id', 'os_version', 'role_ids',
     ];
     protected $primaryKey = '_id';
     protected $connection = 'mongodb';
@@ -46,9 +46,7 @@ class Administrator extends Eloquent implements Authenticatable, AuthorizableCon
      *
      * @var array
      */
-    public static $rules = [
-
-    ];
+    public static $rules = [];
 
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.

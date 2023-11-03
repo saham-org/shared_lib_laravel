@@ -10,12 +10,12 @@ use Illuminate\Support\Arr;
 use Illuminate\Support\Collection;
 use Illuminate\Support\LazyCollection;
 use Illuminate\Support\Str;
-use Saham\SharedLibs\Mongodb\Connection;
 use MongoDB\BSON\Binary;
 use MongoDB\BSON\ObjectID;
 use MongoDB\BSON\Regex;
 use MongoDB\BSON\UTCDateTime;
 use RuntimeException;
+use Saham\SharedLibs\Mongodb\Connection;
 
 /**
  * Class Builder.
@@ -211,6 +211,7 @@ class Builder extends BaseBuilder
     public function cursor($columns = [])
     {
         $result = $this->getFresh($columns, true);
+
         if ($result instanceof LazyCollection) {
             return $result;
         }
@@ -224,9 +225,9 @@ class Builder extends BaseBuilder
      * @param array $columns
      * @param bool  $returnLazy
      *
-     * @return array|static[]|Collection|LazyCollection
+     * @return array|array<static>|Collection|LazyCollection
      */
-    public function getFresh($columns = [], $returnLazy = false)
+    public function getFresh($columns = [], $returnLazy = false): array|Collection|LazyCollection
     {
         // If no columns have been specified for the select statement, we will set them
         // here to either the passed columns, or the standard default of retrieving
@@ -274,7 +275,7 @@ class Builder extends BaseBuilder
                 foreach ($this->aggregate['columns'] as $column) {
                     // Add unwind if a subdocument array should be aggregated
                     // column: subarray.price => {$unwind: '$subarray'}
-                    if (count($splitColumns = explode('.*.', $column)) == 2) {
+                    if (count($splitColumns = explode('.*.', $column)) === 2) {
                         $unwinds[] = $splitColumns[0];
                         $column    = implode('.', $splitColumns);
                     }
@@ -283,7 +284,7 @@ class Builder extends BaseBuilder
 
                     $aggregations = blank($this->aggregate['columns']) ? [] : $this->aggregate['columns'];
 
-                    if (in_array('*', $aggregations) && $function == 'count') {
+                    if (in_array('*', $aggregations) && $function === 'count') {
                         // When ORM is paginating, count doesnt need a aggregation, just a cursor operation
                         // elseif added to use this only in pagination
                         // https://docs.mongodb.com/manual/reference/method/cursor.count/
@@ -299,7 +300,7 @@ class Builder extends BaseBuilder
                         ];
 
                         return new Collection($results);
-                    } elseif ($function == 'count') {
+                    } elseif ($function === 'count') {
                         // Translate count into sum.
                         $group['aggregate'] = ['$sum' => 1];
                     } else {
@@ -315,6 +316,7 @@ class Builder extends BaseBuilder
 
             // Build the aggregation pipeline.
             $pipeline = [];
+
             if ($wheres) {
                 $pipeline[] = ['$match' => $wheres];
             }
@@ -332,12 +334,15 @@ class Builder extends BaseBuilder
             if ($this->orders) {
                 $pipeline[] = ['$sort' => $this->orders];
             }
+
             if ($this->offset) {
                 $pipeline[] = ['$skip' => $this->offset];
             }
+
             if ($this->limit) {
                 $pipeline[] = ['$limit' => $this->limit];
             }
+
             if ($this->projections) {
                 $pipeline[] = ['$project' => $this->projections];
             }
@@ -359,7 +364,7 @@ class Builder extends BaseBuilder
         } // Distinct query
         elseif ($this->distinct) {
             // Return distinct results directly
-            $column = isset($this->columns[0]) ? $this->columns[0] : '_id';
+            $column = $this->columns[0] ?? '_id';
 
             // Execute distinct
             if ($wheres) {
@@ -382,24 +387,30 @@ class Builder extends BaseBuilder
             if ($this->projections) {
                 $columns = array_merge($columns, $this->projections);
             }
+
             $options = [];
 
             // Apply order, offset, limit and projection
             if ($this->timeout) {
                 $options['maxTimeMS'] = $this->timeout;
             }
+
             if ($this->orders) {
                 $options['sort'] = $this->orders;
             }
+
             if ($this->offset) {
                 $options['skip'] = $this->offset;
             }
+
             if ($this->limit) {
                 $options['limit'] = $this->limit;
             }
+
             if ($this->hint) {
                 $options['hint'] = $this->hint;
             }
+
             if ($columns) {
                 $options['projection'] = $columns;
             }
@@ -416,7 +427,7 @@ class Builder extends BaseBuilder
             $cursor = $this->collection->find($wheres, $options);
 
             if ($returnLazy) {
-                return LazyCollection::make(function () use ($cursor) {
+                return LazyCollection::make(static function () use ($cursor) {
                     foreach ($cursor as $item) {
                         yield $item;
                     }
@@ -433,9 +444,8 @@ class Builder extends BaseBuilder
     /**
      * Generate the unique cache key for the current query.
      *
-     * @return string
      */
-    public function generateCacheKey()
+    public function generateCacheKey(): string
     {
         $key = [
             'connection' => $this->collection->getDatabaseName(),
@@ -512,10 +522,10 @@ class Builder extends BaseBuilder
     public function orderBy($column, $direction = 'asc')
     {
         if (is_string($direction)) {
-            $direction = (strtolower($direction) == 'asc' ? 1 : -1);
+            $direction = (strtolower($direction) === 'asc' ? 1 : -1);
         }
 
-        if ($column == 'natural') {
+        if ($column === 'natural') {
             $this->orders['$natural'] = $direction;
         } else {
             $this->orders[$column] = $direction;
@@ -591,7 +601,7 @@ class Builder extends BaseBuilder
         // Batch insert
         $result = $this->collection->insertMany($values);
 
-        return 1 == (int) $result->isAcknowledged();
+        return (int) $result->isAcknowledged() === 1;
     }
 
     /**
@@ -601,13 +611,13 @@ class Builder extends BaseBuilder
     {
         $result = $this->collection->insertOne($values);
 
-        if (1 == (int) $result->isAcknowledged()) {
+        if ((int) $result->isAcknowledged() === 1) {
             if ($sequence === null) {
                 $sequence = '_id';
             }
 
             // Return id
-            return $sequence == '_id' ? $result->getInsertedId() : $values[$sequence];
+            return $sequence === '_id' ? $result->getInsertedId() : $values[$sequence];
         }
     }
 
@@ -636,7 +646,7 @@ class Builder extends BaseBuilder
         }
 
         // Protect
-        $this->where(function ($query) use ($column) {
+        $this->where(static function ($query) use ($column): void {
             $query->where($column, 'exists', false);
 
             $query->orWhereNotNull($column);
@@ -677,8 +687,8 @@ class Builder extends BaseBuilder
         $results = $this->get($key === null ? [$column] : [$column, $key]);
 
         // Convert ObjectID's to strings
-        if ($key == '_id') {
-            $results = $results->map(function ($item) {
+        if ($key === '_id') {
+            $results = $results->map(static function ($item) {
                 $item['_id'] = (string) $item['_id'];
 
                 return $item;
@@ -704,7 +714,8 @@ class Builder extends BaseBuilder
 
         $wheres = $this->compileWheres();
         $result = $this->collection->DeleteMany($wheres);
-        if (1 == (int) $result->isAcknowledged()) {
+
+        if ((int) $result->isAcknowledged() === 1) {
             return $result->getDeletedCount();
         }
 
@@ -723,14 +734,11 @@ class Builder extends BaseBuilder
         return parent::from($collection);
     }
 
-    /**
-     * @inheritdoc
-     */
     public function truncate(): bool
     {
         $result = $this->collection->deleteMany([]);
 
-        return 1 === (int) $result->isAcknowledged();
+        return (int) $result->isAcknowledged() === 1;
     }
 
     /**
@@ -743,7 +751,7 @@ class Builder extends BaseBuilder
      *
      * @deprecated
      */
-    public function lists($column, $key = null)
+    public function lists($column, $key = null): array
     {
         return $this->pluck($column, $key);
     }
@@ -774,9 +782,8 @@ class Builder extends BaseBuilder
      * @param mixed $value
      * @param bool  $unique
      *
-     * @return int
      */
-    public function push($column, $value = null, $unique = false)
+    public function push($column, $value = null, $unique = false): int
     {
         // Use the addToSet operator in case we only want unique items.
         $operator = $unique ? '$addToSet' : '$push';
@@ -801,9 +808,8 @@ class Builder extends BaseBuilder
      * @param mixed $column
      * @param mixed $value
      *
-     * @return int
      */
-    public function pull($column, $value = null)
+    public function pull($column, $value = null): int
     {
         // Check if we passed an associative array.
         $batch = (is_array($value) && array_keys($value) === range(0, count($value) - 1));
@@ -825,9 +831,8 @@ class Builder extends BaseBuilder
      *
      * @param mixed $columns
      *
-     * @return int
      */
-    public function drop($columns)
+    public function drop($columns): int
     {
         if (!is_array($columns)) {
             $columns = [$columns];
@@ -858,9 +863,8 @@ class Builder extends BaseBuilder
      * @param array $query
      * @param array $options
      *
-     * @return int
      */
-    protected function performUpdate($query, array $options = [])
+    protected function performUpdate($query, array $options = []): int
     {
         // Update multiple items by default.
         if (!array_key_exists('multiple', $options)) {
@@ -869,8 +873,9 @@ class Builder extends BaseBuilder
 
         $wheres = $this->compileWheres();
         $result = $this->collection->UpdateMany($wheres, $query, $options);
-        if (1 == (int) $result->isAcknowledged()) {
-            return $result->getModifiedCount() ? $result->getModifiedCount() : $result->getUpsertedCount();
+
+        if ((int) $result->isAcknowledged() === 1) {
+            return $result->getModifiedCount() ?: $result->getUpsertedCount();
         }
 
         return 0;
@@ -881,9 +886,8 @@ class Builder extends BaseBuilder
      *
      * @param mixed $id
      *
-     * @return mixed
      */
-    public function convertKey($id)
+    public function convertKey($id): mixed
     {
         if (is_string($id) && strlen($id) === 24 && ctype_xdigit($id)) {
             return new ObjectID($id);
@@ -904,7 +908,7 @@ class Builder extends BaseBuilder
         $params = func_get_args();
 
         // Remove the leading $ from operators.
-        if (func_num_args() == 3) {
+        if (func_num_args() === 3) {
             $operator = &$params[1];
 
             if (Str::startsWith($operator, '$')) {
@@ -920,7 +924,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWheres()
+    protected function compileWheres(): array
     {
         // The wheres to compile.
         $wheres = $this->wheres ?: [];
@@ -951,7 +955,7 @@ class Builder extends BaseBuilder
             }
 
             // Convert id's.
-            if (isset($where['column']) && ($where['column'] == '_id' || Str::endsWith($where['column'], '._id'))) {
+            if (isset($where['column']) && ($where['column'] === '_id' || Str::endsWith($where['column'], '._id'))) {
                 // Multiple values.
                 if (isset($where['values'])) {
                     foreach ($where['values'] as &$value) {
@@ -966,7 +970,7 @@ class Builder extends BaseBuilder
             // Convert DateTime values to UTCDateTime.
             if (isset($where['value'])) {
                 if (is_array($where['value'])) {
-                    array_walk_recursive($where['value'], function (&$item, $key) {
+                    array_walk_recursive($where['value'], static function (&$item, $key): void {
                         if ($item instanceof DateTimeInterface) {
                             $item = new UTCDateTime($item->format('Uv'));
                         }
@@ -977,7 +981,7 @@ class Builder extends BaseBuilder
                     }
                 }
             } elseif (isset($where['values'])) {
-                array_walk_recursive($where['values'], function (&$item, $key) {
+                array_walk_recursive($where['values'], static function (&$item, $key): void {
                     if ($item instanceof DateTimeInterface) {
                         $item = new UTCDateTime($item->format('Uv'));
                     }
@@ -987,7 +991,7 @@ class Builder extends BaseBuilder
             // The next item in a "chain" of wheres devices the boolean of the
             // first item. So if we see that there are multiple wheres, we will
             // use the operator of the next where.
-            if ($i == 0 && count($wheres) > 1 && $where['boolean'] == 'and') {
+            if ($i === 0 && count($wheres) > 1 && $where['boolean'] === 'and') {
                 $where['boolean'] = $wheres[$i + 1]['boolean'];
             }
 
@@ -996,7 +1000,7 @@ class Builder extends BaseBuilder
             $result = $this->{$method}($where);
 
             // Wrap the where with an $or operator.
-            if ($where['boolean'] == 'or') {
+            if ($where['boolean'] === 'or') {
                 $result = ['$or' => [$result]];
             }
 
@@ -1005,9 +1009,11 @@ class Builder extends BaseBuilder
             elseif (count($wheres) > 1) {
                 $result = ['$and' => [$result]];
             }
+
             if (!is_array($result)) {
                 $result = [$result];
             }
+
             // Merge the compiled where with the others.
             $compiled = array_merge_recursive($compiled, $result);
         }
@@ -1020,7 +1026,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereAll(array $where)
+    protected function compileWhereAll(array $where): array
     {
         extract($where);
 
@@ -1032,7 +1038,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereBasic(array $where)
+    protected function compileWhereBasic(array $where): array
     {
         extract($where);
 
@@ -1051,6 +1057,7 @@ class Builder extends BaseBuilder
             if (!Str::startsWith($value, '%')) {
                 $regex = '^' . $regex;
             }
+
             if (!Str::endsWith($value, '%')) {
                 $regex .= '$';
             }
@@ -1073,7 +1080,7 @@ class Builder extends BaseBuilder
             }
         }
 
-        if (!isset($operator) || $operator == '=') {
+        if (!isset($operator) || $operator === '=') {
             $query = [$column => $value];
         } elseif (array_key_exists($operator, $this->conversion)) {
             $query = [$column => [$this->conversion[$operator] => $value]];
@@ -1087,9 +1094,8 @@ class Builder extends BaseBuilder
     /**
      * @param array $where
      *
-     * @return mixed
      */
-    protected function compileWhereNested(array $where)
+    protected function compileWhereNested(array $where): mixed
     {
         extract($where);
 
@@ -1101,7 +1107,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereIn(array $where)
+    protected function compileWhereIn(array $where): array
     {
         extract($where);
 
@@ -1113,7 +1119,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereNotIn(array $where)
+    protected function compileWhereNotIn(array $where): array
     {
         extract($where);
 
@@ -1125,7 +1131,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereNull(array $where)
+    protected function compileWhereNull(array $where): array
     {
         $where['operator'] = '=';
         $where['value']    = null;
@@ -1138,7 +1144,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereNotNull(array $where)
+    protected function compileWhereNotNull(array $where): array
     {
         $where['operator'] = '!=';
         $where['value']    = null;
@@ -1151,7 +1157,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereBetween(array $where)
+    protected function compileWhereBetween(array $where): array
     {
         extract($where);
 
@@ -1185,7 +1191,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereDate(array $where)
+    protected function compileWhereDate(array $where): array
     {
         extract($where);
 
@@ -1200,7 +1206,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereMonth(array $where)
+    protected function compileWhereMonth(array $where): array
     {
         extract($where);
 
@@ -1215,7 +1221,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereDay(array $where)
+    protected function compileWhereDay(array $where): array
     {
         extract($where);
 
@@ -1230,7 +1236,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereYear(array $where)
+    protected function compileWhereYear(array $where): array
     {
         extract($where);
 
@@ -1245,7 +1251,7 @@ class Builder extends BaseBuilder
      *
      * @return array
      */
-    protected function compileWhereTime(array $where)
+    protected function compileWhereTime(array $where): array
     {
         extract($where);
 
@@ -1258,9 +1264,8 @@ class Builder extends BaseBuilder
     /**
      * @param array $where
      *
-     * @return mixed
      */
-    protected function compileWhereRaw(array $where)
+    protected function compileWhereRaw(array $where): mixed
     {
         return $where['sql'];
     }
@@ -1284,7 +1289,7 @@ class Builder extends BaseBuilder
      */
     public function __call($method, $parameters)
     {
-        if ($method == 'unset') {
+        if ($method === 'unset') {
             return call_user_func_array([$this, 'drop'], $parameters);
         }
 

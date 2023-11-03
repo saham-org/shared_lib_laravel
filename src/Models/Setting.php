@@ -2,9 +2,8 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Support\Facades\Cache;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
 
 class Setting extends BaseModel
 {
@@ -17,8 +16,6 @@ class Setting extends BaseModel
 
     public static function findByKey($key): mixed
     {
-        $record = self::where('key', $key)->first();
-
-        return $record;
+        return self::where('key', $key)->first();
     }
 }

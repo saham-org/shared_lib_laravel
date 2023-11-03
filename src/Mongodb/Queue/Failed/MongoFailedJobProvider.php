@@ -3,6 +3,7 @@
 namespace Saham\SharedLibs\Mongodb\Queue\Failed;
 
 use Carbon\Carbon;
+use Exception;
 use Illuminate\Queue\Failed\DatabaseFailedJobProvider;
 
 class MongoFailedJobProvider extends DatabaseFailedJobProvider
@@ -13,9 +14,9 @@ class MongoFailedJobProvider extends DatabaseFailedJobProvider
      * @param string     $connection
      * @param string     $queue
      * @param string     $payload
-     * @param \Exception $exception
+     * @param Exception $exception
      */
-    public function log($connection, $queue, $payload, $exception)
+    public function log($connection, $queue, $payload, $exception): void
     {
         $failed_at = Carbon::now()->getTimestamp();
 
@@ -27,13 +28,13 @@ class MongoFailedJobProvider extends DatabaseFailedJobProvider
     /**
      * Get a list of all of the failed jobs.
      *
-     * @return object[]
+     * @return array<object>
      */
-    public function all()
+    public function all(): array
     {
         $all = $this->getTable()->orderBy('_id', 'desc')->get()->all();
 
-        $all = array_map(function ($job) {
+        $all = array_map(static function ($job) {
             $job['id'] = (string) $job['_id'];
 
             return (object) $job;
@@ -47,9 +48,8 @@ class MongoFailedJobProvider extends DatabaseFailedJobProvider
      *
      * @param mixed $id
      *
-     * @return object
      */
-    public function find($id)
+    public function find($id): object
     {
         $job = $this->getTable()->find($id);
 
@@ -67,9 +67,8 @@ class MongoFailedJobProvider extends DatabaseFailedJobProvider
      *
      * @param mixed $id
      *
-     * @return bool
      */
-    public function forget($id)
+    public function forget($id): bool
     {
         return $this->getTable()->where('_id', $id)->delete() > 0;
     }

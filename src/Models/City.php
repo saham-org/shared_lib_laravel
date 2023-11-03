@@ -2,11 +2,11 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Database\Factories\CityFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Traits\Translatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Saham\SharedLibs\Database\Factories\CityFactory;
 
 class City extends BaseModel
 {
@@ -15,7 +15,7 @@ class City extends BaseModel
     use SoftDeletes ;
 
     protected $fillable = [
-        'name_ar', 'name_en', 'sorting', 'latitude', 'longitude', 'phone_code'
+        'name_ar', 'name_en', 'sorting', 'latitude', 'longitude', 'phone_code',
     ];
     protected $translatable = ['name'];
 
@@ -23,5 +23,4 @@ class City extends BaseModel
     {
         return CityFactory::new();
     }
-
 }

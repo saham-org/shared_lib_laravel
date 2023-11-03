@@ -3,6 +3,7 @@
 namespace Saham\SharedLibs\Mongodb\Schema;
 
 use Illuminate\Database\Connection;
+use Saham\SharedLibs\Mongodb\Collection;
 
 class Blueprint extends \Illuminate\Database\Schema\Blueprint
 {
@@ -16,7 +17,7 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
     /**
      * The MongoCollection object for this blueprint.
      *
-     * @var \Saham\SharedLibs\Mongodb\Collection|\MongoDB\Collection
+     * @var Collection|\MongoDB\Collection
      */
     protected $collection;
 
@@ -90,9 +91,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      *
      * @param string|array $indexOrColumns
      *
-     * @return Blueprint
      */
-    public function dropIndexIfExists($indexOrColumns = null)
+    public function dropIndexIfExists($indexOrColumns = null): Blueprint
     {
         if ($this->hasIndex($indexOrColumns)) {
             $this->dropIndex($indexOrColumns);
@@ -106,17 +106,17 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      *
      * @param string|array $indexOrColumns
      *
-     * @return bool
      */
-    public function hasIndex($indexOrColumns = null)
+    public function hasIndex($indexOrColumns = null): bool
     {
         $indexOrColumns = $this->transformColumns($indexOrColumns);
+
         foreach ($this->collection->listIndexes() as $index) {
             if (is_array($indexOrColumns) && in_array($index->getName(), $indexOrColumns)) {
                 return true;
             }
 
-            if (is_string($indexOrColumns) && $index->getName() == $indexOrColumns) {
+            if (is_string($indexOrColumns) && $index->getName() === $indexOrColumns) {
                 return true;
             }
         }
@@ -127,9 +127,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
     /**
      * @param string|array $indexOrColumns
      *
-     * @return string
      */
-    protected function transformColumns($indexOrColumns)
+    protected function transformColumns($indexOrColumns): string
     {
         if (is_array($indexOrColumns)) {
             $indexOrColumns = $this->fluent($indexOrColumns);
@@ -176,9 +175,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      *
      * @param string|array $columns
      *
-     * @return Blueprint
      */
-    public function background($columns = null)
+    public function background($columns = null): Blueprint
     {
         $columns = $this->fluent($columns);
 
@@ -193,9 +191,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      * @param string|array $columns
      * @param array        $options
      *
-     * @return Blueprint
      */
-    public function sparse($columns = null, $options = [])
+    public function sparse($columns = null, $options = []): Blueprint
     {
         $columns = $this->fluent($columns);
 
@@ -213,11 +210,10 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      * @param string       $index
      * @param array        $options
      *
-     * @return Blueprint
      */
-    public function geospatial($columns = null, $index = '2d', $options = [])
+    public function geospatial($columns = null, $index = '2d', $options = []): Blueprint
     {
-        if ($index == '2d' || $index == '2dsphere') {
+        if ($index === '2d' || $index === '2dsphere') {
             $columns = $this->fluent($columns);
 
             $columns = array_flip($columns);
@@ -239,9 +235,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      * @param string|array $columns
      * @param int          $seconds
      *
-     * @return Blueprint
      */
-    public function expire($columns, $seconds)
+    public function expire($columns, $seconds): Blueprint
     {
         $columns = $this->fluent($columns);
 
@@ -255,7 +250,7 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      *
      * @param array $options
      */
-    public function create($options = [])
+    public function create($options = []): void
     {
         $collection = $this->collection->getCollectionName();
 
@@ -289,9 +284,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      * @param string|array $columns
      * @param array        $options
      *
-     * @return Blueprint
      */
-    public function sparse_and_unique($columns = null, $options = [])
+    public function sparse_and_unique($columns = null, $options = []): Blueprint
     {
         $columns = $this->fluent($columns);
 
@@ -308,9 +302,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      *
      * @param string|array $columns
      *
-     * @return string|array
      */
-    protected function fluent($columns = null)
+    protected function fluent($columns = null): string|array
     {
         if ($columns === null) {
             return $this->columns;
@@ -327,9 +320,8 @@ class Blueprint extends \Illuminate\Database\Schema\Blueprint
      * @param $method
      * @param $args
      *
-     * @return Blueprint
      */
-    public function __call($method, $args)
+    public function __call($method, $args): Blueprint
     {
         // Dummy.
         return $this;

@@ -2,10 +2,10 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Relations\MorphTo;
 use Illuminate\Notifications\DatabaseNotificationCollection;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
 
 class DatabaseNotification extends BaseModel
 {

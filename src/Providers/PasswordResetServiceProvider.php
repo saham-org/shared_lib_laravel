@@ -9,9 +9,9 @@ class PasswordResetServiceProvider extends BasePasswordResetServiceProvider
     /**
      * Register the token repository implementation.
      */
-    protected function registerTokenRepository()
+    protected function registerTokenRepository(): void
     {
-        $this->app->singleton('auth.password.tokens', function ($app) {
+        $this->app->singleton('auth.password.tokens', static function ($app) {
             $connection = $app['db']->connection();
 
             // The database token repository is an implementation of the token repository
@@ -32,11 +32,11 @@ class PasswordResetServiceProvider extends BasePasswordResetServiceProvider
      */
     protected function registerPasswordBroker()
     {
-        $this->app->singleton('auth.password', function ($app) {
+        $this->app->singleton('auth.password', static function ($app) {
             return new PasswordBrokerManager($app);
         });
 
-        $this->app->bind('auth.password.broker', function ($app) {
+        $this->app->bind('auth.password.broker', static function ($app) {
             return $app->make('auth.password')->broker();
         });
     }

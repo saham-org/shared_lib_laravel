@@ -2,9 +2,9 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Traits\Translatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DeliverItem extends BaseModel
 {

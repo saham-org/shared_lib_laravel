@@ -2,18 +2,18 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
-use Saham\SharedLibs\Mongodb\Relations\HasMany;
-use Saham\SharedLibs\Traits\HasNotes;
-use Saham\SharedLibs\Traits\HasTransaction;
-use Saham\SharedLibs\Traits\HasWallet;
-use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\Traits\HasNotes;
+use Saham\SharedLibs\Traits\HasTransaction;
+use Saham\SharedLibs\Traits\HasWallet;
+use Saham\SharedLibs\Traits\Translatable;
 
 class Operational extends Eloquent implements Authenticatable
 {
@@ -25,7 +25,6 @@ class Operational extends Eloquent implements Authenticatable
     use Translatable;
     use HasWallet;
     use HasNotes ;
-
 
     protected $attributes = [
         'status' => 'under_revision',
@@ -50,7 +49,7 @@ class Operational extends Eloquent implements Authenticatable
         , 'device_id'
         , 'device_type'
         , 'os_version'
-        , 'notes_history'
+        , 'notes_history',
     ];
 
     public function setPasswordAttribute($value): void
@@ -68,7 +67,6 @@ class Operational extends Eloquent implements Authenticatable
         return $this->notification_id;
     }
 
-
     public function payouts(): HasMany
     {
         return $this->hasMany(OperationalPayout::class);
@@ -82,7 +80,6 @@ class Operational extends Eloquent implements Authenticatable
 
     public function drivers(): HasMany
     {
-        return $this->hasMany(Driver::class , 'operation_manger_id');
+        return $this->hasMany(Driver::class, 'operation_manger_id');
     }
-
 }

@@ -14,9 +14,8 @@ class BelongsToArray extends EloquentBelongsToMany
     /**
      * Get the key for comparing against the parent key in "has" query.
      *
-     * @return string
      */
-    public function getHasCompareKey()
+    public function getHasCompareKey(): string
     {
         return $this->getForeignKey();
     }
@@ -44,7 +43,7 @@ class BelongsToArray extends EloquentBelongsToMany
      *
      * @return array
      */
-    protected function getSelectColumns(array $columns = ['*'])
+    protected function getSelectColumns(array $columns = ['*']): array
     {
         return $columns;
     }
@@ -151,7 +150,7 @@ class BelongsToArray extends EloquentBelongsToMany
         if ($detaching && count($detach) > 0) {
             $this->detach($detach);
 
-            $changes['detached'] = (array) array_map(function ($v) {
+            $changes['detached'] = (array) array_map(static function ($v) {
                 return is_numeric($v) ? (int) $v : (string) $v;
             }, $detach);
         }
@@ -277,9 +276,8 @@ class BelongsToArray extends EloquentBelongsToMany
     /**
      * Create a new query builder for the related model.
      *
-     * @return \Illuminate\Database\Query\Builder
      */
-    public function newRelatedQuery()
+    public function newRelatedQuery(): \Illuminate\Database\Query\Builder
     {
         return $this->related->newQuery();
     }
@@ -287,9 +285,8 @@ class BelongsToArray extends EloquentBelongsToMany
     /**
      * Get the fully qualified foreign key for the relation.
      *
-     * @return string
      */
-    public function getForeignKey()
+    public function getForeignKey(): string
     {
         return $this->foreignPivotKey;
     }
@@ -320,13 +317,15 @@ class BelongsToArray extends EloquentBelongsToMany
      *
      * @deprecated
      */
-    protected function formatSyncList(array $records)
+    protected function formatSyncList(array $records): array
     {
         $results = [];
+
         foreach ($records as $id => $attributes) {
             if (!is_array($attributes)) {
                 [$id, $attributes] = [$attributes, []];
             }
+
             $results[$id] = $attributes;
         }
 
@@ -336,9 +335,8 @@ class BelongsToArray extends EloquentBelongsToMany
     /**
      * Get the related key with backwards compatible support.
      *
-     * @return string
      */
-    public function getRelatedKey()
+    public function getRelatedKey(): string
     {
         return property_exists($this, 'relatedPivotKey') ? $this->relatedPivotKey : $this->relatedKey;
     }
@@ -346,12 +344,11 @@ class BelongsToArray extends EloquentBelongsToMany
     /**
      * Get the name of the "where in" method for eager loading.
      *
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param Model $model
      * @param string                              $key
      *
-     * @return string
      */
-    protected function whereInMethod(EloquentModel $model, $key)
+    protected function whereInMethod(EloquentModel $model, $key): string
     {
         return 'whereIn';
     }
@@ -360,12 +357,12 @@ class BelongsToArray extends EloquentBelongsToMany
      * Match the eagerly loaded results to their parents.
      *
      * @param array                                    $models
-     * @param \Illuminate\Database\Eloquent\Collection $results
+     * @param Collection $results
      * @param string                                   $relation
      *
      * @return array
      */
-    public function match(array $models, Collection $results, $relation)
+    public function match(array $models, Collection $results, $relation): array
     {
         $dictionary = $this->buildDictionary($results);
 
@@ -375,6 +372,7 @@ class BelongsToArray extends EloquentBelongsToMany
         foreach ($models as $model) {
             $keys = $this->getDictionaryKey($model->{$this->parentKey});
             $dic  = [];
+
             foreach ($keys as $key) {
                 if (isset($dictionary[$key])) {
                     array_push($dic, $dictionary[$key][0]);
@@ -395,6 +393,7 @@ class BelongsToArray extends EloquentBelongsToMany
         $whereIn = $this->whereInMethod($this->parent, $this->parentKey);
 
         $keys = $this->getKeys($models, $this->parentKey);
+
         foreach ($keys as $key) {
             $this->query->{$whereIn}(
                 $this->getQualifiedForeignPivotKeyName(),

@@ -2,14 +2,14 @@
 
 namespace Saham\SharedLibs\Traits;
 
+use Illuminate\Support\Collection;
+use ReflectionException;
 use Saham\SharedLibs\Helpers\Guard;
 use Saham\SharedLibs\Helpers\PermissionHelpers;
 use Saham\SharedLibs\Models\Permission;
 use Saham\SharedLibs\Mongodb\Eloquent\Builder;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use Saham\SharedLibs\Registerer\PermissionRegistrar;
-use Illuminate\Support\Collection;
-use ReflectionException;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;
 
 use function collect;

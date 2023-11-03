@@ -3,7 +3,6 @@
 namespace Saham\SharedLibs\Traits;
 
 use Illuminate\Support\Facades\Auth;
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
 trait HasNotes
 {

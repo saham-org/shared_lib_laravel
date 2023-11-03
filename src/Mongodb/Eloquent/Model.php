@@ -10,10 +10,10 @@ use Illuminate\Database\Eloquent\Relations\Relation;
 use Illuminate\Support\Arr;
 use Illuminate\Support\Facades\Date;
 use Illuminate\Support\Str;
-use Saham\SharedLibs\Mongodb\Query\Builder as QueryBuilder;
 use MongoDB\BSON\Binary;
 use MongoDB\BSON\ObjectID;
 use MongoDB\BSON\UTCDateTime;
+use Saham\SharedLibs\Mongodb\Query\Builder as QueryBuilder;
 
 abstract class Model extends BaseModel
 {
@@ -53,9 +53,8 @@ abstract class Model extends BaseModel
      *
      * @param mixed $value
      *
-     * @return mixed
      */
-    public function getIdAttribute($value = null)
+    public function getIdAttribute($value = null): mixed
     {
         // If we don't have a value for 'id', we will use the Mongo '_id' value.
         // This allows us to work with models in a more sql-like way.
@@ -150,12 +149,15 @@ abstract class Model extends BaseModel
         if (!$key) {
             return;
         }
-        if ($key == '_id') {
+
+        if ($key === '_id') {
             return $this->getIdAttribute();
         }
-        if ($key == 'id') {
+
+        if ($key === 'id') {
             return $this->getIdAttribute();
         }
+
         // Dot notation support.
         if (Str::contains($key, '.') && Arr::has($this->attributes, $key)) {
             return $this->getAttributeValue($key);
@@ -192,7 +194,7 @@ abstract class Model extends BaseModel
         }
 
         // Convert _id to ObjectID.
-        if ($key == '_id' && is_string($value)) {
+        if ($key === '_id' && is_string($value)) {
             $builder = $this->newBaseQueryBuilder();
 
             $value = $builder->convertKey($value);
@@ -263,7 +265,7 @@ abstract class Model extends BaseModel
             return true;
         }
 
-        if (null === $attribute) {
+        if ($attribute === null) {
             return false;
         }
 
@@ -271,7 +273,7 @@ abstract class Model extends BaseModel
             $attribute = $attribute instanceof UTCDateTime ? $this->asDateTime($attribute) : $attribute;
             $original  = $original instanceof UTCDateTime ? $this->asDateTime($original) : $original;
 
-            return $attribute == $original;
+            return $attribute === $original;
         }
 
         if ($this->hasCast($key, static::$primitiveCastTypes)) {
@@ -288,9 +290,8 @@ abstract class Model extends BaseModel
      *
      * @param mixed $columns
      *
-     * @return int
      */
-    public function drop($columns)
+    public function drop($columns): int
     {
         $columns = Arr::wrap($columns);
 
@@ -336,9 +337,8 @@ abstract class Model extends BaseModel
      * @param string $column
      * @param mixed  $values
      *
-     * @return mixed
      */
-    public function pull($column, $values)
+    public function pull($column, $values): mixed
     {
         // Do batch pull by default.
         $values = Arr::wrap($values);
@@ -357,7 +357,7 @@ abstract class Model extends BaseModel
      * @param array  $values
      * @param bool   $unique
      */
-    protected function pushAttributeValues($column, array $values, $unique = false)
+    protected function pushAttributeValues($column, array $values, $unique = false): void
     {
         $current = $this->getAttributeFromArray($column) ?: [];
 
@@ -381,7 +381,7 @@ abstract class Model extends BaseModel
      * @param string $column
      * @param array  $values
      */
-    protected function pullAttributeValues($column, array $values)
+    protected function pullAttributeValues($column, array $values): void
     {
         $current = $this->getAttributeFromArray($column) ?: [];
 
@@ -411,9 +411,9 @@ abstract class Model extends BaseModel
     /**
      * Set the parent relation.
      *
-     * @param \Illuminate\Database\Eloquent\Relations\Relation $relation
+     * @param Relation $relation
      */
-    public function setParentRelation(Relation $relation)
+    public function setParentRelation(Relation $relation): void
     {
         $this->parentRelation = $relation;
     }
@@ -421,9 +421,8 @@ abstract class Model extends BaseModel
     /**
      * Get the parent relation.
      *
-     * @return \Illuminate\Database\Eloquent\Relations\Relation
      */
-    public function getParentRelation()
+    public function getParentRelation(): Relation
     {
         return $this->parentRelation;
     }
@@ -459,7 +458,7 @@ abstract class Model extends BaseModel
      *
      * @return array
      */
-    public function getQueueableRelations()
+    public function getQueueableRelations(): array
     {
         $relations = [];
 
@@ -489,7 +488,7 @@ abstract class Model extends BaseModel
      *
      * @return array
      */
-    protected function getRelationsWithoutParent()
+    protected function getRelationsWithoutParent(): array
     {
         $relations = $this->getRelations();
 
@@ -506,9 +505,8 @@ abstract class Model extends BaseModel
      *
      * @param string $key
      *
-     * @return bool
      */
-    protected function isGuardableColumn($key)
+    protected function isGuardableColumn($key): bool
     {
         return true;
     }
@@ -519,18 +517,19 @@ abstract class Model extends BaseModel
     public function __call($method, $parameters)
     {
         // Unset method
-        if ($method == 'unset') {
+        if ($method === 'unset') {
             return call_user_func_array([$this, 'drop'], $parameters);
         }
 
         return parent::__call($method, $parameters);
     }
 
-    public function __set($key, $value)
+    public function __set($key, $value): void
     {
         if ($this->hasCast($key)) {
             $value = $this->castAttribute($key, $value);
         }
+
         parent::__set($key, $value);
     }
 }

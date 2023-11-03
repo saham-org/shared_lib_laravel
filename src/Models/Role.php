@@ -2,11 +2,11 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Database\Eloquent\Model;
 use Saham\SharedLibs\Helpers\PermissionHelpers;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Query\Builder;
 use Saham\SharedLibs\Traits\HasPermissions;
-use Illuminate\Database\Eloquent\Model;
 use Spatie\Permission\Contracts\Role as RoleContract;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;
 use Spatie\Permission\Exceptions\RoleAlreadyExists;
@@ -23,7 +23,7 @@ class Role extends Eloquent
     public $guarded = ['id'];
     protected PermissionHelpers $helpers;
 
-    protected $fillable = ['name' , 'guard_name' , 'permission_ids' , 'administrator_ids'];
+    protected $fillable = ['name', 'guard_name', 'permission_ids', 'administrator_ids'];
 
     /**
      * Role constructor.

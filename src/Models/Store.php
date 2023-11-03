@@ -2,6 +2,11 @@
 
 namespace Saham\SharedLibs\Models;
 
+use DateTime;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Http\Request;
+use MongoDB\BSON\UTCDateTime;
+use Saham\SharedLibs\Database\Factories\StoreFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Models\Enums\DeliveryFee;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
@@ -13,11 +18,6 @@ use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasPaymentTypes;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
-use DateTime;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Http\Request;
-use MongoDB\BSON\UTCDateTime;
-use Saham\SharedLibs\Database\Factories\StoreFactory;
 
 class Store extends BaseModel
 {
@@ -72,6 +72,7 @@ class Store extends BaseModel
     {
         return $this->hasMany(Menu::class, 'store_id');
     }
+
     public function ratings(): HasMany
     {
         return $this->hasMany(Rating::class, 'store_id');
@@ -99,7 +100,7 @@ class Store extends BaseModel
     public function getActiveCoupons(): mixed
     {
         return Coupon::where('partner_ids', 'all', [$this->partner_id])
-            ->where('show_first',  '1')
+            ->where('show_first', '1')
             ->whereDate('promo_date_range.start', '<=', new UTCDateTime(new DateTime('now')))
             ->whereDate('promo_date_range.end', '>=', new UTCDateTime(new DateTime('now')))
             ->orderByDesc('created_at')
@@ -171,9 +172,8 @@ class Store extends BaseModel
         return getStoreServices($this, true)[$deliver_type] ?? true;
     }
 
-
     function updateStoreService($pickup = null, $delivery = null, $feasts = null, $reservation = null): mixed
-     {
+    {
         $services = $this->services;
 
         if ($pickup !== null) {

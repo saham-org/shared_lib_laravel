@@ -8,5 +8,4 @@ use Saham\SharedLibs\Models\Abstracts\BaseModel;
 class Interaction extends BaseModel
 {
     use HasFactory;
-
 }

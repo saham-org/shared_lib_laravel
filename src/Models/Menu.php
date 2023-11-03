@@ -13,10 +13,10 @@ use Saham\SharedLibs\Traits\Translatable;
 class Menu extends BaseModel
 {
     use HasFactory;
-    use Translatable, SoftDeletes;
+    use Translatable;
+    use SoftDeletes;
 
     protected $translatable = ['title'];
-
 
     public function partner(): BelongsTo
     {

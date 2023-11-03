@@ -7,11 +7,9 @@ use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 
 class Scene extends BaseModel
 {
-
     use SoftDeletes ;
 
     protected $fillable = [
-        'pitch', 'yaw', 'hfov', 'name', 'compass'
+        'pitch', 'yaw', 'hfov', 'name', 'compass',
     ];
-
 }

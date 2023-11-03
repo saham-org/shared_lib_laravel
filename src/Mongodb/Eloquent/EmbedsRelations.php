@@ -16,10 +16,13 @@ trait EmbedsRelations
      * @param string $foreignKey
      * @param string $relation
      *
-     * @return \Saham\SharedLibs\Mongodb\Relations\EmbedsMany
      */
-    protected function embedsMany($related, $localKey = null, $foreignKey = null, $relation = null)
-    {
+    protected function embedsMany(
+        $related,
+        $localKey = null,
+        $foreignKey = null,
+        $relation = null
+    ): EmbedsMany {
         // If no relation name was given, we will use this debug backtrace to extract
         // the calling method's name and use that as the relationship name as most
         // of the time this will be what we desire to use for the relationships.
@@ -52,10 +55,13 @@ trait EmbedsRelations
      * @param string $foreignKey
      * @param string $relation
      *
-     * @return \Saham\SharedLibs\Mongodb\Relations\EmbedsOne
      */
-    protected function embedsOne($related, $localKey = null, $foreignKey = null, $relation = null)
-    {
+    protected function embedsOne(
+        $related,
+        $localKey = null,
+        $foreignKey = null,
+        $relation = null
+    ): EmbedsOne {
         // If no relation name was given, we will use this debug backtrace to extract
         // the calling method's name and use that as the relationship name as most
         // of the time this will be what we desire to use for the relationships.

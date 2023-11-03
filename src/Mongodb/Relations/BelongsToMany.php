@@ -14,9 +14,8 @@ class BelongsToMany extends EloquentBelongsToMany
     /**
      * Get the key for comparing against the parent key in "has" query.
      *
-     * @return string
      */
-    public function getHasCompareKey()
+    public function getHasCompareKey(): string
     {
         return $this->getForeignKey();
     }
@@ -43,7 +42,7 @@ class BelongsToMany extends EloquentBelongsToMany
      * @param array $columns
      * @return array
      */
-    protected function getSelectColumns(array $columns = ['*'])
+    protected function getSelectColumns(array $columns = ['*']): array
     {
         return $columns;
     }
@@ -150,7 +149,7 @@ class BelongsToMany extends EloquentBelongsToMany
         if ($detaching && count($detach) > 0) {
             $this->detach($detach);
 
-            $changes['detached'] = (array) array_map(function ($v) {
+            $changes['detached'] = (array) array_map(static function ($v) {
                 return is_numeric($v) ? (int) $v : (string) $v;
             }, $detach);
         }
@@ -159,7 +158,8 @@ class BelongsToMany extends EloquentBelongsToMany
         // touching until after the entire operation is complete so we don't fire a
         // ton of touch operations until we are totally done syncing the records.
         $changes = array_merge(
-            $changes, $this->attachNew($records, $current, false)
+            $changes,
+            $this->attachNew($records, $current, false)
         );
 
         if (count($changes['attached']) || count($changes['updated'])) {
@@ -276,9 +276,8 @@ class BelongsToMany extends EloquentBelongsToMany
     /**
      * Create a new query builder for the related model.
      *
-     * @return \Illuminate\Database\Query\Builder
      */
-    public function newRelatedQuery()
+    public function newRelatedQuery(): \Illuminate\Database\Query\Builder
     {
         return $this->related->newQuery();
     }
@@ -286,9 +285,8 @@ class BelongsToMany extends EloquentBelongsToMany
     /**
      * Get the fully qualified foreign key for the relation.
      *
-     * @return string
      */
-    public function getForeignKey()
+    public function getForeignKey(): string
     {
         return $this->foreignPivotKey;
     }
@@ -317,13 +315,15 @@ class BelongsToMany extends EloquentBelongsToMany
      * @return array
      * @deprecated
      */
-    protected function formatSyncList(array $records)
+    protected function formatSyncList(array $records): array
     {
         $results = [];
+
         foreach ($records as $id => $attributes) {
             if (! is_array($attributes)) {
                 [$id, $attributes] = [$attributes, []];
             }
+
             $results[$id] = $attributes;
         }
 
@@ -333,9 +333,8 @@ class BelongsToMany extends EloquentBelongsToMany
     /**
      * Get the related key with backwards compatible support.
      *
-     * @return string
      */
-    public function getRelatedKey()
+    public function getRelatedKey(): string
     {
         return property_exists($this, 'relatedPivotKey') ? $this->relatedPivotKey : $this->relatedKey;
     }
@@ -343,11 +342,10 @@ class BelongsToMany extends EloquentBelongsToMany
     /**
      * Get the name of the "where in" method for eager loading.
      *
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param Model $model
      * @param string $key
-     * @return string
      */
-    protected function whereInMethod(EloquentModel $model, $key)
+    protected function whereInMethod(EloquentModel $model, $key): string
     {
         return 'whereIn';
     }

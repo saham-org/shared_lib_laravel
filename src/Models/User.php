@@ -2,6 +2,13 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
+use Saham\SharedLibs\Database\Factories\UserFactory;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Query\Builder;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
@@ -11,13 +18,6 @@ use Saham\SharedLibs\Traits\HasPaymentTypes;
 use Saham\SharedLibs\Traits\HasTransaction;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
-use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Passport\HasApiTokens;
-use Saham\SharedLibs\Database\Factories\UserFactory;
 
 class User extends Eloquent implements Authenticatable
 {

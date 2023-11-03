@@ -2,7 +2,6 @@
 
 namespace Saham\SharedLibs\Traits;
 
-use Saham\SharedLibs\Exceptions\ResponseException;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 
 trait HasWallet

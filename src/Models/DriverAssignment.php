@@ -2,9 +2,9 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class DriverAssignment extends BaseModel
 {

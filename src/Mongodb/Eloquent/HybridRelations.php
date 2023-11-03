@@ -22,12 +22,14 @@ trait HybridRelations
      * @param string $foreignKey
      * @param string $localKey
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
      */
-    public function hasOne($related, $foreignKey = null, $localKey = null)
-    {
+    public function hasOne(
+        $related,
+        $foreignKey = null,
+        $localKey = null
+    ): \Illuminate\Database\Eloquent\Relations\HasOne {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::hasOne($related, $foreignKey, $localKey);
         }
 
@@ -49,12 +51,16 @@ trait HybridRelations
      * @param string $id
      * @param string $localKey
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphOne
      */
-    public function morphOne($related, $name, $type = null, $id = null, $localKey = null)
-    {
+    public function morphOne(
+        $related,
+        $name,
+        $type = null,
+        $id = null,
+        $localKey = null
+    ): MorphOne {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::morphOne($related, $name, $type, $id, $localKey);
         }
 
@@ -74,12 +80,14 @@ trait HybridRelations
      * @param string $foreignKey
      * @param string $localKey
      *
-     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function hasMany($related, $foreignKey = null, $localKey = null)
-    {
+    public function hasMany(
+        $related,
+        $foreignKey = null,
+        $localKey = null
+    ): \Illuminate\Database\Eloquent\Relations\HasMany {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::hasMany($related, $foreignKey, $localKey);
         }
 
@@ -101,12 +109,16 @@ trait HybridRelations
      * @param string $id
      * @param string $localKey
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
      */
-    public function morphMany($related, $name, $type = null, $id = null, $localKey = null)
-    {
+    public function morphMany(
+        $related,
+        $name,
+        $type = null,
+        $id = null,
+        $localKey = null
+    ): \Illuminate\Database\Eloquent\Relations\MorphMany {
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::morphMany($related, $name, $type, $id, $localKey);
         }
 
@@ -132,10 +144,13 @@ trait HybridRelations
      * @param string $otherKey
      * @param string $relation
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
-    public function belongsTo($related, $foreignKey = null, $otherKey = null, $relation = null)
-    {
+    public function belongsTo(
+        $related,
+        $foreignKey = null,
+        $otherKey = null,
+        $relation = null
+    ): \Illuminate\Database\Eloquent\Relations\BelongsTo {
         // If no relation name was given, we will use this debug backtrace to extract
         // the calling method's name and use that as the relationship name as most
         // of the time this will be what we desire to use for the relationships.
@@ -146,7 +161,7 @@ trait HybridRelations
         }
 
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::belongsTo($related, $foreignKey, $otherKey, $relation);
         }
 
@@ -177,10 +192,13 @@ trait HybridRelations
      * @param string $id
      * @param string $ownerKey
      *
-     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
-    public function morphTo($name = null, $type = null, $id = null, $ownerKey = null)
-    {
+    public function morphTo(
+        $name = null,
+        $type = null,
+        $id = null,
+        $ownerKey = null
+    ): \Illuminate\Database\Eloquent\Relations\MorphTo {
         // If no name is provided, we will use the backtrace to get the function name
         // since that is most likely the name of the polymorphic interface. We can
         // use that to get both the class and foreign key that will be utilized.
@@ -213,7 +231,7 @@ trait HybridRelations
 
         $instance = new $class();
 
-        $ownerKey = $ownerKey ?? $instance->getKeyName();
+        $ownerKey ??= $instance->getKeyName();
 
         return new MorphTo(
             $instance->newQuery(),
@@ -236,7 +254,6 @@ trait HybridRelations
      * @param string $relatedKey
      * @param string $relation
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function belongsToMany(
         $related,
@@ -246,7 +263,7 @@ trait HybridRelations
         $parentKey = null,
         $relatedKey = null,
         $relation = null
-    ) {
+    ): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
         // If no relationship name was passed, we will pull backtraces to get the
         // name of the calling function. We will use that function name as the
         // title of this relation since that is a great convention to apply.
@@ -255,7 +272,7 @@ trait HybridRelations
         }
 
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::belongsToMany(
                 $related,
                 $collection,
@@ -311,7 +328,6 @@ trait HybridRelations
      * @param string $relatedKey
      * @param string $relation
      *
-     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
      */
     public function belongsToArray(
         $related,
@@ -321,7 +337,7 @@ trait HybridRelations
         $parentKey = null,
         $relatedKey = null,
         $relation = null
-    ) {
+    ): \Illuminate\Database\Eloquent\Relations\BelongsToMany {
         // If no relationship name was passed, we will pull backtraces to get the
         // name of the calling function. We will use that function name as the
         // title of this relation since that is a great convention to apply.
@@ -330,7 +346,7 @@ trait HybridRelations
         }
 
         // Check if it is a relation with an original model.
-        if (!is_subclass_of($related, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
+        if (!is_subclass_of($related, Model::class)) {
             return parent::belongsToArray(
                 $related,
                 $collection,
@@ -378,9 +394,8 @@ trait HybridRelations
     /**
      * Get the relationship name of the belongs to many.
      *
-     * @return string
      */
-    protected function guessBelongsToManyRelation()
+    protected function guessBelongsToManyRelation(): string
     {
         if (method_exists($this, 'getBelongsToManyCaller')) {
             return $this->getBelongsToManyCaller();
@@ -394,7 +409,7 @@ trait HybridRelations
      */
     public function newEloquentBuilder($query)
     {
-        if (is_subclass_of($this, \Saham\SharedLibs\Mongodb\Eloquent\Model::class)) {
+        if (is_subclass_of($this, Model::class)) {
             return new Builder($query);
         }
 

@@ -2,14 +2,14 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
+use ReflectionException;
 use Saham\SharedLibs\Helpers\PermissionHelpers;
 use Saham\SharedLibs\Models\Abstracts\PermissionContract;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Registerer\PermissionRegistrar;
 use Saham\SharedLibs\Traits\HasRoles;
-use Illuminate\Database\Eloquent\Model;
-use Illuminate\Support\Collection;
-use ReflectionException;
 use Spatie\Permission\Exceptions\PermissionAlreadyExists;
 use Spatie\Permission\Traits\RefreshesPermissionCache;
 

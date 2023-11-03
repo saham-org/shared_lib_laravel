@@ -2,8 +2,8 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
 
 class PartnerTransaction extends BaseModel
 {

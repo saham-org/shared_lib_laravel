@@ -37,6 +37,4 @@ class Feast extends Order
     {
         return $this->belongsTo(Partner::class);
     }
-
-
 }

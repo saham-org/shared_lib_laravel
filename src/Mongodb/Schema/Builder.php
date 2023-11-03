@@ -3,6 +3,7 @@
 namespace Saham\SharedLibs\Mongodb\Schema;
 
 use Closure;
+use MongoDB\Model\CollectionInfo;
 
 class Builder extends \Illuminate\Database\Schema\Builder
 {
@@ -27,9 +28,8 @@ class Builder extends \Illuminate\Database\Schema\Builder
      *
      * @param string $name
      *
-     * @return bool
      */
-    public function hasCollection($name)
+    public function hasCollection($name): bool
     {
         $db = $this->connection->getMongoDB();
 
@@ -56,9 +56,8 @@ class Builder extends \Illuminate\Database\Schema\Builder
      * @param string  $collection
      * @param Closure $callback
      *
-     * @return bool
      */
-    public function collection($collection, Closure $callback)
+    public function collection($collection, Closure $callback): bool
     {
         $blueprint = $this->createBlueprint($collection);
 
@@ -78,7 +77,7 @@ class Builder extends \Illuminate\Database\Schema\Builder
     /**
      * @inheritdoc
      */
-    public function create($collection, Closure $callback = null, array $options = [])
+    public function create($collection, ?Closure $callback = null, array $options = [])
     {
         $blueprint = $this->createBlueprint($collection);
 
@@ -124,7 +123,7 @@ class Builder extends \Illuminate\Database\Schema\Builder
     /**
      * @inheritdoc
      */
-    protected function createBlueprint($collection, Closure $callback = null)
+    protected function createBlueprint($collection, ?Closure $callback = null)
     {
         return new Blueprint($this->connection, $collection);
     }
@@ -134,9 +133,8 @@ class Builder extends \Illuminate\Database\Schema\Builder
      *
      * @param string $name
      *
-     * @return bool|\MongoDB\Model\CollectionInfo
      */
-    public function getCollection($name)
+    public function getCollection($name): bool|CollectionInfo
     {
         $db = $this->connection->getMongoDB();
 
@@ -154,9 +152,10 @@ class Builder extends \Illuminate\Database\Schema\Builder
      *
      * @return array
      */
-    protected function getAllCollections()
+    protected function getAllCollections(): array
     {
         $collections = [];
+
         foreach ($this->connection->getMongoDB()->listCollections() as $collection) {
             $collections[] = $collection->getName();
         }

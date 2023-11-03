@@ -35,12 +35,11 @@ class EmbedsOne extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model|bool
      */
-    public function performInsert(Model $model)
+    public function performInsert(Model $model): Model|bool
     {
         // Generate a new key if needed.
-        if ($model->getKeyName() == '_id' && !$model->getKey()) {
+        if ($model->getKeyName() === '_id' && !$model->getKey()) {
             $model->setAttribute('_id', new ObjectID());
         }
 
@@ -66,9 +65,8 @@ class EmbedsOne extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model|bool
      */
-    public function performUpdate(Model $model)
+    public function performUpdate(Model $model): Model|bool
     {
         if ($this->isNested()) {
             $this->associate($model);
@@ -91,9 +89,8 @@ class EmbedsOne extends EmbedsOneOrMany
     /**
      * Delete an existing model and detach it from the parent model.
      *
-     * @return int
      */
-    public function performDelete()
+    public function performDelete(): int
     {
         // For deeply nested documents, let the parent handle the changes.
         if ($this->isNested()) {
@@ -118,9 +115,8 @@ class EmbedsOne extends EmbedsOneOrMany
      *
      * @param Model $model
      *
-     * @return Model
      */
-    public function associate(Model $model)
+    public function associate(Model $model): Model
     {
         return $this->setEmbedded($model->getAttributes());
     }
@@ -128,9 +124,8 @@ class EmbedsOne extends EmbedsOneOrMany
     /**
      * Detach the model from its parent.
      *
-     * @return Model
      */
-    public function dissociate()
+    public function dissociate(): Model
     {
         return $this->setEmbedded(null);
     }
@@ -138,9 +133,8 @@ class EmbedsOne extends EmbedsOneOrMany
     /**
      * Delete all embedded models.
      *
-     * @return int
      */
-    public function delete()
+    public function delete(): int
     {
         return $this->performDelete();
     }
@@ -148,12 +142,11 @@ class EmbedsOne extends EmbedsOneOrMany
     /**
      * Get the name of the "where in" method for eager loading.
      *
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param Model $model
      * @param string                              $key
      *
-     * @return string
      */
-    protected function whereInMethod(EloquentModel $model, $key)
+    protected function whereInMethod(EloquentModel $model, $key): string
     {
         return 'whereIn';
     }

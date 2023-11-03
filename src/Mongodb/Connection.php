@@ -6,20 +6,21 @@ use Illuminate\Database\Connection as BaseConnection;
 use Illuminate\Support\Arr;
 use InvalidArgumentException;
 use MongoDB\Client;
+use MongoDB\Database;
 
 class Connection extends BaseConnection
 {
     /**
      * The MongoDB database handler.
      *
-     * @var \MongoDB\Database
+     * @var Database
      */
     protected $db;
 
     /**
      * The MongoDB connection handler.
      *
-     * @var \MongoDB\Client
+     * @var Client
      */
     protected $connection;
 
@@ -59,9 +60,8 @@ class Connection extends BaseConnection
      *
      * @param string $collection
      *
-     * @return Query\Builder
      */
-    public function collection($collection)
+    public function collection($collection): Query\Builder
     {
         $query = new Query\Builder($this, $this->getPostProcessor());
 
@@ -74,9 +74,8 @@ class Connection extends BaseConnection
      * @param string      $table
      * @param string|null $as
      *
-     * @return Query\Builder
      */
-    public function table($table, $as = null)
+    public function table($table, $as = null): Query\Builder
     {
         return $this->collection($table);
     }
@@ -86,9 +85,8 @@ class Connection extends BaseConnection
      *
      * @param string $name
      *
-     * @return Collection
      */
-    public function getCollection($name)
+    public function getCollection($name): Collection
     {
         return new Collection($this, $this->db->selectCollection($name));
     }
@@ -104,9 +102,8 @@ class Connection extends BaseConnection
     /**
      * Get the MongoDB database object.
      *
-     * @return \MongoDB\Database
      */
-    public function getMongoDB()
+    public function getMongoDB(): Database
     {
         return $this->db;
     }
@@ -114,9 +111,8 @@ class Connection extends BaseConnection
     /**
      * return MongoDB object.
      *
-     * @return \MongoDB\Client
      */
-    public function getMongoClient()
+    public function getMongoClient(): Client
     {
         return $this->connection;
     }
@@ -135,11 +131,10 @@ class Connection extends BaseConnection
      * @param string $dsn
      * @param array  $config
      *
-     * @return string
      *
      * @throws InvalidArgumentException
      */
-    protected function getDefaultDatabaseName($dsn, $config)
+    protected function getDefaultDatabaseName($dsn, $config): string
     {
         if (empty($config['database'])) {
             if (preg_match('/^mongodb(?:[+]srv)?:\\/\\/.+\\/([^?&]+)/s', $dsn, $matches)) {
@@ -159,9 +154,8 @@ class Connection extends BaseConnection
      * @param array  $config
      * @param array  $options
      *
-     * @return \MongoDB\Client
      */
-    protected function createConnection($dsn, array $config, array $options)
+    protected function createConnection($dsn, array $config, array $options): Client
     {
         // By default driver options is an empty array.
         $driverOptions = [];
@@ -174,6 +168,7 @@ class Connection extends BaseConnection
         if (!isset($options['username']) && !empty($config['username'])) {
             $options['username'] = $config['username'];
         }
+
         if (!isset($options['password']) && !empty($config['password'])) {
             $options['password'] = $config['password'];
         }
@@ -194,9 +189,8 @@ class Connection extends BaseConnection
      *
      * @param array $config
      *
-     * @return bool
      */
-    protected function hasDsnString(array $config)
+    protected function hasDsnString(array $config): bool
     {
         return isset($config['dsn']) && !empty($config['dsn']);
     }
@@ -206,9 +200,8 @@ class Connection extends BaseConnection
      *
      * @param array $config
      *
-     * @return string
      */
-    protected function getDsnString(array $config)
+    protected function getDsnString(array $config): string
     {
         return $config['dsn'];
     }
@@ -218,9 +211,8 @@ class Connection extends BaseConnection
      *
      * @param array $config
      *
-     * @return string
      */
-    protected function getHostDsn(array $config)
+    protected function getHostDsn(array $config): string
     {
         // Treat host option as array of hosts
         $hosts = is_array($config['host']) ? $config['host'] : [$config['host']];
@@ -243,9 +235,8 @@ class Connection extends BaseConnection
      *
      * @param array $config
      *
-     * @return string
      */
-    protected function getDsn(array $config)
+    protected function getDsn(array $config): string
     {
         return $this->hasDsnString($config)
             ? $this->getDsnString($config)
@@ -295,9 +286,9 @@ class Connection extends BaseConnection
     /**
      * Set database.
      *
-     * @param \MongoDB\Database $db
+     * @param Database $db
      */
-    public function setDatabase(\MongoDB\Database $db)
+    public function setDatabase(Database $db): void
     {
         $this->db = $db;
     }
@@ -308,9 +299,8 @@ class Connection extends BaseConnection
      * @param string $method
      * @param array  $parameters
      *
-     * @return mixed
      */
-    public function __call($method, $parameters)
+    public function __call($method, $parameters): mixed
     {
         return call_user_func_array([$this->db, $method], $parameters);
     }

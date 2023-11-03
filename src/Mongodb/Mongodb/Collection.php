@@ -2,9 +2,9 @@
 
 namespace Saham\SharedLibs\Mongodb;
 
-use Exception;
 use MongoDB\BSON\ObjectID;
 use MongoDB\Collection as MongoCollection;
+use Throwable;
 
 class Collection
 {
@@ -22,10 +22,6 @@ class Collection
      */
     protected $collection;
 
-    /**
-     * @param Connection      $connection
-     * @param MongoCollection $collection
-     */
     public function __construct(Connection $connection, MongoCollection $collection)
     {
         $this->connection = $connection;
@@ -38,9 +34,8 @@ class Collection
      * @param string $method
      * @param array  $parameters
      *
-     * @return mixed
      */
-    public function __call($method, $parameters)
+    public function __call($method, $parameters): mixed
     {
         $start  = microtime(true);
         $result = call_user_func_array([$this->collection, $method], $parameters);
@@ -53,7 +48,7 @@ class Collection
         $query = [];
 
         // Convert the query parameters to a json string.
-        array_walk_recursive($parameters, function (&$item, $key) {
+        array_walk_recursive($parameters, static function (&$item, $key): void {
             if ($item instanceof ObjectID) {
                 $item = (string) $item;
             }
@@ -63,7 +58,7 @@ class Collection
         foreach ($parameters as $parameter) {
             try {
                 $query[] = json_encode($parameter);
-            } catch (Exception $e) {
+            } catch (Throwable $e) {
                 $query[] = '{...}';
             }
         }

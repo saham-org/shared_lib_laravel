@@ -8,9 +8,9 @@ use Illuminate\Support\Str;
 
 class FactoriesServiceProvider extends ServiceProvider
 {
-    public function boot()
+    public function boot(): void
     {
-        Factory::guessFactoryNamesUsing(function (string $modelName) {
+        Factory::guessFactoryNamesUsing(static function (string $modelName) {
             // We can also customise where our factories live too if we want:
             $namespace = 'Saham\\SharedLibs\\Database\\Factories\\';
 
@@ -19,7 +19,7 @@ class FactoriesServiceProvider extends ServiceProvider
 
             // Finally we'll build up the full class path where
             // Laravel will find our model factory
-            return $namespace.$modelName.'Factory';
+            return $namespace . $modelName . 'Factory';
         });
 
 

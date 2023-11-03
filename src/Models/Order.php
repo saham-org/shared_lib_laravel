@@ -7,7 +7,6 @@ use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\Builder;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
-use Saham\SharedLibs\Mongodb\Relations\HasOne;
 use Saham\SharedLibs\Traits\HasNotes;
 
 /**
@@ -88,12 +87,10 @@ class Order extends BaseModel
         return $this->belongsTo(Slot::class);
     }
 
-
     public function couponDetails(): BelongsTo
     {
         return $this->belongsTo(Coupon::class, 'coupon', 'code');
     }
-
 
     public function ratings(): HasMany
     {

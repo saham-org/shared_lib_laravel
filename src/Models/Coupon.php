@@ -2,21 +2,18 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use DateTime;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\BSON\UTCDateTime;
 use Saham\SharedLibs\Database\Factories\CouponFactory;
-use Illuminate\Database\Eloquent\Builder;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 
 class Coupon extends BaseModel
 {
     use HasFactory;
     use SoftDeletes ;
-
-
-
 
     protected $casts = [
         'amount'         => 'double',
@@ -25,15 +22,14 @@ class Coupon extends BaseModel
         'radius'         => 'double',
     ];
 
-
     protected $fillable = [
         'name','partner_ids' , 'show_first' ,'type_discount','amount','code','minimum_amount','users_id','users_date_range','promo_date_range','limit_per_user','global_limit','radius','latitude','longitude','send_code','display_public',
     ];
     protected $dates = ['deleted_at'];
 
-    protected static function booted()
+    protected static function booted(): void
     {
-        static::addGlobalScope('delete', function (Builder $builder) {
+        static::addGlobalScope('delete', static function (Builder $builder): void {
             $builder->where('deleted_at', null);
         });
     }
@@ -136,7 +132,7 @@ class Coupon extends BaseModel
         return $this;
     }
 
-    public function calculateDiscount(float $sub_total,float $delivery_fee = null): float
+    public function calculateDiscount(float $sub_total, ?float $delivery_fee = null): float
     {
         return $this->type_discount === 'percentage' && $this->amount <= 100 ?
             $this->amount * $sub_total / 100 : ($this->type_discount === 'percentage_delivery' ? $this->amount * $delivery_fee / 100 : $this->amount);

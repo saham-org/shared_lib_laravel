@@ -99,7 +99,7 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @return Collection
      */
-    public function get($columns = ['*'])
+    public function get($columns = ['*']): Collection
     {
         return $this->getResults();
     }
@@ -107,9 +107,8 @@ abstract class EmbedsOneOrMany extends Relation
     /**
      * Get the number of embedded models.
      *
-     * @return int
      */
-    public function count()
+    public function count(): int
     {
         return count($this->getEmbedded());
     }
@@ -119,9 +118,8 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @param Model $model
      *
-     * @return Model|bool
      */
-    public function save(Model $model)
+    public function save(Model $model): Model|bool
     {
         $model->setParentRelation($this);
 
@@ -133,9 +131,8 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @param Collection|array $models
      *
-     * @return Collection|array
      */
-    public function saveMany($models)
+    public function saveMany($models): Collection|array
     {
         foreach ($models as $model) {
             $this->save($model);
@@ -149,9 +146,8 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @param array $attributes
      *
-     * @return Model
      */
-    public function create(array $attributes = [])
+    public function create(array $attributes = []): Model
     {
         // Here we will set the raw attributes to avoid hitting the "fill" method so
         // that we do not have to worry about a mass accessor rules blocking sets
@@ -172,7 +168,7 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @return array
      */
-    public function createMany(array $records)
+    public function createMany(array $records): array
     {
         $instances = [];
 
@@ -190,7 +186,7 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @return array
      */
-    protected function getIdsArrayFrom($ids)
+    protected function getIdsArrayFrom($ids): array
     {
         if ($ids instanceof \Illuminate\Support\Collection) {
             $ids = $ids->all();
@@ -218,9 +214,7 @@ abstract class EmbedsOneOrMany extends Relation
         $attributes = $this->parent->getAttributes();
 
         // Get embedded models form parent attributes.
-        $embedded = isset($attributes[$this->localKey]) ? (array) $attributes[$this->localKey] : null;
-
-        return $embedded;
+        return isset($attributes[$this->localKey]) ? (array) $attributes[$this->localKey] : null;
     }
 
     /**
@@ -244,9 +238,8 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @param mixed $id
      *
-     * @return mixed
      */
-    protected function getForeignKeyValue($id)
+    protected function getForeignKeyValue($id): mixed
     {
         if ($id instanceof Model) {
             $id = $id->getKey();
@@ -263,7 +256,7 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @return Collection
      */
-    protected function toCollection(array $records = [])
+    protected function toCollection(array $records = []): Collection
     {
         $models = [];
 
@@ -283,9 +276,8 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @param array $attributes
      *
-     * @return Model
      */
-    protected function toModel($attributes = [])
+    protected function toModel($attributes = []): Model
     {
         if ($attributes === null) {
             return;
@@ -311,9 +303,8 @@ abstract class EmbedsOneOrMany extends Relation
     /**
      * Get the relation instance of the parent.
      *
-     * @return Relation
      */
-    protected function getParentRelation()
+    protected function getParentRelation(): Relation
     {
         return $this->parent->getParentRelation();
     }
@@ -341,11 +332,10 @@ abstract class EmbedsOneOrMany extends Relation
     /**
      * Check if this relation is nested in another relation.
      *
-     * @return bool
      */
-    protected function isNested()
+    protected function isNested(): bool
     {
-        return $this->getParentRelation() != null;
+        return $this->getParentRelation() !== null;
     }
 
     /**
@@ -353,9 +343,8 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @param string $glue
      *
-     * @return string
      */
-    protected function getPathHierarchy($glue = '.')
+    protected function getPathHierarchy($glue = '.'): string
     {
         if ($parentRelation = $this->getParentRelation()) {
             return $parentRelation->getPathHierarchy($glue) . $glue . $this->localKey;
@@ -379,9 +368,8 @@ abstract class EmbedsOneOrMany extends Relation
     /**
      * Get the primary key value of the parent.
      *
-     * @return string
      */
-    protected function getParentKey()
+    protected function getParentKey(): string
     {
         return $this->parent->getKey();
     }
@@ -394,7 +382,7 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @return array
      */
-    public static function getUpdateValues($array, $prepend = '')
+    public static function getUpdateValues($array, $prepend = ''): array
     {
         $results = [];
 
@@ -408,9 +396,8 @@ abstract class EmbedsOneOrMany extends Relation
     /**
      * Get the foreign key for the relationship.
      *
-     * @return string
      */
-    public function getQualifiedForeignKeyName()
+    public function getQualifiedForeignKeyName(): string
     {
         return $this->foreignKey;
     }
@@ -421,9 +408,8 @@ abstract class EmbedsOneOrMany extends Relation
      * @param \Illuminate\Database\Eloquent\Model $model
      * @param string                              $key
      *
-     * @return string
      */
-    protected function whereInMethod(EloquentModel $model, $key)
+    protected function whereInMethod(EloquentModel $model, $key): string
     {
         return 'whereIn';
     }

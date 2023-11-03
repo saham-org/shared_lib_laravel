@@ -2,11 +2,10 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Traits\Translatable;
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Database\Factories\CuisineFactory;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Traits\Translatable;
 
 class Cuisine extends BaseModel
 {
@@ -21,7 +20,6 @@ class Cuisine extends BaseModel
     {
         return CuisineFactory::new();
     }
-
 
     protected $translatable = ['name'];
 }

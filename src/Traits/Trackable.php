@@ -2,9 +2,9 @@
 
 namespace Saham\SharedLibs\Traits;
 
+use Auth;
 use Saham\SharedLibs\Models\Activity;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
-use Auth;
 
 trait Trackable
 {

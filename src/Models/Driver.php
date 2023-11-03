@@ -2,6 +2,12 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
+use Laravel\Passport\HasApiTokens;
 use Saham\SharedLibs\Database\Factories\DriverFactory;
 use Saham\SharedLibs\Models\Enums\OrderStatus;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
@@ -11,12 +17,6 @@ use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasTransaction;
 use Saham\SharedLibs\Traits\HasWallet;
 use Saham\SharedLibs\Traits\Translatable;
-use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
-use Illuminate\Contracts\Auth\Authenticatable;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Support\Facades\Hash;
-use Laravel\Passport\HasApiTokens;
 
 class Driver extends Eloquent implements Authenticatable
 {
@@ -69,12 +69,10 @@ class Driver extends Eloquent implements Authenticatable
 
     protected $hidden = ['remember_token', 'password'];
 
-
     protected static function newFactory()
     {
         return DriverFactory::new();
     }
-
 
     public function setPasswordAttribute($value): void
     {
@@ -155,7 +153,7 @@ class Driver extends Eloquent implements Authenticatable
 
     public function ratings(): HasMany
     {
-        return $this->hasMany(Driver::class , 'related_id')->where('related_type' ,  Driver::class);
+        return $this->hasMany(Driver::class, 'related_id')->where('related_type', Driver::class);
     }
 
     public function city(): BelongsTo
@@ -165,13 +163,14 @@ class Driver extends Eloquent implements Authenticatable
 
     public function operational(): BelongsTo
     {
-        return $this->belongsTo(Operational::class , 'operation_manger_id');
+        return $this->belongsTo(Operational::class, 'operation_manger_id');
     }
     
     public function complains(): HasMany
     {
         return $this->hasMany(Complaint::class, 'related_id', '_id')->where('related_type', Driver::class);
     }
+
     public function cashoutMethods(): HasMany
     {
         return $this->hasMany(CashoutMethods::class, 'related_id', '_id')->where('related_type', Driver::class);

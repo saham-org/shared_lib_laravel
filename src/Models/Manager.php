@@ -2,9 +2,6 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
-use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
-use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -12,6 +9,9 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
 use Saham\SharedLibs\Database\Factories\ManagerFactory;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
+use Saham\SharedLibs\Mongodb\Relations\HasMany;
 
 class Manager extends Eloquent implements Authenticatable
 {
@@ -35,12 +35,10 @@ class Manager extends Eloquent implements Authenticatable
         'os_version',
     ];
 
-
     protected static function newFactory()
     {
         return ManagerFactory::new();
     }
-
 
     public function setPasswordAttribute($value): void
     {
@@ -71,6 +69,7 @@ class Manager extends Eloquent implements Authenticatable
     {
         return $this->hasMany(Order::class, 'store_id', 'store_id');
     }
+
     public function feasts(): HasMany
     {
         return $this->hasMany(Feast::class, 'store_id', 'store_id');

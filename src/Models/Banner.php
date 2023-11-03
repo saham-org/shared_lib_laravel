@@ -2,19 +2,19 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Database\Factories\BannerFactory;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 
 class Banner extends BaseModel
 {
     use HasFactory;
+
     protected static function newFactory()
     {
         return BannerFactory::new();
     }
-
 
     public function store(): BelongsTo
     {

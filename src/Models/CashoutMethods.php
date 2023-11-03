@@ -2,12 +2,8 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
-use Saham\SharedLibs\Mongodb\Relations\HasMany;
-use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Saham\SharedLibs\Database\Factories\CategoryFactory;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
 
 class CashoutMethods extends BaseModel
 {

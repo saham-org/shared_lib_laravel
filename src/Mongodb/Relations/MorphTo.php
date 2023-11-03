@@ -37,9 +37,8 @@ class MorphTo extends EloquentMorphTo
     /**
      * Get the owner key with backwards compatible support.
      *
-     * @return string
      */
-    public function getOwnerKey()
+    public function getOwnerKey(): string
     {
         return property_exists($this, 'ownerKey') ? $this->ownerKey : $this->otherKey;
     }
@@ -47,12 +46,11 @@ class MorphTo extends EloquentMorphTo
     /**
      * Get the name of the "where in" method for eager loading.
      *
-     * @param \Illuminate\Database\Eloquent\Model $model
+     * @param EloquentModel $model
      * @param string                              $key
      *
-     * @return string
      */
-    protected function whereInMethod(EloquentModel $model, $key)
+    protected function whereInMethod(EloquentModel $model, $key): string
     {
         return 'whereIn';
     }

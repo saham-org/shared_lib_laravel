@@ -2,9 +2,9 @@
 
 namespace Saham\SharedLibs\Models\Passport;
 
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Passport\Passport;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
 class RefreshToken extends Model
 {

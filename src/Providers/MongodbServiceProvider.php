@@ -12,7 +12,7 @@ class MongodbServiceProvider extends ServiceProvider
     /**
      * Bootstrap the application events.
      */
-    public function boot()
+    public function boot(): void
     {
         Model::setConnectionResolver($this->app['db']);
 
@@ -22,11 +22,11 @@ class MongodbServiceProvider extends ServiceProvider
     /**
      * Register the service provider.
      */
-    public function register()
+    public function register(): void
     {
         // Add database driver.
-        $this->app->resolving('db', function ($db) {
-            $db->extend('mongodb', function ($config, $name) {
+        $this->app->resolving('db', static function ($db): void {
+            $db->extend('mongodb', static function ($config, $name) {
                 $config['name'] = $name;
 
                 return new Connection($config);
@@ -34,7 +34,7 @@ class MongodbServiceProvider extends ServiceProvider
         });
 
         // Add connector for queue support.
-        $this->app->resolving('queue', function ($queue) {
+        $this->app->resolving('queue', function ($queue): void {
             $queue->addConnector('mongodb', function () {
                 return new MongoConnector($this->app['db']);
             });

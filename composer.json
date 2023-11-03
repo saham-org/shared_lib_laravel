@@ -51,6 +51,10 @@
             "src/Helpers/All.php"
         ]
     },
+    "scripts": {
+        "cs": "phpcs ./src --standard=phpcs.xml",
+        "cs:fix": "phpcbf ./src --standard=phpcs.xml"
+    },
     "extra": {
         "laravel": {
             "providers": [

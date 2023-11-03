@@ -2,16 +2,16 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
-
 
 class Rating extends BaseModel
 {
     use HasFactory;
+
     protected $table              = 'ratings';
-    protected $fillable           = ['order_id', 'related_id', 'related_type', 'store_id', 'user_id', 'rating', 'description', ];
+    protected $fillable           = ['order_id', 'related_id', 'related_type', 'store_id', 'user_id', 'rating', 'description',];
 
     public function user(): BelongsTo
     {
@@ -27,7 +27,4 @@ class Rating extends BaseModel
     {
         return $this->belongsTo(Order::class);
     }
-
-
-
 }

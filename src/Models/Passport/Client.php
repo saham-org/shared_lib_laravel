@@ -2,14 +2,14 @@
 
 namespace Saham\SharedLibs\Models\Passport;
 
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Support\Str;
-use Laravel\Passport\Saham\SharedLibs\Database\Factories\ClientFactory;
 use Laravel\Passport\Passport;
+use Laravel\Passport\Saham\SharedLibs\Database\Factories\ClientFactory;
+use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
 class Client extends Model
 {
