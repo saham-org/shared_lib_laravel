@@ -147,7 +147,7 @@ abstract class EmbedsOneOrMany extends Relation
      * @param array $attributes
      *
      */
-    public function create(array $attributes = []): Model
+    public function create(array $attributes = []): ?Model
     {
         // Here we will set the raw attributes to avoid hitting the "fill" method so
         // that we do not have to worry about a mass accessor rules blocking sets
@@ -168,7 +168,7 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @return array
      */
-    public function createMany(array $records): array
+    public function createMany(array $records): ?array
     {
         $instances = [];
 
@@ -186,7 +186,7 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @return array
      */
-    protected function getIdsArrayFrom($ids): array
+    protected function getIdsArrayFrom($ids): ?array
     {
         if ($ids instanceof \Illuminate\Support\Collection) {
             $ids = $ids->all();
@@ -256,7 +256,7 @@ abstract class EmbedsOneOrMany extends Relation
      *
      * @return Collection
      */
-    protected function toCollection(array $records = []): Collection
+    protected function toCollection(array $records = []): ?Collection
     {
         $models = [];
 
@@ -277,10 +277,10 @@ abstract class EmbedsOneOrMany extends Relation
      * @param array $attributes
      *
      */
-    protected function toModel($attributes = []): Model
+    protected function toModel($attributes = []): ?Model
     {
         if ($attributes === null) {
-            return;
+            return null;
         }
 
         $connection = $this->related->getConnection();
@@ -304,7 +304,7 @@ abstract class EmbedsOneOrMany extends Relation
      * Get the relation instance of the parent.
      *
      */
-    protected function getParentRelation(): Relation
+    protected function getParentRelation(): ?Relation
     {
         return $this->parent->getParentRelation();
     }
@@ -344,7 +344,7 @@ abstract class EmbedsOneOrMany extends Relation
      * @param string $glue
      *
      */
-    protected function getPathHierarchy($glue = '.'): string
+    protected function getPathHierarchy($glue = '.'): ?string
     {
         if ($parentRelation = $this->getParentRelation()) {
             return $parentRelation->getPathHierarchy($glue) . $glue . $this->localKey;
@@ -369,7 +369,7 @@ abstract class EmbedsOneOrMany extends Relation
      * Get the primary key value of the parent.
      *
      */
-    protected function getParentKey(): string
+    protected function getParentKey(): ?string
     {
         return $this->parent->getKey();
     }
@@ -397,7 +397,7 @@ abstract class EmbedsOneOrMany extends Relation
      * Get the foreign key for the relationship.
      *
      */
-    public function getQualifiedForeignKeyName(): string
+    public function getQualifiedForeignKeyName(): ?string
     {
         return $this->foreignKey;
     }

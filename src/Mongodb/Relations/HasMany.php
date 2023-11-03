@@ -12,7 +12,7 @@ class HasMany extends EloquentHasMany
      * Get the plain foreign key.
      *
      */
-    public function getForeignKeyName(): string
+    public function getForeignKeyName(): ?string
     {
         return $this->foreignKey;
     }
@@ -21,7 +21,7 @@ class HasMany extends EloquentHasMany
      * Get the key for comparing against the parent key in "has" query.
      *
      */
-    public function getHasCompareKey(): string
+    public function getHasCompareKey(): ?string
     {
         return $this->getForeignKeyName();
     }

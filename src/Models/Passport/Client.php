@@ -121,7 +121,7 @@ class Client extends Model
         if (is_null($value) || !Passport::$hashesClientSecrets) {
             $this->attributes['secret'] = $value;
 
-            return;
+            return ;
         }
 
         $this->attributes['secret'] = password_hash($value, PASSWORD_BCRYPT);

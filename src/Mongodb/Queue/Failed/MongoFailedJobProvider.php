@@ -49,7 +49,7 @@ class MongoFailedJobProvider extends DatabaseFailedJobProvider
      * @param mixed $id
      *
      */
-    public function find($id): object
+    public function find($id): ?object
     {
         $job = $this->getTable()->find($id);
 

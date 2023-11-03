@@ -18,7 +18,7 @@ trait Trackable
         'Saham\SharedLibs\Models\Cuisine',
         'Saham\SharedLibs\Models\Bank',
         'Saham\SharedLibs\Models\DatabaseNotification',
-        
+
     ];
 
     public static function bootTrackable(): void

@@ -90,7 +90,7 @@ class EmbedsOne extends EmbedsOneOrMany
      * Delete an existing model and detach it from the parent model.
      *
      */
-    public function performDelete(): int
+    public function performDelete(): ?int
     {
         // For deeply nested documents, let the parent handle the changes.
         if ($this->isNested()) {
@@ -116,7 +116,7 @@ class EmbedsOne extends EmbedsOneOrMany
      * @param Model $model
      *
      */
-    public function associate(Model $model): Model
+    public function associate(Model $model): ?Model
     {
         return $this->setEmbedded($model->getAttributes());
     }
@@ -125,7 +125,7 @@ class EmbedsOne extends EmbedsOneOrMany
      * Detach the model from its parent.
      *
      */
-    public function dissociate(): Model
+    public function dissociate(): ?Model
     {
         return $this->setEmbedded(null);
     }
@@ -134,7 +134,7 @@ class EmbedsOne extends EmbedsOneOrMany
      * Delete all embedded models.
      *
      */
-    public function delete(): int
+    public function delete(): ?int
     {
         return $this->performDelete();
     }
