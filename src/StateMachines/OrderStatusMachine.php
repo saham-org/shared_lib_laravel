@@ -82,7 +82,7 @@ class OrderStatusMachine extends BaseStateMachine
 
             // handle rejected trasitions
             OrderStatus::Rejected->value => [
-                OrderStatus::Refunded->value => fn($model, $who) => $this->inGroup([], $who),
+                OrderStatus::Cancelled->value => fn($model, $who) => $this->inGroup([], $who),
                 OrderStatus::Pending->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Accepted->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
             ],

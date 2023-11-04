@@ -69,14 +69,14 @@ abstract class BaseStateMachine
         return $this->history()->to($state)->get();
     }
 
-    public function canBe($from, $to, ?Authenticatable $who = null)
+    public function canBe($from, $to, string|Authenticatable $who = 'system')
     {
         $availableTransitions = $this->transitions()[$from] ?? [];
 
         return collect(array_keys($availableTransitions))->contains($to) && $this->executeTransitionValidation($from, $to, $who);
     }
 
-    public function executeTransitionValidation($from, $to, ?Authenticatable $who = null)
+    public function executeTransitionValidation($from, $to, string|Authenticatable $who = 'system')
     {
         $target = $this->transitions()[$from][$to];
         return is_callable($target) ? $target($this->model, $who) : true;
@@ -100,7 +100,7 @@ abstract class BaseStateMachine
      * @throws TransitionNotAllowedException
      * @throws \League\Config\Exception\ValidationException
      */
-    public function transitionTo($from, $to, $customProperties = [], $responsible = null)
+    public function transitionTo($from, $to, $customProperties = [], $responsible = 'system')
     {
         if ($to === $this->currentState()) {
             return;
@@ -215,24 +215,24 @@ abstract class BaseStateMachine
      * @param BaseModel $who
      * @return bool
      */
-    public function inGroup(array $group, ?Authenticatable $who = null): bool
+    public function inGroup(array $group, string|Authenticatable $who = 'system'): bool
     {
-        return $who == null || in_array($who->getTable(), $group);
+        return $who == null || $who === 'system' || in_array($who->getTable(), $group);
     }
 
 
-    public function availableTransitions(): array
+    public function availableTransitions($responsible = 'system'): array
     {
         $currentState = $this->currentState();
 
         $availableTransitions = $this->transitions()[$currentState] ?? [];
 
         return collect($availableTransitions)
-            ->map(function ($target, $transition) use ($currentState) {
+            ->map(function ($target, $transition) use ($currentState, $responsible) {
                 return [
                     'transition' => $transition,
                     'target' => $target,
-                    'can' => $this->canBe($currentState, $transition),
+                    'can' => $this->canBe($currentState, $transition, $responsible ?? auth()->user()),
                 ];
             })
             ->filter(fn($status) => $status['can'])->keys()->toArray();
