@@ -2,7 +2,7 @@
 <ruleset name="lacai.org">
     <config name="installed_paths" value="../../slevomat/coding-standard"/>
 
-    <file>./app</file>
+    <file>./src</file>
     <file>./bootstrap</file>
     <file>./config</file>
     <file>./routes</file>

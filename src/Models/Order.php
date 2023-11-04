@@ -4,22 +4,33 @@ namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
+use Saham\SharedLibs\Models\Enums\OrderStatus;
 use Saham\SharedLibs\Mongodb\Eloquent\Builder;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\StateMachines\OrderStatusMachine;
 use Saham\SharedLibs\Traits\HasNotes;
+use Saham\SharedLibs\Traits\HasStateMachines;
 
 /**
- * Summary of Order
+ * Main Order model
  */
 class Order extends BaseModel
 {
     use HasFactory;
     use HasNotes;
+    use HasStateMachines;
+
+    /**
+     * `status` State Machines
+     * @var array
+     */
+    public $stateMachines = [
+        'status' => OrderStatusMachine::class
+    ];
 
     protected $guarded = [];
     protected $attributes = [
-        'status' => 'pending',
         'cash_paid' => false,
     ];
 

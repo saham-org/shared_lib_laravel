@@ -54,7 +54,7 @@ class BelongsTo extends \Illuminate\Database\Eloquent\Relations\BelongsTo
      * Get the owner key with backwards compatible support.
      *
      */
-    public function getOwnerKey(): string
+    public function getOwnerKey(): ?string
     {
         return property_exists($this, 'ownerKey') ? $this->ownerKey : $this->otherKey;
     }
