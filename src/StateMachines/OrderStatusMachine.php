@@ -91,6 +91,7 @@ class OrderStatusMachine extends BaseStateMachine
             OrderStatus::Expired->value => [
                 OrderStatus::Cancelled->value => fn($model, $who) => $this->inGroup([], $who),
                 OrderStatus::Pending->value => fn($model, $who) => $this->inGroup(['administrators', 'user'], $who),
+                OrderStatus::Refunded->value => fn($model, $who) => $this->inGroup(['administrators', 'user'], $who),
             ],
 
             // handle cancelled trasitions
