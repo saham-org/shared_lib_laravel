@@ -39,24 +39,10 @@ class OrderStatusMachine extends BaseStateMachine
                 OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who),
             ],
 
-            // handle assigned transitions
-            OrderStatus::Assigned->value => [
-                OrderStatus::Accepted->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type === 'delivery',
-                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who),
-                OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
-                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
-            ],
 
-            // handle accepted transitions
-            OrderStatus::Accepted->value => [
-                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Accepted->value => fn ($model, $who) => $this->inGroup(['administrators', 'opertional'], $who) && $model->deliver_type === 'delivery',
-                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
-            ],
 
             // handle preparing transitions
             OrderStatus::Preparing->value => [
-                OrderStatus::Accepted->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
             ],
@@ -64,7 +50,6 @@ class OrderStatusMachine extends BaseStateMachine
             // handle prepared transitions
             OrderStatus::Prepared->value => [
                 OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Accepted->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type === 'receipt',
                 OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
@@ -89,7 +74,6 @@ class OrderStatusMachine extends BaseStateMachine
             OrderStatus::Rejected->value => [
                 OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup([], $who),
                 OrderStatus::Pending->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Accepted->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
             ],
 
             // handle expired transitions
