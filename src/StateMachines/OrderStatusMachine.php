@@ -50,6 +50,7 @@ class OrderStatusMachine extends BaseStateMachine
             // handle prepared transitions
             OrderStatus::Prepared->value => [
                 OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type === 'receipt',
                 OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
