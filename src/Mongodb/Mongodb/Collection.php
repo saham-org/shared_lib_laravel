@@ -1,9 +1,10 @@
 <?php
 
-namespace Saham\SharedLibs\Mongodb;
+namespace Saham\SharedLibs\Mongodb\Mongodb;
 
 use MongoDB\BSON\ObjectID;
 use MongoDB\Collection as MongoCollection;
+use Saham\SharedLibs\Mongodb\Connection;
 use Throwable;
 
 class Collection
