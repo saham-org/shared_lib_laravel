@@ -19,6 +19,9 @@ class DriverTracking extends BaseModel
     public static function onNewLocation(string $driverId, array $location): void
     {
         $driver = Driver::find($driverId);
+        if (is_null($driver)) {
+            return;
+        }
 
         /** only log 10m+ distances so we don't over populate the location log */
         if (

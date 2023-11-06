@@ -11,98 +11,89 @@ class OrderStatusMachine extends BaseStateMachine
         return true;
     }
 
+    /**
+     * set default status of newly created models
+     */
     public function defaultState(): ?string
     {
         return OrderStatus::Pending->value;
     }
 
-
+    /**
+     * define list of available transitions
+     * @return array<string,array<string,callable>>
+     */
     public function transitions(): array
     {
         return [
             // from => to pattern
             '*' => [
-                OrderStatus::Pending->value => fn($model, $who) => true,
+                OrderStatus::Pending->value => static fn ($model, $who) => true,
             ],
 
-            // handle pending trasitions
+            // handle pending transitions
             OrderStatus::Pending->value => [
-                OrderStatus::Expired->value => fn($model, $who) => $this->inGroup([], $who),
-                OrderStatus::Rejected->value => fn($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
-                OrderStatus::Accepted->value => fn($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
-                OrderStatus::Assigned->value => fn($model, $who) => $this->inGroup(['administrators', 'drivers', 'opertional'], $who) && $model->deliver_type == 'delivery',
-                OrderStatus::Cancelled->value => fn($model, $who) => $this->inGroup(['user', 'administrators'], $who),
+                OrderStatus::Expired->value => fn ($model, $who) => $this->inGroup([], $who),
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
+                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
+                OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who),
             ],
 
-            // handle assigned trasitions
-            OrderStatus::Assigned->value => [
-                OrderStatus::Accepted->value => fn($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type == 'delivery',
-                OrderStatus::Rejected->value => fn($model, $who) => $this->inGroup(['user', 'administrators'], $who),
-                OrderStatus::Cancelled->value => fn($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
-                OrderStatus::Preparing->value => fn($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
-            ],
 
-            // handle accepted trasitions
-            OrderStatus::Accepted->value => [
-                OrderStatus::Rejected->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Accepted->value => fn($model, $who) => $this->inGroup(['administrators', 'opertional'], $who) && $model->deliver_type == 'delivery',
-                OrderStatus::Preparing->value => fn($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
-            ],
 
-            // handle preparing trasitions
+            // handle preparing transitions
             OrderStatus::Preparing->value => [
-                OrderStatus::Accepted->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Rejected->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Prepared->value => fn($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
             ],
 
-            // handle prepared trasitions
+            // handle prepared transitions
             OrderStatus::Prepared->value => [
-                OrderStatus::Prepared->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Accepted->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Rejected->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Completed->value => fn($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type == 'receipt',
-                OrderStatus::InDelivery->value => fn($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type == 'delivery',
+                OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type === 'receipt',
+                OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
             ],
 
-            // handle in delivery trasitions
+            // handle in delivery transitions
             OrderStatus::InDelivery->value => [
-                OrderStatus::InLocation->value => fn($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type == 'delivery',
-                OrderStatus::Prepared->value => fn($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type == 'delivery',
-                OrderStatus::Preparing->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Rejected->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::InLocation->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
+                OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
+                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
             ],
 
-            // handle in location trasitions
+            // handle in location transitions
             OrderStatus::InLocation->value => [
-                OrderStatus::Completed->value => fn($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type == 'delivery',
-                OrderStatus::InDelivery->value => fn($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type == 'delivery',
-                OrderStatus::Rejected->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
+                OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
             ],
 
-            // handle rejected trasitions
+            // handle rejected transitions
             OrderStatus::Rejected->value => [
-                OrderStatus::Cancelled->value => fn($model, $who) => $this->inGroup([], $who),
-                OrderStatus::Pending->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Accepted->value => fn($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup([], $who),
+                OrderStatus::Refunded->value => fn ($model, $who) => $this->inGroup([], $who),
+                OrderStatus::Pending->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
             ],
 
-            // handle expired trasitions
+            // handle expired transitions
             OrderStatus::Expired->value => [
-                OrderStatus::Cancelled->value => fn($model, $who) => $this->inGroup([], $who),
-                OrderStatus::Pending->value => fn($model, $who) => $this->inGroup(['administrators', 'user'], $who),
-                OrderStatus::Refunded->value => fn($model, $who) => $this->inGroup(['administrators', 'user'], $who),
+                OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup([], $who),
+                OrderStatus::Pending->value => fn ($model, $who) => $this->inGroup(['administrators', 'users'], $who),
+                OrderStatus::Refunded->value => fn ($model, $who) => $this->inGroup(['administrators', 'users'], $who),
             ],
 
-            // handle cancelled trasitions
+            // handle cancelled transitions
             OrderStatus::Cancelled->value => [
-                OrderStatus::Refunded->value => fn($model, $who) => $this->inGroup([], $who),
+                OrderStatus::Refunded->value => fn ($model, $who) => $this->inGroup([], $who),
             ],
 
-            // handle refunded trasitions
+            // handle refunded transitions
             OrderStatus::Refunded->value => [],
 
-            // handle completed trasitions
+            // handle completed transitions
             OrderStatus::Completed->value => [],
 
         ];
