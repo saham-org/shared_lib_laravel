@@ -1,11 +1,11 @@
 {
-    "name": "ahmedashraf093/saham-php-libs",
+    "name": "saham-org/shared_lib_laravel",
     "type": "library",
     "description": "Saham shared model logic",
     "homepage": "https://sahmapp.com",
     "authors": [
         {
-            "name": "AhmedAshraf039",
+            "name": "saham-org",
             "email": "info@sahmapp.com",
             "role": "admin"
         }
