@@ -33,9 +33,10 @@ class OrderStatusMachine extends BaseStateMachine
 
             // handle pending transitions
             OrderStatus::Pending->value => [
-                OrderStatus::Expired->value => fn ($model, $who) => $this->inGroup([], $who),
-                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
                 OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
+
+                OrderStatus::Expired->value => fn ($model, $who) => $this->inGroup([], $who),
                 OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who),
             ],
 
@@ -43,32 +44,37 @@ class OrderStatusMachine extends BaseStateMachine
 
             // handle preparing transitions
             OrderStatus::Preparing->value => [
-                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+
             ],
 
             // handle prepared transitions
             OrderStatus::Prepared->value => [
-                OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type === 'receipt',
                 OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
+
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+
+                OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
             ],
 
             // handle in delivery transitions
             OrderStatus::InDelivery->value => [
                 OrderStatus::InLocation->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
+                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+
                 OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
                 OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
-                OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
             ],
 
             // handle in location transitions
             OrderStatus::InLocation->value => [
                 OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
-                OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
                 OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+
+                OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['opertional', 'administrators', 'drivers'], $who) && $model->deliver_type === 'delivery',
             ],
 
             // handle rejected transitions
