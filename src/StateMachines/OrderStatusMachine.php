@@ -56,7 +56,6 @@ class OrderStatusMachine extends BaseStateMachine
 
                 OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
 
-                OrderStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
                 OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['administrators'], $who),
             ],
 
