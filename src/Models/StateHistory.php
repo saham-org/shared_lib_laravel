@@ -8,7 +8,7 @@ use Saham\SharedLibs\Models\Abstracts\BaseModel;
 
 /**
  * Class StateHistory
- * @package Asantibanez\LaravelEloquentStateMachines\Models
+ * @package Ashraf\LaravelEloquentStateMachines\Models
  * @property string $field
  * @property string $from
  * @property string $to
@@ -106,8 +106,7 @@ class StateHistory extends BaseModel
         if ($responsible instanceof Model) {
             return $query
                 ->where('responsible_id', $responsible->getKey())
-                ->where('responsible_type', get_class($responsible))
-            ;
+                ->where('responsible_type', get_class($responsible));
         }
 
         return $query->where('responsible_id', $responsible);
