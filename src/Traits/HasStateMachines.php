@@ -2,19 +2,16 @@
 
 namespace Saham\SharedLibs\Traits;
 
-// use Asantibanez\LaravelEloquentStateMachines\Models\PendingTransition;
-// use Asantibanez\LaravelEloquentStateMachines\Models\StateHistory;
-use Asantibanez\LaravelEloquentStateMachines\StateMachines\State;
+use Ashraf\EloquentStateMachine\StateMachines\State;
 use Illuminate\Support\Str;
 use Javoscript\MacroableModels\Facades\MacroableModels;
-use Saham\SharedLibs\Models\PendingTransition;
 use Saham\SharedLibs\Models\StateHistory;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use Saham\SharedLibs\Mongodb\Query\Builder;
 
 /**
  * Trait HasStateMachines
- * @package Asantibanez\LaravelEloquentStateMachines\Traits
+ * @package Ashraf\LaravelEloquentStateMachines\Traits
  * @property array $stateMachines
  */
 trait HasStateMachines
@@ -112,10 +109,6 @@ trait HasStateMachines
         return $this->morphMany(StateHistory::class, 'model');
     }
 
-    public function pendingTransitions()
-    {
-        return $this->morphMany(PendingTransition::class, 'model');
-    }
 
     public function recordState($field, $from, $to, $customProperties = [], $responsible = null, $changedAttributes = [])
     {
@@ -132,25 +125,5 @@ trait HasStateMachines
         }
 
         $this->stateHistory()->save($stateHistory);
-    }
-
-    public function recordPendingTransition($field, $from, $to, $when, $customProperties = [], $responsible = null): PendingTransition
-    {
-        /** @var PendingTransition $pendingTransition */
-        $pendingTransition = PendingTransition::make([
-            'field' => $field,
-            'from' => $from,
-            'to' => $to,
-            'transition_at' => $when,
-            'custom_properties' => $customProperties
-        ]);
-
-        if ($responsible !== null) {
-            $pendingTransition->responsible()->associate($responsible);
-        }
-
-        $pendingTransition = $this->pendingTransitions()->save($pendingTransition);
-
-        return $pendingTransition;
     }
 }
