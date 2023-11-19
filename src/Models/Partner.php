@@ -93,6 +93,11 @@ class Partner extends Eloquent implements Authenticatable
         return $this->hasMany(Store::class);
     }
 
+    public function partnerInvoices(): HasMany
+    {
+        return $this->hasMany(PartnerInvoice::class);
+    }
+
     public function modifier(): HasMany
     {
         return $this->hasMany(Modifier::class);
