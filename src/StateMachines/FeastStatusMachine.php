@@ -33,7 +33,7 @@ class FeastStatusMachine extends BaseStateMachine
 
             // handle pending transitions
             FeastStatus::Pending->value => [
-                FeastStatus::Approved->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
+                FeastStatus::Approved->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->invoice_id !== null,
                 FeastStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
 
                 FeastStatus::Expired->value => fn ($model, $who) => $this->inGroup([], $who),
