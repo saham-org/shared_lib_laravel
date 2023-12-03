@@ -29,7 +29,12 @@ class OrderStatusMachine extends BaseStateMachine
 
             // handle pending transitions
             OrderStatus::Pending->value => [
-                OrderStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && !($model->deliver_type === 'delivery' && is_null($model->driver_id)) ,
+                OrderStatus::Preparing->value => function ($model, $who) {
+                    if ($model->deliver_type === 'delivery' && $model->driver_id === null) {
+                        return false;
+                    }
+                    return $this->inGroup(['managers', 'administrators', 'partners'], $who);
+                },
                 OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
 
                 OrderStatus::Expired->value => fn ($model, $who) => $this->inGroup([], $who),
