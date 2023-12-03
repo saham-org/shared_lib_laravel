@@ -63,7 +63,7 @@ class FeastStatusMachine extends BaseStateMachine
 
             // handle prepared transitions
             FeastStatus::Prepared->value => [
-                FeastStatus::InLocation->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type === 'receipt',
+                FeastStatus::InLocation->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who)  ,
 
 
                 FeastStatus::Preparing->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
@@ -75,7 +75,7 @@ class FeastStatusMachine extends BaseStateMachine
             FeastStatus::InLocation->value => [
                 FeastStatus::Prepared->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who),
 
-                FeastStatus::Completed->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type === 'delivery',
+                FeastStatus::Completed->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who)  ,
 
              ],
 
