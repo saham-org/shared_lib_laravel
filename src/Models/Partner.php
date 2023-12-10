@@ -66,6 +66,7 @@ class Partner extends Eloquent implements Authenticatable
         'device_id',
         'device_type',
         'os_version',
+        'tax_number',
     ];
 
     public function setPasswordAttribute($value): void
