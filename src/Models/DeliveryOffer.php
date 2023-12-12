@@ -26,4 +26,9 @@ class DeliveryOffer extends BaseModel
         return $this->hasMany(DriverDeliveryOffer::class);
     }
 
+    public function setImageAttribute($value): void
+    {
+        $this->attributes['image'] = storeImage($value, 'delivery_offers', 'offers');
+    }
+
 }
