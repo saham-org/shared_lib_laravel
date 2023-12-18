@@ -17,6 +17,7 @@ class DeliveryOffer extends BaseModel
     protected $guarded = [];
     protected $table = 'delivery_offers';
 
+
     public function storeDeliveryOffers(): HasMany
     {
         return $this->hasMany(StoreDeliveryOffer::class);
