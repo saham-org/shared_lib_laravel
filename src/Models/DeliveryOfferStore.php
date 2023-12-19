@@ -10,12 +10,12 @@ use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
-class StoreDeliveryOffer Extends BaseModel
+class DeliveryOfferStore Extends BaseModel
 {
     use HasFactory;
     use SoftDeletes ;
     protected $guarded = [];
-    protected $table = 'store_delivery_offers';
+    protected $table = 'delivery_offers_stores';
 
     public function store(): BelongsTo
     {

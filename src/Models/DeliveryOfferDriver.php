@@ -10,12 +10,12 @@ use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
-class DriverDeliveryOffer Extends BaseModel
+class DeliveryOfferDriver Extends BaseModel
 {
     use HasFactory;
     use SoftDeletes ;
     protected $guarded = [];
-    protected $table = 'deliver_delivery_offers';
+    protected $table = 'delivery_offer_drivers';
 
     public function driver(): BelongsTo
     {
