@@ -18,13 +18,13 @@ class DeliveryOffer extends BaseModel
     protected $table = 'delivery_offers';
 
 
-    public function storeDeliveryOffers(): HasMany
+    public function deliveryOffersStore(): HasMany
     {
-        return $this->hasMany(StoreDeliveryOffer::class);
+        return $this->hasMany(DeliveryOfferStore::class);
     }
-    public function driverDeliveryOffers(): HasMany
+    public function deliveryOffersDriver(): HasMany
     {
-        return $this->hasMany(DriverDeliveryOffer::class);
+        return $this->hasMany(DeliveryOfferDriver::class);
     }
 
     public function setImageAttribute($value): void
