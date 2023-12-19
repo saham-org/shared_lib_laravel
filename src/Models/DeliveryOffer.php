@@ -9,14 +9,16 @@ use MongoDB\BSON\UTCDateTime;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\Traits\Translatable;
 
 class DeliveryOffer extends BaseModel
 {
     use HasFactory;
     use SoftDeletes ;
+    use Translatable;
     protected $guarded = [];
     protected $table = 'delivery_offers';
-
+    protected $translatable = ['name'] ;
 
     public function deliveryOffersStore(): HasMany
     {
