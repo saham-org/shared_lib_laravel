@@ -38,4 +38,9 @@ class DriverTransaction extends BaseModel
     {
         return $this->belongsTo(Order::class);
     }
+
+    public function reward(): BelongsTo
+    {
+        return $this->belongsTo(Reward::class);
+    }
 }
