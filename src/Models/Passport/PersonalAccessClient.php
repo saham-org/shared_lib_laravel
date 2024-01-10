@@ -14,6 +14,7 @@ class PersonalAccessClient extends Model
      * @var string
      */
     protected $table = 'oauth_personal_access_clients';
+    protected $connection = 'authmongodb';
 
     /**
      * The guarded attributes on the model.

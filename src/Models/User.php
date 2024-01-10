@@ -31,6 +31,11 @@ class User extends Eloquent implements Authenticatable
     use HasPaymentTypes;
     use HasNotes ;
 
+
+    protected $connection = 'authmongodb';
+
+
+    
     protected $guarded = [];
     protected $with    = ['addresses'];
 

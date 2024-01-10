@@ -21,6 +21,7 @@ class Client extends Model
      * @var string
      */
     protected $table = 'oauth_clients';
+    protected $connection = 'authmongodb';
 
     /**
      * The guarded attributes on the model.

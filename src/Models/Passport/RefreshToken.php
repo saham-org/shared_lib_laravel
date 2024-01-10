@@ -14,6 +14,7 @@ class RefreshToken extends Model
      * @var string
      */
     protected $table = 'oauth_refresh_tokens';
+    protected $connection = 'authmongodb';
 
     /**
      * The "type" of the primary key ID.
