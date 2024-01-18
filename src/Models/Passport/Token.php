@@ -14,6 +14,7 @@ class Token extends Model
      * @var string
      */
     protected $table = 'oauth_access_tokens';
+    protected $connection = 'authmongodb';
 
     /**
      * The "type" of the primary key ID.
