@@ -48,6 +48,7 @@ class Partner extends Eloquent implements Authenticatable
         'custom_commission',
         'password',
         'category_id',
+        'address' ,
         'city_id',
         'bank_name',
         'bank_IBAN',
