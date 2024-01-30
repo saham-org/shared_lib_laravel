@@ -4,9 +4,10 @@ namespace Saham\SharedLibs\Models\Passport;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Passport\PersonalAccessClient as PassportPersonalAccessClient;
 use Laravel\Passport\Passport;
 
-class PersonalAccessClient extends Model
+class PersonalAccessClient extends PassportPersonalAccessClient
 {
     /**
      * The database table used by the model.

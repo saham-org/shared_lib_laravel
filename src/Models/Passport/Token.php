@@ -3,10 +3,11 @@
 namespace Saham\SharedLibs\Models\Passport;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Passport\Token as PassportToken;
 use Laravel\Passport\Passport;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
-class Token extends Model
+class Token extends PassportToken
 {
     /**
      * The database table used by the model.

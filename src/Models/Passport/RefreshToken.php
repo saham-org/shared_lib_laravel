@@ -4,9 +4,10 @@ namespace Saham\SharedLibs\Models\Passport;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Passport\Passport;
+use Laravel\Passport\RefreshToken as PassportRefreshToken;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
-class RefreshToken extends Model
+class RefreshToken extends PassportRefreshToken
 {
     /**
      * The database table used by the model.
