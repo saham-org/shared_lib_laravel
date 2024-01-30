@@ -6,8 +6,9 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshToken as PassportRefreshToken;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 
-class RefreshToken extends PassportRefreshToken
+class RefreshToken extends Eloquent
 {
     /**
      * The database table used by the model.
@@ -92,6 +93,6 @@ class RefreshToken extends PassportRefreshToken
      */
     public function getConnectionName(): ?string
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return   $this->connection;
     }
 }

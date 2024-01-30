@@ -12,7 +12,7 @@ use Laravel\Passport\Passport;
 use Laravel\Passport\Saham\SharedLibs\Database\Factories\ClientFactory;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
-class Client extends PassportClient
+class Client extends Model
 {
     use HasFactory;
 
@@ -174,7 +174,7 @@ class Client extends PassportClient
      */
     public function getConnectionName(): ?string
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return   $this->connection;
     }
 
     /**

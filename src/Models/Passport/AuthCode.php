@@ -7,7 +7,7 @@ use Laravel\Passport\AuthCode as PassportAuthCode;
 use Laravel\Passport\Passport;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
-class AuthCode extends PassportAuthCode
+class AuthCode extends Model
 {
     /**
      * The database table used by the model.
@@ -76,6 +76,6 @@ class AuthCode extends PassportAuthCode
      */
     public function getConnectionName(): ?string
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return   $this->connection;
     }
 }
