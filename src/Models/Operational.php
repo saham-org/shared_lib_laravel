@@ -36,7 +36,7 @@ class Operational extends Eloquent implements Authenticatable
 
     protected $fillable = [
           'full_name', 'email'
-        , 'phone', 'avatar', 'password', 'phone_code'
+        , 'phone', 'avatar','avatarURL', 'password', 'phone_code'
         , 'bank_name' , 'bank_IBAN' , 'system_driver_commission_percentage'
         , 'system_driver_commission_amount'
         ,  'block'
