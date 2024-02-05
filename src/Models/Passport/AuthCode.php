@@ -3,6 +3,7 @@
 namespace Saham\SharedLibs\Models\Passport;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Passport\AuthCode as PassportAuthCode;
 use Laravel\Passport\Passport;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
 
@@ -75,6 +76,6 @@ class AuthCode extends Model
      */
     public function getConnectionName(): ?string
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return   $this->connection;
     }
 }

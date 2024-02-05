@@ -15,7 +15,7 @@ class Category extends BaseModel
     use SoftDeletes ;
 
     protected $fillable = [
-        'title_ar', 'title_en', 'icon', 'avatar', 'color_code', 'sorting', 'visibility',
+        'title_ar', 'title_en', 'icon', 'avatar',  'iconURL', 'avatarURL', 'color_code', 'sorting', 'visibility',
 
     ];
 

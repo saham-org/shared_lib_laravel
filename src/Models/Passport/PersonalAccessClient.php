@@ -4,9 +4,12 @@ namespace Saham\SharedLibs\Models\Passport;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Passport\PersonalAccessClient as PassportPersonalAccessClient;
 use Laravel\Passport\Passport;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 
-class PersonalAccessClient extends Model
+
+class PersonalAccessClient extends Eloquent
 {
     /**
      * The database table used by the model.
@@ -36,6 +39,6 @@ class PersonalAccessClient extends Model
      */
     public function getConnectionName(): ?string
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return   $this->connection;
     }
 }

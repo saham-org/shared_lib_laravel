@@ -3,10 +3,13 @@
 namespace Saham\SharedLibs\Models\Passport;
 
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Laravel\Passport\Token as PassportToken;
 use Laravel\Passport\Passport;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 
-class Token extends Model
+
+class Token extends Eloquent
 {
     /**
      * The database table used by the model.
@@ -158,6 +161,6 @@ class Token extends Model
      */
     public function getConnectionName(): ?string
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return   $this->connection;
     }
 }

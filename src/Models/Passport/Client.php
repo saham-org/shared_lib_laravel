@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Laravel\Passport\Client as PassportClient;
 use Illuminate\Support\Str;
 use Laravel\Passport\Passport;
 use Laravel\Passport\Saham\SharedLibs\Database\Factories\ClientFactory;
@@ -173,7 +174,7 @@ class Client extends Model
      */
     public function getConnectionName(): ?string
     {
-        return config('passport.storage.database.connection') ?? $this->connection;
+        return   $this->connection;
     }
 
     /**
