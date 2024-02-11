@@ -56,7 +56,7 @@ class Partner extends Eloquent implements Authenticatable
         'company_name_en',
         'commercial_ID',
         'logo', 
-        'app_percentage_without_vat' , 
+        'app_percentage_is_without_vat' , 
         'cover',
         'language',
         'logo_thumb',
