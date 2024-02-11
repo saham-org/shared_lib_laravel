@@ -41,8 +41,7 @@ class OrderStatusMachine extends BaseStateMachine
 
                 // handle preparing transitions
                 OrderStatus::Accepted->value => [
-                    OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who) && $model->deliver_type === 'receipt',
-
+                    OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['managers', 'administrators', 'partners'], $who)
                 ],
 
                 // handle rejected transitions
