@@ -53,6 +53,10 @@ class User extends Eloquent implements Authenticatable
         'cuisine_ids', 'phone', 'otp', 'device_id', 'device_type', 'os_version', 'notification_id', 'email', 'allowed_payment_methods',
         'full_name', 'bank_iban', 'bank_name',  'referral_code', 'notes_history', 'block', 'password', 'gender'
     ];
+<<<<<<< HEAD
+=======
+
+>>>>>>> c5d1cd5f7069de5520e340a1ff8b240d5cf6ee22
 
     public function findForPassport($username): ?self
     {
@@ -138,6 +142,12 @@ class User extends Eloquent implements Authenticatable
     public function getWalletAttribute($value): float
     {
         $this->load('wallet');
+<<<<<<< HEAD
         return    $this->wallet->wallet ?? 0;
     }
+=======
+     return    $this->wallet->wallet ?? 0 ;
+    }
+
+>>>>>>> c5d1cd5f7069de5520e340a1ff8b240d5cf6ee22
 }
