@@ -11,11 +11,12 @@ use Laravel\Passport\HasApiTokens;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Mongodb\Query\Builder;
 use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Saham\SharedLibs\Mongodb\Relations\HasOne;
 use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasOTPGrant;
 use Saham\SharedLibs\Traits\HasPaymentTypes;
 use Saham\SharedLibs\Traits\HasTransaction;
-use Saham\SharedLibs\Traits\HasWallet;
+use Saham\SharedLibs\Traits\HasWalletForUser;
 use Saham\SharedLibs\Traits\Translatable;
 
 class User extends Eloquent implements Authenticatable
@@ -26,7 +27,7 @@ class User extends Eloquent implements Authenticatable
     use HasFactory;
     use Notifiable;
     use Translatable;
-    use HasWallet;
+    use HasWalletForUser;
     use HasTransaction;
     use HasPaymentTypes;
     use HasNotes ;
@@ -50,7 +51,7 @@ class User extends Eloquent implements Authenticatable
 
     protected $fillable = [
         'cuisine_ids', 'phone', 'otp', 'device_id', 'device_type', 'os_version', 'notification_id', 'email', 'allowed_payment_methods',
-        'full_name', 'wallet', 'bank_iban' , 'bank_name' ,  'referral_code', 'notes_history' , 'block', 'password', 'gender'];
+        'full_name' , 'bank_iban' , 'bank_name' ,  'referral_code', 'notes_history' , 'block', 'password', 'gender'];
 
     public function findForPassport($username): ?self
     {
@@ -122,4 +123,16 @@ class User extends Eloquent implements Authenticatable
     {
         return $this->hasMany(CashoutMethods::class, 'related_id', '_id')->where('related_type', User::class);
     }
+
+    public function wallet(): HasOne
+    {
+        return $this->hasOne(Wallet::class);
+    }
+
+    public function setWalletAttribute($value): void
+    {
+        $this->load('wallet') ;
+        $this->wallet->update(['wallet' => $value]) ;
+     }
+
 }
