@@ -54,6 +54,7 @@ class User extends Eloquent implements Authenticatable
         'full_name', 'bank_iban', 'bank_name',  'referral_code', 'notes_history', 'block', 'password', 'gender'
     ];
 
+
     public function findForPassport($username): ?self
     {
         return $this->where('phone', $username)->first();
@@ -140,4 +141,5 @@ class User extends Eloquent implements Authenticatable
         $this->load('wallet');
      return    $this->wallet->wallet ?? 0 ;
     }
+
 }
