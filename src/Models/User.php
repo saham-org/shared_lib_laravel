@@ -30,13 +30,13 @@ class User extends Eloquent implements Authenticatable
     use HasWalletForUser;
     use HasTransaction;
     use HasPaymentTypes;
-    use HasNotes ;
+    use HasNotes;
 
 
     protected $connection = 'authmongodb';
 
 
-    
+
     protected $guarded = [];
     protected $with    = ['addresses'];
 
@@ -51,7 +51,9 @@ class User extends Eloquent implements Authenticatable
 
     protected $fillable = [
         'cuisine_ids', 'phone', 'otp', 'device_id', 'device_type', 'os_version', 'notification_id', 'email', 'allowed_payment_methods',
-        'full_name' , 'bank_iban' , 'bank_name' ,  'referral_code', 'notes_history' , 'block', 'password', 'gender'];
+        'full_name', 'bank_iban', 'bank_name',  'referral_code', 'notes_history', 'block', 'password', 'gender'
+    ];
+
 
     public function findForPassport($username): ?self
     {
@@ -131,8 +133,13 @@ class User extends Eloquent implements Authenticatable
 
     public function setWalletAttribute($value): void
     {
-        $this->load('wallet') ;
-        $this->wallet->update(['wallet' => $value]) ;
-     }
+        $this->load('wallet');
+        $this->wallet->update(['wallet' => $value]);
+    }
+    public function getWalletAttribute($value): float
+    {
+        $this->load('wallet');
+     return    $this->wallet->wallet ?? 0 ;
+    }
 
 }
