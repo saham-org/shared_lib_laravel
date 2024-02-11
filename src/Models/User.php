@@ -138,6 +138,6 @@ class User extends Eloquent implements Authenticatable
     public function getWalletAttribute($value): float
     {
         $this->load('wallet');
-     return    $this->wallet->wallet ?? 0 ;
+        return    $this->wallet->wallet ?? 0;
     }
 }
