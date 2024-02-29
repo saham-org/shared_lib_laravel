@@ -7,7 +7,7 @@ if (!function_exists('getStoreServices')) {
      * @param Store $store,
      * @param bool  $default
      *
-     * @return array<string, boolean>
+     * @return array<string, bool>
      */
     function getStoreServices(object $store, $default = false): mixed
     {
@@ -31,7 +31,7 @@ if (!function_exists('getStoreServicesFromNull')) {
     /**
      * @param bool $default
      *
-     * @return array<string, boolean>
+     * @return array<string, bool>
      */
     function getStoreServicesFromNull($default = false): mixed
     {
@@ -43,6 +43,92 @@ if (!function_exists('getStoreServicesFromNull')) {
         ];
     }
 }
+
+///driver
+if (!function_exists('getDriverServices')) {
+    /**
+     * @param Driver $driver,
+     * @param bool   $default
+     *
+     * @return array<string, bool>
+     */
+    function getDriverServices(object $driver, $default = false): mixed
+    {
+        return isset($driver->services) ? getDriverServicesFromdriver($driver) : getDriverServicesFromNull($default);
+    }
+}
+
+if (!function_exists('getDriverServicesFromdriver')) {
+    function getDriverServicesFromdriver(object $driver): mixed
+    {
+        return [
+            'special_order'     => $driver->services['special_order'] ?? false,
+            'normal_order'      => $driver->services['normal_order'] ?? false,
+            'feasts'            => $driver->services['feasts'] ?? false,
+        ];
+    }
+}
+
+if (!function_exists('getDriverServicesFromNull')) {
+    /**
+     * @param bool $default
+     *
+     * @return array<string, bool>
+     */
+    function getDriverServicesFromNull($default = false): mixed
+    {
+        return [
+            'special_order'     => $default,
+            'normal_order'      => $default,
+            'feasts'            => $default,
+        ];
+    }
+}
+//end driver
+
+///user
+if (!function_exists('getUserServices')) {
+    /**
+     * @param User $user,
+     * @param bool $default
+     *
+     * @return array<string, bool>
+     */
+    function getUserServices(object $user, $default = false): mixed
+    {
+        return isset($user->services) ? getUserAcceptedServices($user) : getUserAcceptedServicesFromNull($default);
+    }
+}
+
+if (!function_exists('getUserAcceptedServices')) {
+    function getUserAcceptedServices(object $user): mixed
+    {
+        return [
+            'special_order'     => $user->services['special_order'] ?? false,
+            'normal_order'      => $user->services['normal_order'] ?? false,
+            'reservations'      => $user->services['reservations'] ?? false,
+            'feasts'            => $user->services['feasts'] ?? false,
+        ];
+    }
+}
+
+if (!function_exists('getUserAcceptedServicesFromNull')) {
+    /**
+     * @param bool $default
+     *
+     * @return array<string, bool>
+     */
+    function getUserAcceptedServicesFromNull($default = false): mixed
+    {
+        return [
+            'special_order'     => $default,
+            'normal_order'      => $default,
+            'reservations'      => $default,
+            'feasts'            => $default,
+        ];
+    }
+}
+//end user
 
 /**
  * Calculates the great-circle distance between two points, with
@@ -83,7 +169,7 @@ function getDistanceInMeter(
  * @param object $object
  * @param bool   $default
  *
- * @return array<string, boolean>
+ * @return array<string, bool>
  */
 function getSystemPaymentMethods(array $object, $default = true): mixed
 {

@@ -169,4 +169,29 @@ class Driver extends Eloquent implements Authenticatable
     {
         return $this->hasMany(CashoutMethods::class, 'related_id', '_id')->where('related_type', Driver::class);
     }
+
+    public function acceptsService(string $service): bool
+    {
+        return getDriverServices($this, true)[$service] ?? true;
+    }
+
+    public function updateService($special_order = null, $normal_order = null, $feasts = null, $reservations = null): mixed
+    {
+        $services = $this->services;
+
+        if ($special_order !== null) {
+            $services['special_order'] = $special_order === true || $special_order === 1;
+        }
+
+        if ($normal_order !== null) {
+            $services['normal_order'] = $normal_order === true || $normal_order === 1;
+        }
+
+        if ($feasts !== null) {
+            $services['feasts'] = $feasts === true || $feasts === 1;
+        }
+
+
+        return   $this->update(['services' => $services]);
+    }
 }
