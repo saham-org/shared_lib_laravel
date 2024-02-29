@@ -51,7 +51,7 @@ class User extends Eloquent implements Authenticatable
 
     protected $fillable = [
         'cuisine_ids', 'phone', 'otp', 'device_id', 'device_type', 'os_version', 'notification_id', 'email', 'allowed_payment_methods',
-        'full_name', 'bank_iban', 'bank_name',  'referral_code', 'notes_history', 'block', 'password', 'gender'
+        'full_name', 'bank_iban', 'bank_name',  'referral_code'  , 'services' , 'notes_history', 'block', 'password', 'gender'
     ];
 
     public function findForPassport($username): ?self
@@ -143,17 +143,6 @@ class User extends Eloquent implements Authenticatable
 
     public function acceptsService(string $service): bool
     {
-        // if ($deliver_type === 'delivery') {
-        //     return $this->services['delivery'];
-        // }
-
-        // if ($deliver_type === 'receipt') {
-        //     return $this->services['pickup'];
-        // }
-
-        // if ($deliver_type === 'reservation') {
-        //     return $this->services['reservation'];
-        // }
         return getUserServices($this, true)[$service] ?? true;
     }
 
