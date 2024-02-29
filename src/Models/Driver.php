@@ -51,6 +51,7 @@ class Driver extends Eloquent implements Authenticatable
         'notification_id',
         'device_type',
         'os_version',
+        'services' ,
         'location',
         'latitude',
         'longitude',
