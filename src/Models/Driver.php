@@ -195,4 +195,8 @@ class Driver extends Eloquent implements Authenticatable
 
         return   $this->update(['services' => $services]);
     }
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> b92258d2b87c697b16a9ad48561af7579d33f645
