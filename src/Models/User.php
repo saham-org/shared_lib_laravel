@@ -143,20 +143,6 @@ class User extends Eloquent implements Authenticatable
 
     public function acceptsService(string $service): bool
     {
-<<<<<<< HEAD
-=======
-        // if ($deliver_type === 'delivery') {
-        //     return $this->services['delivery'];
-        // }
-
-        // if ($deliver_type === 'receipt') {
-        //     return $this->services['pickup'];
-        // }
-
-        // if ($deliver_type === 'reservation') {
-        //     return $this->services['reservation'];
-        // }
->>>>>>> b92258d2b87c697b16a9ad48561af7579d33f645
         return getUserServices($this, true)[$service] ?? true;
     }
 
