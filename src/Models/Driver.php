@@ -176,16 +176,16 @@ class Driver extends Eloquent implements Authenticatable
         return getDriverServices($this, true)[$service] ?? true;
     }
 
-    public function updateService($special_order = null, $normal_order = null, $feasts = null, $reservations = null): mixed
+    public function updateService($package_order = null, $delivery_order = null, $feasts = null, $reservations = null): mixed
     {
         $services = $this->services;
 
-        if ($special_order !== null) {
-            $services['special_order'] = $special_order === true || $special_order === 1;
+        if ($package_order !== null) {
+            $services['package_order'] = $package_order === true || $package_order === 1;
         }
 
-        if ($normal_order !== null) {
-            $services['normal_order'] = $normal_order === true || $normal_order === 1;
+        if ($delivery_order !== null) {
+            $services['delivery_order'] = $delivery_order === true || $delivery_order === 1;
         }
 
         if ($feasts !== null) {
