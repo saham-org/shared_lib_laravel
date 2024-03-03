@@ -62,8 +62,8 @@ if (!function_exists('getDriverServicesFromdriver')) {
     function getDriverServicesFromdriver(object $driver): mixed
     {
         return [
-            'special_order'     => $driver->services['special_order'] ?? false,
-            'normal_order'      => $driver->services['normal_order'] ?? false,
+            'package_order'     => $driver->services['package_order'] ?? false,
+            'delivery_order'      => $driver->services['delivery_order'] ?? false,
             'feasts'            => $driver->services['feasts'] ?? false,
         ];
     }
@@ -78,8 +78,8 @@ if (!function_exists('getDriverServicesFromNull')) {
     function getDriverServicesFromNull($default = false): mixed
     {
         return [
-            'special_order'     => $default,
-            'normal_order'      => $default,
+            'package_order'     => $default,
+            'delivery_order'      => $default,
             'feasts'            => $default,
         ];
     }
@@ -104,8 +104,8 @@ if (!function_exists('getUserAcceptedServices')) {
     function getUserAcceptedServices(object $user): mixed
     {
         return [
-            'special_order'     => $user->services['special_order'] ?? false,
-            'normal_order'      => $user->services['normal_order'] ?? false,
+            'package_order'     => $user->services['package_order'] ?? false,
+            'delivery_order'      => $user->services['delivery_order'] ?? false,
             'reservations'      => $user->services['reservations'] ?? false,
             'feasts'            => $user->services['feasts'] ?? false,
         ];
@@ -121,8 +121,8 @@ if (!function_exists('getUserAcceptedServicesFromNull')) {
     function getUserAcceptedServicesFromNull($default = false): mixed
     {
         return [
-            'special_order'     => $default,
-            'normal_order'      => $default,
+            'package_order'     => $default,
+            'delivery_order'      => $default,
             'reservations'      => $default,
             'feasts'            => $default,
         ];
