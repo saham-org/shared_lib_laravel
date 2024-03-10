@@ -26,7 +26,71 @@ class OrderStatusMachine extends BaseStateMachine
      */
     public function transitions(): array
     {
-        if (isset($this->model->order_type) && $this->model->order_type === 'reservation') {
+        if (isset($this->model->order_type) && $this->model->order_type === 'package_order') {
+            return [
+
+                // handle pending transitions
+                OrderStatus::Pending->value => [
+
+                    OrderStatus::Accepted->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who),
+                    OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup([  'administrators'], $who),
+
+                    OrderStatus::Expired->value   => fn ($model, $who) => $this->inGroup([], $who),
+                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who),
+                ],
+
+                // handle Accepted transitions
+                OrderStatus::Accepted->value => [
+                    OrderStatus::InLocation->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who)
+                ],
+                // handle InLocation transitions
+                OrderStatus::InLocation->value => [
+                    OrderStatus::PriceReview->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who)
+                ],
+
+                  // handle InLocation transitions
+                  OrderStatus::PriceReview->value => [
+                    OrderStatus::Paid->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who) ,
+                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who)
+
+                ],
+                OrderStatus::Paid->value => [
+                    OrderStatus::InDeliver->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who) ,
+                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who)
+
+                ],
+                OrderStatus::InDeliver->value => [
+                    OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who) ,
+                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who)
+
+                ],
+                // handle rejected transitions
+                OrderStatus::Rejected->value => [
+                    OrderStatus::Pending->value   => fn ($model, $who) => $this->inGroup(['administrators'], $who),
+                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup([], $who),
+                    OrderStatus::Refunded->value  => fn ($model, $who) => $this->inGroup([], $who),
+                ],
+
+                // handle expired transitions
+                OrderStatus::Expired->value => [
+                    OrderStatus::Pending->value   => fn ($model, $who) => $this->inGroup(['administrators', 'users'], $who),
+                    OrderStatus::Refunded->value  => fn ($model, $who) => $this->inGroup(['administrators', 'users'], $who),
+                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup([], $who),
+                ],
+
+                // handle cancelled transitions
+                OrderStatus::Cancelled->value => [
+                    OrderStatus::Refunded->value => fn ($model, $who) => $this->inGroup([], $who),
+                ],
+
+                // handle refunded transitions
+                OrderStatus::Refunded->value => [],
+
+                // handle completed transitions
+                OrderStatus::Completed->value => [],
+
+            ];
+        } else if (isset($this->model->order_type) && $this->model->order_type === 'reservation') {
             return [
 
                 // handle pending transitions
