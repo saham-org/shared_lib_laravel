@@ -36,6 +36,10 @@ enum OrderStatus: string
     case Opened = 'opened';
 
     case Closed = 'closed';
+    
+    case PriceReview = 'price_review';
+
+    case Paid = 'paid';
 
     /**
      *  Get all active statuses.
