@@ -50,7 +50,7 @@ class OrderStatusMachine extends BaseStateMachine
 
                   // handle InLocation transitions
                   OrderStatus::PriceReview->value => [
-                    OrderStatus::Paid->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who) ,
+                    OrderStatus::Paid->value => fn ($model, $who) => $this->inGroup([ 'users', 'administrators'], $who) ,
                     OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who)
 
                 ],
