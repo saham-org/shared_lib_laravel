@@ -54,7 +54,7 @@ class MongoFailedJobProvider extends DatabaseFailedJobProvider
         $job = $this->getTable()->find($id);
 
         if (!$job) {
-            return;
+            return null;
         }
 
         $job['id'] = (string) $job['_id'];
