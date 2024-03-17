@@ -55,11 +55,11 @@ class OrderStatusMachine extends BaseStateMachine
 
                 ],
                 OrderStatus::Paid->value => [
-                    OrderStatus::InDeliver->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who) ,
+                    OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who) ,
                     OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who)
 
                 ],
-                OrderStatus::InDeliver->value => [
+                OrderStatus::InDelivery->value => [
                     OrderStatus::Completed->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who) ,
                     OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who)
 
