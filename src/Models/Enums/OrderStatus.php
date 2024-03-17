@@ -58,6 +58,7 @@ enum OrderStatus: string
             self::Preparing,
             self::Prepared,
             self::Accepted,
+            self::PriceReview ,
         ]), 'value');
     }
 
@@ -143,6 +144,7 @@ enum OrderStatus: string
             self::Rejected,
             self::Completed,
             self::Accepted,
+            self::PriceReview ,
         ]), 'value');
     }
 
