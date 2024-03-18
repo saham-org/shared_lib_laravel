@@ -59,6 +59,7 @@ enum OrderStatus: string
             self::Prepared,
             self::Accepted,
             self::PriceReview ,
+            self::Paid ,
         ]), 'value');
     }
 
