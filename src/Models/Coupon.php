@@ -105,6 +105,10 @@ class Coupon extends BaseModel
     {
         $store = Store::find($store_id);
 
+        if (empty($store)) {
+            return false;
+        }
+
         if ($this->partner_ids && is_array($this->partner_ids)) {
             return in_array('all', $this->partner_ids, true) || in_array($store->partner_id, $this->partner_ids, true);
         }
