@@ -113,7 +113,7 @@ class Coupon extends BaseModel
             return in_array('all', $this->partner_ids, true) || in_array($store->partner_id, $this->partner_ids, true);
         }
 
-        return true;
+        return false;
     }
 
     public function isForTotal(float $total): bool
