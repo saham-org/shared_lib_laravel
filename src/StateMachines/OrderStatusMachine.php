@@ -41,11 +41,17 @@ class OrderStatusMachine extends BaseStateMachine
 
                 // handle Accepted transitions
                 OrderStatus::Accepted->value => [
-                    OrderStatus::InLocation->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who)
+                    OrderStatus::InLocation->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who),
+                    OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup([  'administrators'], $who),
+                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', ], $who)
+
+
                 ],
                 // handle InLocation transitions
                 OrderStatus::InLocation->value => [
-                    OrderStatus::PriceReview->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who)
+                    OrderStatus::PriceReview->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who),
+                    OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup([  'administrators'], $who),
+                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', ], $who)
                 ],
 
                   // handle InLocation transitions
@@ -56,7 +62,7 @@ class OrderStatusMachine extends BaseStateMachine
                 ],
                 OrderStatus::Paid->value => [
                     OrderStatus::InDelivery->value => fn ($model, $who) => $this->inGroup(['drivers', 'administrators'], $who) ,
-                    OrderStatus::Cancelled->value => fn ($model, $who) => $this->inGroup(['users', 'administrators'], $who)
+                    OrderStatus::Rejected->value => fn ($model, $who) => $this->inGroup([  'administrators'], $who),
 
                 ],
                 OrderStatus::InDelivery->value => [
@@ -90,7 +96,7 @@ class OrderStatusMachine extends BaseStateMachine
                 OrderStatus::Completed->value => [],
 
             ];
-        } else if (isset($this->model->order_type) && $this->model->order_type === 'reservation') {
+        } elseif (isset($this->model->order_type) && $this->model->order_type === 'reservation') {
             return [
 
                 // handle pending transitions
