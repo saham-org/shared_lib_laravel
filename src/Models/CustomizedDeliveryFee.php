@@ -2,46 +2,48 @@
 
 namespace Saham\SharedLibs\Models;
 
+use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\Translatable;
-  use Saham\SharedLibs\Mongodb\Eloquent\Builder;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
- use Saham\SharedLibs\Traits\HasNotes;
- 
+
 class CustomizedDeliveryFee extends BaseModel
-{     
- 
+{
     use HasFactory;
     use SoftDeletes ;
     use Translatable;
     use HasNotes;
-    
-    protected $guarded = [];
-    protected $table = 'customized_delivery_fees';
+
+    protected $guarded      = [];
+    protected $table        = 'customized_delivery_fees';
     protected $translatable = ['name'] ;
+    protected $dates        = ['deleted_at'];
 
-    
- 
 
-    public function user(): BelongsTo
+
+    public function isForPartner(string $partner_id): bool
     {
-        return $this->belongsTo(User::class);
+        if ($this->partner_ids && is_array($this->partner_ids)) {
+            return in_array('all', $this->partner_ids, true) || in_array($partner_id, $this->partner_ids, true);
+        }
+
+        return true;
     }
 
-    public function store(): BelongsTo
+    public function isForStore(string $store_id): bool
     {
-        return $this->belongsTo(Store::class);
-    }
+        $store = Store::find($store_id);
 
-    public function partner(): BelongsTo
-    {
-        return $this->belongsTo(Partner::class);
-    }
+        if (empty($store)) {
+            return false;
+        }
 
-    public function driver(): BelongsTo
-    {
-        return $this->belongsTo(Driver::class);
+        if ($this->partner_ids && is_array($this->partner_ids)) {
+            return in_array('all', $this->partner_ids, true) || in_array($store->partner_id, $this->partner_ids, true);
+        }
+
+        return false;
     }
-  
 }
