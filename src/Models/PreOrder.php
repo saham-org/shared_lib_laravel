@@ -9,7 +9,6 @@ use Saham\SharedLibs\Traits\HasNotes;
 
 class PreOrder extends BaseModel
 {
-    use HasFactory;
     use HasNotes ;
 
     protected $guarded    = [];
