@@ -3,7 +3,8 @@
 namespace Saham\SharedLibs\Models;
 
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
-use Illuminate\Contracts\Auth\Authenticatable;
+// use Illuminate\Contracts\Auth\Authenticatable;
+use MongoDB\Laravel\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Builder as EloquentBuilder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
@@ -19,7 +20,7 @@ use Saham\SharedLibs\Traits\HasTransaction;
 use Saham\SharedLibs\Traits\HasWalletForUser;
 use Saham\SharedLibs\Traits\Translatable;
 
-class User extends Eloquent implements Authenticatable
+class User extends Authenticatable
 {
     use AuthenticatableTrait;
     use HasOTPGrant;
@@ -155,7 +156,7 @@ class User extends Eloquent implements Authenticatable
         }
 
         if ($delivery_order !== null) {
-            $services['delivery_order'] = $delivery_order=== true || $delivery_order === 1;
+            $services['delivery_order'] = $delivery_order === true || $delivery_order === 1;
         }
 
         if ($feasts !== null) {
