@@ -22,13 +22,11 @@ trait Translatable
 
     protected function mutateAttribute($key, $value): mixed
     {
-        if (is_array($this->translatable) && !in_array($key, $this->translatable, true)) {
-            $value = parent::mutateAttribute($key, $value);
-        } elseif (method_exists($this, 'get' . Str::studly($key) . 'Attribute')) {
-            $value = parent::mutateAttribute($key, $value);
+        if (is_array($this->translatable) && in_array($key, $this->translatable, true)) {
+            return $this->applyAccessors($key, $value);
         }
 
-        return $this->applyAccessors($key, $value);
+        return parent::mutateAttribute($key, $value);
     }
 
     protected function applyAccessors($key, $value): mixed
@@ -41,7 +39,7 @@ trait Translatable
     //     if (!empty($this->translatable) && in_array($key, $this->translatable)) {
     //         return parent::getAttributeValue($key . '_' . app()->getLocale());
     //     }
-
+    //
     //     return  parent::getAttributeValue($key);
     // }
 }
