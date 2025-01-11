@@ -4,7 +4,6 @@ namespace Saham\SharedLibs\Models;
 
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
 use Illuminate\Contracts\Auth\Access\Authorizable as AuthorizableContract;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
@@ -15,8 +14,9 @@ use MongoDB\Laravel\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Traits\HasRoles;
 //use Illuminate\Database\Eloquent\SoftDeletes;
 use Spatie\MediaLibrary\InteractsWithMedia;
+use MongoDB\Laravel\Auth\User as Authenticatable;
 
-class Administrator extends Eloquent implements Authenticatable, AuthorizableContract
+class Administrator extends Authenticatable implements AuthorizableContract
 {
     use AuthenticatableTrait;
     use HasApiTokens;

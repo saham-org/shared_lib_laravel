@@ -3,14 +3,13 @@
 namespace Saham\SharedLibs\Models;
 
 use Illuminate\Auth\Authenticatable as AuthenticatableTrait;
-use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
-use MongoDB\Laravel\Eloquent\Model as Eloquent;
+use MongoDB\Laravel\Auth\User as Authenticatable;
 
-class OperationManager extends Eloquent implements Authenticatable
+class OperationManager extends Authenticatable
 {
     use AuthenticatableTrait;
     use HasApiTokens;
