@@ -2,7 +2,7 @@
 
 namespace Saham\SharedLibs\Models\Abstracts;
 
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 use DateTimeInterface;
 use Illuminate\Pagination\LengthAwarePaginator as Paginator;
 use Illuminate\Support\Collection;
