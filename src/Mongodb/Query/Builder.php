@@ -544,11 +544,11 @@ class Builder extends BaseBuilder
      *
      * @return $this
      */
-    public function whereAll($column, $operator = null, array $values, $boolean = 'and', $not = false)
+    public function whereAll($columns, $operator = null, $value = null, $boolean = 'and')
     {
         $type = 'all';
 
-        $this->wheres[] = compact('column', 'type', 'boolean', 'values', 'not');
+        $this->wheres[] = compact('columns', 'type', 'boolean', 'value', 'not');
 
         return $this;
     }
