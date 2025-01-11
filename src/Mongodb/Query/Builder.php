@@ -544,7 +544,7 @@ class Builder extends BaseBuilder
      *
      * @return $this
      */
-    public function whereAll($column, array $values, $boolean = 'and', $not = false)
+    public function whereAll($column, $operator = null, array $values, $boolean = 'and', $not = false)
     {
         $type = 'all';
 
