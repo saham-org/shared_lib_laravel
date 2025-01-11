@@ -4,13 +4,8 @@ namespace Saham\SharedLibs\Providers;
 
 use Illuminate\Validation\ValidationServiceProvider as BaseProvider;
 use Mongodb\Laravel\Validation\DatabasePresenceVerifier;
+use MongoDB\Laravel\Validation\ValidationServiceProvider as ValidationValidationServiceProvider;
 
-class ValidationServiceProvider extends BaseProvider
+class ValidationServiceProvider extends ValidationValidationServiceProvider
 {
-    protected function registerPresenceVerifier(): void
-    {
-        $this->app->singleton('validation.presence', static function ($app) {
-            return new DatabasePresenceVerifier($app['db']);
-        });
-    }
 }
