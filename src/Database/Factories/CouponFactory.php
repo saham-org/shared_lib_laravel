@@ -36,12 +36,12 @@ class CouponFactory extends BaseFactory
                 'all',
             ],
             'users_date_range'    => [
-                'start' => new UTCDateTime(Carbon::now()->subDays(10)->format('Uv')),
-                'end'   => new UTCDateTime(Carbon::now()->addDays(10)->format('Uv')),
+                'start' => (Carbon::now()->subDays(10)->format('Uv')),
+                'end'   => (Carbon::now()->addDays(10)->format('Uv')),
             ],
             'promo_date_range'    => [
-                'start' => new UTCDateTime(Carbon::now()->subDays(10)->format('Uv')),
-                'end'   => new UTCDateTime(Carbon::now()->addDays(10)->format('Uv')),
+                'start' => (Carbon::now()->subDays(10)->format('Uv')),
+                'end'   => (Carbon::now()->addDays(10)->format('Uv')),
             ],
             'limit_per_user'      => $this->faker->numberBetween(10, 99),
             'global_limit'        => $this->faker->numberBetween(10, 99),
