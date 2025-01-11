@@ -3,7 +3,7 @@
 namespace Saham\SharedLibs\Providers;
 
 use Illuminate\Validation\ValidationServiceProvider as BaseProvider;
-use Saham\SharedLibs\Mongodb\Validation\DatabasePresenceVerifier;
+use Mongodb\Laravel\Validation\DatabasePresenceVerifier;
 
 class ValidationServiceProvider extends BaseProvider
 {

@@ -7,8 +7,8 @@ use ReflectionException;
 use Saham\SharedLibs\Helpers\Guard;
 use Saham\SharedLibs\Helpers\PermissionHelpers;
 use Saham\SharedLibs\Models\Permission;
-use Saham\SharedLibs\Mongodb\Eloquent\Builder;
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use Mongodb\Laravel\Eloquent\Builder;
+use Mongodb\Laravel\Eloquent\Model;
 use Saham\SharedLibs\Registerer\PermissionRegistrar;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;
 

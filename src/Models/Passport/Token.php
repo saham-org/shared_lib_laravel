@@ -5,8 +5,8 @@ namespace Saham\SharedLibs\Models\Passport;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Passport\Token as PassportToken;
 use Laravel\Passport\Passport;
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
-use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Mongodb\Laravel\Eloquent\Model;
+use Mongodb\Laravel\Eloquent\Model as Eloquent;
 
 class Token extends Eloquent
 {

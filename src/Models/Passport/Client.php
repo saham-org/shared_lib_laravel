@@ -10,7 +10,7 @@ use Laravel\Passport\Client as PassportClient;
 use Illuminate\Support\Str;
 use Laravel\Passport\Passport;
 use Laravel\Passport\Saham\SharedLibs\Database\Factories\ClientFactory;
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use Mongodb\Laravel\Eloquent\Model;
 
 class Client extends Model
 {

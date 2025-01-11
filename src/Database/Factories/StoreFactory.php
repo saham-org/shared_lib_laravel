@@ -3,7 +3,7 @@
 namespace Saham\SharedLibs\Database\Factories;
 
 use Saham\SharedLibs\Models\Partner;
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use Mongodb\Laravel\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Saham\SharedLibs\Models\Store;
 

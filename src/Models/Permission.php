@@ -7,7 +7,7 @@ use Illuminate\Support\Collection;
 use ReflectionException;
 use Saham\SharedLibs\Helpers\PermissionHelpers;
 use Saham\SharedLibs\Models\Abstracts\PermissionContract;
-use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
+use Mongodb\Laravel\Eloquent\Model as Eloquent;
 use Saham\SharedLibs\Registerer\PermissionRegistrar;
 use Saham\SharedLibs\Traits\HasRoles;
 use Spatie\Permission\Exceptions\PermissionAlreadyExists;

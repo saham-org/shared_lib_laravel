@@ -3,8 +3,9 @@
 namespace Saham\SharedLibs\Traits;
 
 use Auth;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
 use Saham\SharedLibs\Models\Activity;
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 trait Trackable
 {
@@ -46,7 +47,7 @@ trait Trackable
             'event'          => $event,
             'related_id'     => $model->id,
             'related_type'   => get_class($model),
-            'guard_name'     => Auth::getDefaultDriver(),
+            'guard_name'     => FacadesAuth::getDefaultDriver(),
             'subject'        => get_class($model),
             'causer'         => auth()->user()?->id ?? null,
             // 'properties'     => request()->except('_method', '_token'),

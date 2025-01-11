@@ -2,7 +2,7 @@
 
 namespace Saham\SharedLibs\Traits;
 
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
+use Mongodb\Laravel\Eloquent\Model;
 
 trait HasTransaction
 {

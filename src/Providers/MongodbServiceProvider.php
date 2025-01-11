@@ -3,9 +3,9 @@
 namespace Saham\SharedLibs\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Saham\SharedLibs\Mongodb\Connection;
-use Saham\SharedLibs\Mongodb\Eloquent\Model;
-use Saham\SharedLibs\Mongodb\Queue\MongoConnector;
+use Mongodb\Laravel\Connection;
+use Mongodb\Laravel\Eloquent\Model;
+use Mongodb\Laravel\Queue\MongoConnector;
 
 class MongodbServiceProvider extends ServiceProvider
 {

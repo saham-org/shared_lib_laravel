@@ -3,8 +3,8 @@
 namespace Saham\SharedLibs\Models;
 
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
-use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Mongodb\Laravel\Relations\BelongsTo;
+use Mongodb\Laravel\Relations\HasMany;
 use Saham\SharedLibs\Traits\HasNotes;
 
 class PreOrder extends BaseModel

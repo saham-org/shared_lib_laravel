@@ -3,7 +3,7 @@
 namespace Saham\SharedLibs\Providers;
 
 use Illuminate\Queue\QueueServiceProvider;
-use Saham\SharedLibs\Mongodb\Queue\Failed\MongoFailedJobProvider;
+use Mongodb\Laravel\Queue\Failed\MongoFailedJobProvider;
 
 class MongodbQueueServiceProvider extends QueueServiceProvider
 {

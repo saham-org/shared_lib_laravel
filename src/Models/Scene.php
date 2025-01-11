@@ -3,7 +3,7 @@
 namespace Saham\SharedLibs\Models;
 
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
+use Mongodb\Laravel\Eloquent\SoftDeletes;
 
 class Scene extends BaseModel
 {

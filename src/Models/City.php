@@ -4,7 +4,7 @@ namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
+use Mongodb\Laravel\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Traits\Translatable;
 
 class City extends BaseModel

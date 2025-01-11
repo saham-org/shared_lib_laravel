@@ -3,8 +3,8 @@
 namespace Saham\SharedLibs\Models;
 
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Eloquent\SoftDeletes;
-use Saham\SharedLibs\Mongodb\Relations\HasMany;
+use Mongodb\Laravel\Eloquent\SoftDeletes;
+use Mongodb\Laravel\Relations\HasMany;
 use Saham\SharedLibs\Traits\Translatable;
 
 class Unit extends BaseModel

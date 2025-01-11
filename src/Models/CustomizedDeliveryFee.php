@@ -6,7 +6,7 @@ use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\Translatable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Saham\SharedLibs\Mongodb\Relations\BelongsTo;
+use Mongodb\Laravel\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class CustomizedDeliveryFee extends BaseModel
