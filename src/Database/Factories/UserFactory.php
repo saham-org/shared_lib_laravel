@@ -22,7 +22,7 @@ class UserFactory extends BaseFactory
     public function definition(): array
     {
         return [
-            'id'                => Str::uuid()->getHex(),
+            // 'id'                => Str::uuid()->getHex(),
             'name'              => $this->faker->name(),
             'email'             => $this->faker->unique()->safeEmail(),
             'email_verified_at' => now(),
