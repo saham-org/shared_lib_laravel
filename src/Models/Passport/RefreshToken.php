@@ -46,6 +46,7 @@ class RefreshToken extends Eloquent
      */
     protected $casts = [
         'revoked' => 'bool',
+    'expires_at' => 'datetime',
     ];
 
     /**

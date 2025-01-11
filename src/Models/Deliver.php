@@ -12,6 +12,9 @@ class Deliver extends BaseModel
     use HasFactory;
     use HasNotes ;
 
+    protected $casts = [
+        'delivered_at' => 'datetime',
+    ];
     protected $dates = ['delivered_at'];
 
     public function item(): BelongsTo

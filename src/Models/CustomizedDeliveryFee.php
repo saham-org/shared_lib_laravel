@@ -20,6 +20,9 @@ class CustomizedDeliveryFee extends BaseModel
     protected $table        = 'customized_delivery_fees';
     protected $translatable = ['name'] ;
     protected $dates        = ['deleted_at'];
+    protected $casts = [
+          'deleted_at' => 'datetime',
+      ];
 
 
 

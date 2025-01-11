@@ -8,7 +8,6 @@ use Laravel\Passport\Passport;
 use Saham\SharedLibs\Mongodb\Eloquent\Model;
 use Saham\SharedLibs\Mongodb\Eloquent\Model as Eloquent;
 
-
 class Token extends Eloquent
 {
     /**
@@ -48,6 +47,7 @@ class Token extends Eloquent
     protected $casts = [
         'scopes'  => 'array',
         'revoked' => 'bool',
+        'expires_at' => 'datetime',
     ];
 
     /**

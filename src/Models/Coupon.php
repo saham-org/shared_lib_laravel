@@ -19,6 +19,7 @@ class Coupon extends BaseModel
         'value'          => 'double',
         'minimum_amount' => 'double',
         'radius'         => 'double',
+        'deleted_at'     => 'datetime',
     ];
 
     protected $fillable = [

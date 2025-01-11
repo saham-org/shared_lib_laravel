@@ -38,6 +38,7 @@ class AuthCode extends Model
      */
     protected $casts = [
         'revoked' => 'bool',
+        'expires_at' => 'datetime',
     ];
 
     /**
