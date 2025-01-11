@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\Authorizable;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Hash;
 use Laravel\Passport\HasApiTokens;
-use Mongodb\Laravel\Eloquent\Model as Eloquent;
+use MongoDB\Laravel\Eloquent\Model as Eloquent;
 // use Saham\SharedLibs\Traits\HasRoles;
 use Saham\SharedLibs\Traits\HasRoles;
 //use Illuminate\Database\Eloquent\SoftDeletes;

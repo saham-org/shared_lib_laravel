@@ -2,7 +2,7 @@
 
 namespace Saham\SharedLibs\Models;
 
-use Mongodb\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model;
 
 class Activity extends Model
 {

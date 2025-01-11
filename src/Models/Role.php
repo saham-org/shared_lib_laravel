@@ -4,8 +4,8 @@ namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Saham\SharedLibs\Helpers\PermissionHelpers;
-use Mongodb\Laravel\Eloquent\Model as Eloquent;
-use Mongodb\Laravel\Query\Builder;
+use MongoDB\Laravel\Eloquent\Model as Eloquent;
+use MongoDB\Laravel\Query\Builder;
 use Saham\SharedLibs\Traits\HasPermissions;
 use Spatie\Permission\Contracts\Role as RoleContract;
 use Spatie\Permission\Exceptions\GuardDoesNotMatch;

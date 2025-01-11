@@ -4,8 +4,8 @@ namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Mongodb\Laravel\Relations\BelongsTo;
-use Mongodb\Laravel\Relations\EmbedsMany;
+use MongoDB\Laravel\Relations\BelongsTo;
+use MongoDB\Laravel\Relations\EmbedsMany;
 use Saham\SharedLibs\Traits\Translatable;
 
 class Modifier extends BaseModel

@@ -5,7 +5,7 @@ namespace Saham\SharedLibs\Models;
 use DateTime;
 use MongoDB\BSON\UTCDateTime;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Mongodb\Laravel\Relations\BelongsTo;
+use MongoDB\Laravel\Relations\BelongsTo;
 
 class DriverTracking extends BaseModel
 {

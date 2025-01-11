@@ -3,14 +3,14 @@
 namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Mongodb\Laravel\Relations\BelongsTo;
-use Mongodb\Laravel\Relations\HasMany;
+use MongoDB\Laravel\Relations\BelongsTo;
+use MongoDB\Laravel\Relations\HasMany;
 use Saham\SharedLibs\StateMachines\FeastStatusMachine;
 use Saham\SharedLibs\Traits\HasNotes;
 use Saham\SharedLibs\Traits\HasStateMachines;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
 use Saham\SharedLibs\Models\Enums\FeastStatus;
-use Mongodb\Laravel\Eloquent\Builder;
+use MongoDB\Laravel\Eloquent\Builder;
 
 class Feast extends Order
 {

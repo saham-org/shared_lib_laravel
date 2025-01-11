@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Passport\PersonalAccessClient as PassportPersonalAccessClient;
 use Laravel\Passport\Passport;
-use Mongodb\Laravel\Eloquent\Model as Eloquent;
+use MongoDB\Laravel\Eloquent\Model as Eloquent;
 
 
 class PersonalAccessClient extends Eloquent

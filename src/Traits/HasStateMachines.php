@@ -6,8 +6,8 @@ use Ashraf\EloquentStateMachine\StateMachines\State;
 use Illuminate\Support\Str;
 use Javoscript\MacroableModels\Facades\MacroableModels;
 use Saham\SharedLibs\Models\StateHistory;
-use Mongodb\Laravel\Eloquent\Model;
-use Mongodb\Laravel\Query\Builder;
+use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Query\Builder;
 
 /**
  * Trait HasStateMachines

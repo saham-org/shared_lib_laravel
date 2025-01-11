@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\BSON\UTCDateTime;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Mongodb\Laravel\Eloquent\SoftDeletes;
-use Mongodb\Laravel\Relations\BelongsTo;
-use Mongodb\Laravel\Relations\HasMany;
+use MongoDB\Laravel\Eloquent\SoftDeletes;
+use MongoDB\Laravel\Relations\BelongsTo;
+use MongoDB\Laravel\Relations\HasMany;
 
 class DriverReward Extends BaseModel
 {

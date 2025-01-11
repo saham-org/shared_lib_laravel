@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use MongoDB\BSON\UTCDateTime;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Mongodb\Laravel\Eloquent\SoftDeletes;
+use MongoDB\Laravel\Eloquent\SoftDeletes;
 
 class Coupon extends BaseModel
 {

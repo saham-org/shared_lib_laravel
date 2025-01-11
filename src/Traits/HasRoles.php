@@ -6,8 +6,8 @@ use Illuminate\Support\Collection;
 use ReflectionException;
 use Saham\SharedLibs\Helpers\PermissionHelpers;
 use Saham\SharedLibs\Models\Role;
-use Mongodb\Laravel\Eloquent\Builder;
-use Mongodb\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Builder;
+use MongoDB\Laravel\Eloquent\Model;
 use Saham\SharedLibs\Registerer\PermissionRegistrar;
 
 use function collect;

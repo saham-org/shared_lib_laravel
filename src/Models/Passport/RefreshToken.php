@@ -5,8 +5,8 @@ namespace Saham\SharedLibs\Models\Passport;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Laravel\Passport\Passport;
 use Laravel\Passport\RefreshToken as PassportRefreshToken;
-use Mongodb\Laravel\Eloquent\Model;
-use Mongodb\Laravel\Eloquent\Model as Eloquent;
+use MongoDB\Laravel\Eloquent\Model;
+use MongoDB\Laravel\Eloquent\Model as Eloquent;
 
 class RefreshToken extends Eloquent
 {

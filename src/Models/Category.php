@@ -4,8 +4,8 @@ namespace Saham\SharedLibs\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Saham\SharedLibs\Models\Abstracts\BaseModel;
-use Mongodb\Laravel\Eloquent\SoftDeletes;
-use Mongodb\Laravel\Relations\HasMany;
+use MongoDB\Laravel\Eloquent\SoftDeletes;
+use MongoDB\Laravel\Relations\HasMany;
 use Saham\SharedLibs\Traits\Translatable;
 
 class Category extends BaseModel
