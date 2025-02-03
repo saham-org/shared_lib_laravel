@@ -21,7 +21,7 @@
     "illuminate/notifications": "^10.0|^11.0",
     "illuminate/pagination": "^10.0|^11.0",
     "illuminate/support": "^10.0|^11.0",
-    "laravel/passport": "^8.0|^9.0|^10.4|^11.8",
+    "laravel/passport": "^11.8|^12.0",
     "mongodb/laravel-mongodb": "^5.1",
     "nesbot/carbon": "^2.66",
     "spatie/geocoder": "^3.14",
